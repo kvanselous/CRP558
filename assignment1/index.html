@@ -128,23 +128,9 @@ li.dropdown {
         <input type="submit">
 </form>
         <br><strong>Output (to screen or to console log) of the user after it has been manipulated or changed in some way by your code.</strong></br>
-<form action="example/submit.html">
-  Name: <input type="text" name="name"><br>
-  Password: <input type="password" name="password"><br>
-  <button type="submit">Log in</button>
-</form>
-<script>
-  var form = document.querySelector("form");
-  console.log(form.elements[1].type);
-  // → password
-  console.log(form.elements.password.type);
-  // → password
-  console.log(form.elements.name.form == form);
-  // → true
-</script>
 <strong>What is your name?</strong><br>
 First name: <input type="text" id="firstName" value="Kelsey"><br>
 	
 Last name: <input type="text" id="lastName" onchange="changeFunction(this.value)"><br><br></body>
-   </body>
+  <button type="submit">Log in</button>   </body>
 </html>
