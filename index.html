@@ -5,40 +5,32 @@
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <style>
-  
-navbar {
+ ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
   overflow: hidden;
   background-color: #333;
-  font-family: Arial, Helvetica, sans-serif;
 }
-  
-.navbar a {
+
+li {
   float: left;
-  font-size: 16px;
+}
+
+li a, .dropbtn {
+  display: inline-block;
   color: white;
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
 }
 
-.dropdown {
-  float: left;
-  overflow: hidden;
-}
-
-.dropdown .dropbtn {
-  font-size: 16px;
-  border: none;
-  outline: none;
-  color: white;
-  padding: 14px 16px;
-  background-color: inherit;
-  font-family: inherit; 
-  margin: 0; 
-}
-
-.navbar a:hover, .dropdown:hover .dropbtn {
+li a:hover, .dropdown:hover .dropbtn {
   background-color: red;
+}
+
+li.dropdown {
+  display: inline-block;
 }
 
 .dropdown-content {
@@ -51,7 +43,6 @@ navbar {
 }
 
 .dropdown-content a {
-  float: none;
   color: black;
   padding: 12px 16px;
   text-decoration: none;
@@ -59,46 +50,27 @@ navbar {
   text-align: left;
 }
 
-.dropdown-content a:hover {
-  background-color: #ddd;
-}
+.dropdown-content a:hover {background-color: #f1f1f1;}
 
-.show {
+.dropdown:hover .dropdown-content {
   display: block;
 }
 </style>
 </head>
 <body>   
-      <div class="navbar">
-        <a href="https://kvanselous.github.io/CRP558/">Home</a>
-        <a href="#assigntment"> Assignment</a>
-        <div class="dropdown">
-          <button class="dropbtn" onclick="myFunction()">Dropdown
-            <i class="fa fa-caret-down"></i>
-          </button>
-          <div class="dropdown-content" id="myDropdown">
+      <ul>
+        <li><a href="https://kvanselous.github.io/CRP558/">Home</a></li>
+        <li><a href="#assigntment"> Assignment</a></li>
+        <li class="dropdown">
+             <a href="javascript:void(0)" class="dropbtn">Dropdown</a>
+          <div class="dropdown-content" 
         <a href=" https://kvanselous.github.io/CRP558/exercise1/">Exercise 1</a>            
         <a href="https://kvanselous.github.io/CRP558/exercise2/">Exercise 2</a>
         <a href="https://github.com/kvanselous/CRP558/blob/master/exercise3/CRP558.KVS.Exercise3.geojson">Exercise 3</a>
       </div>
-     </div>
-  </div>
-        <div class="main">
+     </li>
+  </ul>
         <h3>Kelsey Van Selous</h3>
         <p>This is my homepage.</p>
-     </div>
-  <script>
-    function myFunction() {
-    document.getElementByID ("myDropdwon").classList.toggle("show");
-    }
-    window.onclick=function(e) {
-    if (ie.target.matches('dropbutn')) {
-    var myDropdown = document.getElementByID ("myDropdown"};
-    if (myDropdown.classList.contains('show')) {
-    myDropdown.classList.remove('show');
-    }
-    }
-    }
-    </script>
    </body>
 </html>
