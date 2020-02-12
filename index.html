@@ -3,6 +3,7 @@
     <head>
       <title>CRP 558</title>     
 <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
   
 navbar {
@@ -62,7 +63,7 @@ navbar {
   background-color: #ddd;
 }
 
-.dropdown:hover .dropdown-content {
+.show {
   display: block;
 }
 </style>
@@ -72,10 +73,10 @@ navbar {
         <a href="https://kvanselous.github.io/CRP558/">Home</a>
         <a href="#assigntment"> Assignment</a>
         <div class="dropdown">
-          <button class="dropbtn">Dropdown
+          <button class="dropbtn" onclick="myFunction()">Dropdown
             <i class="fa fa-caret-down"></i>
           </button>
-          <div class="dropdown-content">
+          <div class="dropdown-content" id="myDropdown">
         <a href=" https://kvanselous.github.io/CRP558/exercise1/">Exercise 1</a>            
         <a href="https://kvanselous.github.io/CRP558/exercise2/">Exercise 2</a>
         <a href="https://github.com/kvanselous/CRP558/blob/master/exercise3/CRP558.KVS.Exercise3.geojson">Exercise 3</a>
@@ -86,5 +87,18 @@ navbar {
         <h3>Kelsey Van Selous</h3>
         <p>This is my homepage.</p>
      </div>
+  <scriopt>
+    function myFunction() {
+    document.getElementByID ("myDropdwon").classList.toggle("show");
+    }
+    window.onclick=function(e) {
+    if (ie.target.matches('dropbutn')) {
+    var myDropdown = document.getElementByID ("myDropdown"};
+    if (myDropdown.classList.contains('show')) {
+    myDropdown.classList.remove('show');
+    }
+    }
+    }
+    </script>
    </body>
 </html>
