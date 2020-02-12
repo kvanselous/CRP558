@@ -89,23 +89,23 @@ li.dropdown {
         }
         </script>
         <br>Array: The list below is the result of an array for cereal types. In this example, the cereal types include Cheerios, Fruit Loops, and Lucky Charms</br>
-        <p id="demo"></p>
+        <p id="demo1"></p>
         <script>
         var cereal = [
         "Cheerios",
         "Fruit Loops",
         "Lucky Charms"
         ];
-        document.getElementById("demo").innerHTML = cereal;
+        document.getElementById("demo1").innerHTML = cereal;
         </script>        
-        <br>Object</br>
-        <p id="demo"></p>
+        <br>Object: The object below is the result of created the variable cereal and adding the descriptor of breakfast to form the sentence: <em>'Cereal is eaten for breakfast'</em>.</br>
+        <p id="demo2"></p>
         <script>
         var cereal = {Meal:"Breakfast"};
-        document.getElementById("demo").innerHTML = "Cereal is eaten for" + cereal.meal;
+        document.getElementById("demo2").innerHTML = "Cereal is eaten for" + cereal.Meal;
         </script>
-        <br>Loop</br>
-        <p id="demo"></p>
+        <br>Loop: The list below is the result of a loop for cereal types.  In this example, the cereal types include Cheerios, Fruit Loops, Luck Charms, Frosten Flaks, and Mini Wheats</br>
+        <p id="demo3"></p>
         <script>
         var cereal = ["Cheerios", "Fruit Loops", "Lucky Charms", "Frosted Flakes", "Mini Wheats"];
         var text = "";
@@ -113,7 +113,7 @@ li.dropdown {
         for (i = 0; i < cereal.length; i++) {
         text += cereal[i] + "<br>";
         }
-        document.getElementById("demo").innerHTML = text;
+        document.getElementById("demo3").innerHTML = text;
         </script>
         <br>If Else</br>
         <br>Buttons</br>   
