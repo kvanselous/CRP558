@@ -125,18 +125,18 @@ li.dropdown {
 What is your name?: <input type="text" id="Name"><br>
 	
 What is your favorite type of cereal?: 
-<br><em>Cheerios: <input type="radio" id="cereal1"></em>
-<br><em> Fruit Loops: <input type="radio" id="cereal2"></em>
-<br><em> Lucky Charms: <input type="radio" id="cereal3"></em>
-<br><em> Frosted Flakes: <input type="radio" id="cereal4"></em>	
-<br><em> Mini Wheats: <input type="radio" id="cereal5"></em>
+<br><em>Cheerios: <input type="radio" id="cereal.fav"></em>
+<br><em> Fruit Loops: <input type="radio" id="cereal.fav"></em>
+<br><em> Lucky Charms: <input type="radio" id="cereal.fav"></em>
+<br><em> Frosted Flakes: <input type="radio" id="cereal.fav"></em>	
+<br><em> Mini Wheats: <input type="radio" id="cereal.fav"></em>
 
         <br><strong>Output: Click the display button to show output from the two users inputs from previous step</strong><br>
-  <button type="button"onclick="displayFunction()>Display</button>   
+  <button type="button" onclick="myFunction()">Display</button>   
 <p id="display"></p>
 <script>
-	       funtion displayFuntion() {
-	       Name = document.getElementbyID("Name").value;
-		document.getElementbyID("display").innterHTML= Name;
-</body>
+	       funtion myFuntion() {
+	      document.getElementbyID("display").innerHTML = "My name is" Name + "and my favorite cereal" + cereal.fav;
+</script>
+	</body>
 </html>
