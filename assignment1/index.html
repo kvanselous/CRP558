@@ -135,19 +135,19 @@ li.dropdown {
 <p id="display"></p>
 <script>
 	function displayFunction() {
-	name = document.getElementByID("name").value;
-	if (document.getElementByID('cereal1').checked){
-		cerealFav_value = document.getElementByID('cereal1').value;
-	} else if (document.getElementByID('cereal2').checked){
-		cerealFav_value = document.getElementByID('cereal2').value;	
-	} else if (document.getElementByID('cereal3').checked){
-		cerealFav_value = document.getElementByID('cereal3').value;
-	} else if (document.getElementByID('cereal4').checked){
-		cerealFav_value = document.getElementByID('cereal4').value;	      
-	} else if (document.getElementByID('cereal5').checked){
-		cerealFav_value = document.getElementByID('cereal5').value;	
+	var name = document.getElementById("name").value;
+	if (document.getElementById('cereal1').checked){
+		cerealFav_value = document.getElementById('cereal1').value;
+	} else if (document.getElementById('cereal2').checked){
+		cerealFav_value = document.getElementById('cereal2').value;	
+	} else if (document.getElementById('cereal3').checked){
+		cerealFav_value = document.getElementById('cereal3').value;
+	} else if (document.getElementById('cereal4').checked){
+		cerealFav_value = document.getElementById('cereal4').value;	      
+	} else if (document.getElementById('cereal5').checked){
+		cerealFav_value = document.getElementById('cereal5').value;	
 	}
-	document.getElementbyID("display").innerHTML = "My name is" + name + "and my favorite cereal is" + cerealFav_value;
+	document.getElementbyId("display").innerHTML = "My name is" + name + "and my favorite cereal is" + cerealFav_value;
 	}
 
 </script>
