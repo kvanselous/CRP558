@@ -79,7 +79,7 @@ li.dropdown {
   </ul>
                <h3>Assignment 1</h3>
         <p>This page demonstrates how to use JavaScript Items within the below categories</p>
-        <br><strong>Function: The number below is the result of a functin (a-b).  In this example, a=100 and b=2.</strong></br>
+        <br><strong>Function: The number below is the result of a functin (a-b).  In this example, a=100 and b=2.</strong>
 <em><p id="demo"></p></em>
         <script>
         var x = myFunction(100, 2);
@@ -88,7 +88,7 @@ li.dropdown {
         return a - b;
         }
         </script>
-        <br><strong>Array: The list below is the result of an array for cereal types. In this example, the cereal types include <em>Cheerios, Fruit Loops, and Lucky Charms</em>.</strong></br>
+        <br><strong>Array: The list below is the result of an array for cereal types. In this example, the cereal types include <em>Cheerios, Fruit Loops, and Lucky Charms</em>.</strong>
           <em><p id="demo1"></p></em>
         <script>
         var cereal = [
@@ -98,13 +98,13 @@ li.dropdown {
         ];
         document.getElementById("demo1").innerHTML = cereal;
         </script>        
-        <br><strong>Object: The object below is the result of created the variable cereal and adding the descriptor of breakfast to form the sentence:<em>'Cereal is eaten for breakfast'.</em></strong></br>
+        <br><strong>Object: The object below is the result of created the variable cereal and adding the descriptor of breakfast to form the sentence:<em>'Cereal is eaten for breakfast'.</em></strong>
 <em><p id="demo2"></p></em>
         <script>
         var cereal = {Meal:"Breakfast"};
         document.getElementById("demo2").innerHTML = "Cereal is eaten for " + cereal.Meal;
         </script>
-        <br><strong>Loop: The list below is the result of a loop for cereal types.  In this example, the cereal types include <em>Cheerios, Fruit Loops, Luck Charms, Frosten Flaks, and Mini Wheats.</em></strong></br>
+        <br><strong>Loop: The list below is the result of a loop for cereal types.  In this example, the cereal types include <em>Cheerios, Fruit Loops, Luck Charms, Frosten Flaks, and Mini Wheats.</em></strong>
 <em><p id="demo3"></p></em>
         <script>
         var cereal = ["Cheerios", "Fruit Loops", "Lucky Charms", "Frosted Flakes", "Mini Wheats"];
@@ -115,39 +115,39 @@ li.dropdown {
         }
         document.getElementById("demo3").innerHTML = text;
         </script>
-<br><strong>Button: This button below allows users to click to see the date and time.</strong></br>   
+<br><strong>Button: This button below allows users to click to see the date and time.</strong>   
         <button type="button"
         onclick="document.getElementById('button').innerHTML = Date()">
         Click here to display Date and Time.</button>
         <p id="button"></p>        
-<br><strong>Input fields: Below is an example of two fields users can utilize on the page.</strong></br>
-<br>What is your name? <input type="text" name="name"></br>
+<br><strong>Input fields: Below is an example of two fields users can utilize on the page.</strong>
+<br>What is your name? <input type="text" id="name">
 	
-<br>What is your favorite type of cereal?</br> 
+<br>What is your favorite type of cereal?
 <br><em>Cheerios: <input type="radio" name="cerealFav" id="cereal1" value="Cheerios"></em>
 <br><em> Fruit Loops: <input type="radio" name="cerealFav" id="cereal2" value="Fruit Loops"></em>
 <br><em> Lucky Charms: <input type="radio" name="cerealFav"id="cereal3" value="Lucky Charms"></em>
 <br><em> Frosted Flakes: <input type="radio" name="cerealFav"id="cereal4" value="Frosted Flakes"></em>	
-<br><em> Mini Wheats: <input type="radio" name="cerealFav" id="cereal5" value="Mini Wheats"></em></br>
+<br><em> Mini Wheats: <input type="radio" name="cerealFav" id="cereal5" value="Mini Wheats"></em>
 
-        <br><strong>Output with 'If else': Click the display button to show output from the two users inputs from previous step. 'If Else' is used within this code to inform the output based on what cereal is selected for favorite cereal.</strong></br>
-<br><button type="button" onclick="displayFunction()">Display</button></br>   
+        <br><strong>Output with 'If else': Click the display button to show output from the two users inputs from previous step. 'If Else' is used within this code to inform the output based on what cereal is selected for favorite cereal.</strong>
+<br><button type="button" onclick="displayFunction()">Display</button>  
 <p id="display"></p>
 <script>
 	function displayFunction() {
-	name = document.getElementByName("name").value;
-	if (document.getElementByID ('cereal1').checked;){
+	name = document.getElementByID("name").value;
+	if (document.getElementByID ('cereal1').checked){
 		cerealFav_value = document.getElementByID('cereal1').value;
-	} else if (document.getElementByID ('cereal2').checked;){
+	} else if (document.getElementByID ('cereal2').checked){
 		cerealFav_value = document.getElementByID('cereal2').value;	
-	} else if (document.getElementByID ('cereal3').checked;){
+	} else if (document.getElementByID ('cereal3').checked){
 		cerealFav_value = document.getElementByID('cereal3').value;
-	} else if (document.getElementByID ('cereal4').checked;){
+	} else if (document.getElementByID ('cereal4').checked){
 		cerealFav_value = document.getElementByID('cereal4').value;	      
-	} else if (document.getElementByID ('cereal5').checked;){
+	} else if (document.getElementByID ('cereal5').checked){
 		cerealFav_value = document.getElementByID('cereal5').value;	
 	}
-	document.getElementbyID("display").innerHTML = "My name is" name + "and my favorite cereal is" + cerealFav_value;
+	document.getElementbyID("display").innerHTML = "My name is" + name + "and my favorite cereal is" + cerealFav_value;
 	}
 
 </script>
