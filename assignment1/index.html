@@ -121,7 +121,7 @@ li.dropdown {
         Click here to display Date and Time.</button>
         <p id="button"></p>        
 <br><strong>Input fields: Below is an example of two fields users can utilize on the page.</strong>
-<br>What is your name? <input type="text" id="name">
+<br>What is your name? <input type="text" id="usersName">
 	
 <br>What is your favorite type of cereal?
 <br><em>Cheerios: <input type="radio" name="cerealFav" id="cereal1" value="Cheerios"></em>
@@ -135,7 +135,7 @@ li.dropdown {
 <p id="display"></p>
 <script>
 	function displayFunction() {
-	var name = document.getElementById("name").value;
+	var name = document.getElementById("usersName").value;
 	if (document.getElementById('cereal1').checked){
 		cerealFav_value = document.getElementById('cereal1').value;
 	} else if (document.getElementById('cereal2').checked){
@@ -148,7 +148,7 @@ li.dropdown {
 		cerealFav_value = document.getElementById('cereal5').value;	
 	}
 	document.getElementbyId("display").innerHTML = "My name is" + name + "and my favorite cereal is" + cerealFav_value;
-	}
+	};
 
 </script>
 	</body>
