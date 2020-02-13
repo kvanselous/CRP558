@@ -136,16 +136,16 @@ li.dropdown {
 <script>
 	function displayFunction() {
 	var name = document.getElementByID("name").value;
-	if (document.getElementByID("cereal1").checked){
-		cerealFav_value = document.getElementByID("cereal1").value;
-	} else if (document.getElementByID("cereal2").checked){
-		cerealFav_value = document.getElementByID("cereal2").value;	
-	} else if (document.getElementByID("cereal3").checked){
-		cerealFav_value = document.getElementByID("cereal3").value;
-	} else if (document.getElementByID("cereal4").checked){
-		cerealFav_value = document.getElementByID("cereal4").value;	      
-	} else if (document.getElementByID("cereal5").checked){
-		cerealFav_value = document.getElementByID("cereal5").value;	
+	if (document.getElementByID('cereal1').checked){
+		cerealFav_value = document.getElementByID('cereal1').value;
+	} else if (document.getElementByID('cereal2').checked){
+		cerealFav_value = document.getElementByID('cereal2').value;	
+	} else if (document.getElementByID('cereal3').checked){
+		cerealFav_value = document.getElementByID('cereal3').value;
+	} else if (document.getElementByID('cereal4').checked){
+		cerealFav_value = document.getElementByID('cereal4').value;	      
+	} else if (document.getElementByID('cereal5').checked){
+		cerealFav_value = document.getElementByID('cereal5').value;	
 	}
 	document.getElementbyID("display").innerHTML = "My name is" + name + "and my favorite cereal is" + cerealFav_value;
 	}
