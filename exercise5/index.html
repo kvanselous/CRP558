@@ -16,50 +16,80 @@
              
              <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
                      integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
-                 crossorigin=""></script>
+                 crossorigin="">
+             </script>
                
               <style>
                     #map {
                      width: 800px;
                      height: 600px;
                      }    
-               </style>
+              </style>
             
         </head>
+       
         <body>
+            
             <div id='map'></div>
-                Pan to <h ref ="function Philadelphia()"? Philadelphia, PA </a> <br>
- 
-            <script>   
-                function Philadelphia(){
-                map.panTo(new l.Lating(40.05, -75));
-                } ;   
-    
-                function Denver() {
-                map.panTo(new L.LatLng(40, -91), 10);
-                }; 
-  
-  
-   
-    
-    <a href = "#' = id='zoomOut'>Zoom out to level 8</a><br>
-               $("#zoomOut").click(function(){
-                           map.setZoom(8);
-               <button id="pennState"> Visit State College , PA </a>
-                                     map.setview([45.00185, -111.3080], 15);    
-                                     <script>
-        var map = L.map('map').setView([45.00185, -111.3080], 15);
+               
+                <br>Pan to <a href="javascript:Hopewell()">Hopewell, NJ</a><br>
+                <br>Pan to <a href="javascript:StateCollege()">State College, PA</a><br>  
+                <br>Pan to <a href="javascript:Denver()">Denver, CO</a><br>
+                <br>Pan to <a href="javascript:Philadelphia()">Philadelphia, PA</a><br>      
+                <br>Pan to <a href="javascript:DesMoines()">Des Moines, IA</a><br>
+         
+                <a href="javascript:zoomOut()">Zoom out to United States</a><br>
 
-        L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
-            attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-            maxZoom: 18,
-            id: 'mapbox/streets-v11',
-            accessToken: 'pk.eyJ1Ijoia3ZhbnNlbG91cyIsImEiOiJjazZsbHE2NGwwZDdtM2tvNmRjc2N0NHo5In0.h_W_-4R3haPMK-IDBTcL-w' 
-        }).addTo(map);
+                <button id="HomeBtn">Go Home</button> 
+                
+                <script>   
+                    var map = L.map('map').setView([42.0, -93.634], 13);
+                    L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+                    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+                    maxZoom: 18,
+                    id: 'mapbox/streets-v11',
+                    accessToken: 'pk.eyJ1Ijoia3ZhbnNlbG91cyIsImEiOiJjazZsbHE2NGwwZDdtM2tvNmRjc2N0NHo5In0.h_W_-4R3haPMK-IDBTcL-w' 
+                    }).addTo(map);
+                    L.marker([40, -74]).addTo(map)
+                    .bindPopup("My Hometown")
+                    .openPopup(); 
+                  
+                    var towns = [
+                    [40, -77, "State College, PA"],  
+                    [40, -91, "Denver, CO"],
+                    [40, -75, "Philadelphia, PA"],
+                    [42, -94, "Des Moines, Iowa"],
+                    ];                     
+            
+                    for (var i = 0; i < towns.length; i++) {
+                    marker = new L.marker([towns[i][0], towns[i][1]])
+                    .bindPopup(towns[i][2])
+                    .addTo(map);
+                    }                     
+                   
+                    function Hopewell() {
+                    map.panTo(new L.LatLng(40, -74));
+                    }   
+                    function StateCollege() {
+                    map.panTo(new L.LatLng(40, -77));
+                    }     
+                    function Denver() {
+                    map.panTo(new L.LatLng(40, -91));
+                    }                         
+                    function Philadelphia() {
+                    map.panTo(new L.LatLng(40, -75));
+                    }                          
+                    function Des Moines() {
+                    map.panTo(new L.LatLng(42, -94));
+                    }                          
 
-        L.marker([45.00185, -111.3080]).addTo(map)
-            .bindPopup("My Favorite Ski Area")
-            .openPopup();
-    </script>
+                    function zoomOut() {
+                    map.setZoom(1);
+                    };
+                    
+                    function homeBtn() {
+                    map.setView(new L.LatLng(40, -74), 13);
+                    };      
+        </script>
    </body>
 </html>
