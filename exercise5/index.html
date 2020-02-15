@@ -37,7 +37,7 @@
                 I moved to Philadelphia for my Master's Degree and stayed for 6 years: <a href="javascript:Philadelphia()">Philadelphia, PA</a><br>      
                 I moved to Iowa to work with a mentor from my undergraduate: <a href="javascript:DesMoines()">Des Moines, IA</a><br>
                 <a href="javascript:zoomOut()">Zoom out to United States</a><br>
-                Press the button to go back to my hometown: <button id="HomeBtn">Go Home</button> <br>
+                Press the button Zoom back to my hometown: <button id="HomeBtn">Go Home</button> <br>
                 
                 <script>   
                     var map = L.map('map').setView([41.619549, -93.598022], 4);
@@ -63,25 +63,25 @@
                     }                     
                    
                     function Hopewell() {
-                    map.setTo(new L.LatLng(40.3279, -74.8049),3);
+                    map.panTo(new L.LatLng(40.3279, -74.8049),3);
                     }   
                     function StateCollege() {
-                    map.setTo(new L.LatLng(40.7965, -77.8628),3);
+                    map.panTo(new L.LatLng(40.7965, -77.8628),3);
                     }     
                     function Denver() {
-                    map.setTo(new L.LatLng(39.7392, -104.9903),3);
+                    map.panTo(new L.LatLng(39.7392, -104.9903),3);
                     }                         
                     function Philadelphia() {
-                    map.setTo(new L.LatLng(39.9526, -75.1652),3);
+                    map.panTo(new L.LatLng(39.9526, -75.1652),3);
                     }                          
                     function DesMoines() {
-                    map.setTo(new L.LatLng(41.619549, -93.598022),3);
+                    map.panTo(new L.LatLng(41.619549, -93.598022),3);
                     }                          
                     function zoomOut() {
                     map.setZoom(4);
                     };
                     function homeBtn() {
-                    map.setTo(new L.LatLng(40.3279, -74.8049),3);
+                    map.setZoomTo(new L.LatLng(40.3279, -74.8049),3);
                     };      
         </script>
    </body>
