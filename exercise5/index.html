@@ -38,7 +38,7 @@
                 I moved to Iowa to work with a mentor from my undergraduate: <a href="javascript:DesMoines()">Des Moines, IA</a><br>
                 <a href="javascript:zoomOut()">Zoom out to United States</a><br>
                 <a href="javascript:zoomIn()">Zoom back In</a><br>           
-                Press the button Zoom back to my currenttown: <button id="HomeBtn">Go Home</button> <br>
+                Press the button to go back to my hometown: <button id="HomeBtn">Go Home</button> <br>
                 
                 <script>   
                     var map = L.map('map').setView([41.619549, -93.598022], 10);
@@ -84,10 +84,7 @@
                     function zoomIn() {
                     map.setZoom(10);
                     };
-                    document.getElementById("homeBtn").addEventListener("click", DesMoines);                   
-                    function DesMoines() {
-                    map.panTo(new L.LatLng(41.619549, -93.598022));
-                    };            
+                    document.getElementById("homeBtn").addEventListener("click", Hopewell);                           
             </script>
    </body>
 </html>
