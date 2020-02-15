@@ -37,6 +37,7 @@
                 I moved to Philadelphia for my Master's Degree and stayed for 6 years: <a href="javascript:Philadelphia()">Philadelphia, PA</a><br>      
                 I moved to Iowa to work with a mentor from my undergraduate: <a href="javascript:DesMoines()">Des Moines, IA</a><br>
                 <a href="javascript:zoomOut()">Zoom out to United States</a><br>
+                <a href="javascript:zoomIn()">Zoom back In</a><br>           
                 Press the button Zoom back to my currenttown: <button id="HomeBtn">Go Home</button> <br>
                 
                 <script>   
@@ -79,6 +80,9 @@
                     }                          
                     function zoomOut() {
                     map.setZoom(4);
+                    };
+                    function zoomIn() {
+                    map.setZoom(3);
                     };
                     function homeBtn() {
                     map.setZoomTo(new L.LatLng(41.619549, -93.598022));
