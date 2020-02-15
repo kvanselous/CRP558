@@ -49,15 +49,15 @@
                     id: 'mapbox/streets-v11',
                     accessToken: 'pk.eyJ1Ijoia3ZhbnNlbG91cyIsImEiOiJjazZsbHE2NGwwZDdtM2tvNmRjc2N0NHo5In0.h_W_-4R3haPMK-IDBTcL-w' 
                     }).addTo(map);
-                    L.marker([40, -74]).addTo(map)
-                    .bindPopup("My Hometown")
-                    .openPopup(); 
+                    L.marker([40.3279, -74.8049]).addTo(map)
+                    .bindPopup(towns[i][2]")
+                    .addTo(map); 
                   
                     var towns = [
-                    [40, -77, "State College, PA"],  
-                    [40, -91, "Denver, CO"],
-                    [40, -75, "Philadelphia, PA"],
-                    [42, -94, "Des Moines, Iowa"],
+                    [40.7965, -77.8628, "State College, PA"],  
+                    [39.7392, -104.9903, "Denver, CO"],
+                    [39.9526, -75.1652, "Philadelphia, PA"],
+                    [41.619549, -93.598022, "Des Moines, Iowa"],
                     ];                     
             
                     for (var i = 0; i < towns.length; i++) {
@@ -67,25 +67,25 @@
                     }                     
                    
                     function Hopewell() {
-                    map.panTo(new L.LatLng(40, -74));
+                    map.panTo(new L.LatLng(40.3279, -74.8049));
                     }   
                     function StateCollege() {
-                    map.panTo(new L.LatLng(40, -77));
+                    map.panTo(new L.LatLng(40.7965, -77.8628));
                     }     
                     function Denver() {
-                    map.panTo(new L.LatLng(40, -91));
+                    map.panTo(new L.LatLng(39.7392, -104.9903));
                     }                         
                     function Philadelphia() {
-                    map.panTo(new L.LatLng(40, -75));
+                    map.panTo(new L.LatLng(39.9526, -75.1652));
                     }                          
                     function DesMoines() {
-                    map.panTo(new L.LatLng(42, -94));
+                    map.panTo(new L.LatLng(41.619549, -93.598022));
                     }                          
                     function zoomOut() {
-                    map.setZoom(1);
+                    map.setZoom(10);
                     };
                     function homeBtn() {
-                    map.setView(new L.LatLng(40, -74), 13);
+                    map.setView(new L.LatLng(40.3279, -74.8049, 13);
                     };      
         </script>
    </body>
