@@ -153,9 +153,9 @@ li.dropdown {
                     function zoomIn() {
                     map.setZoom(10);
                     };
-                    document.getElementById("homeBtn").addEventListener("click", Hopewell);     
-                    function Hopewell() {
-                    map.panTo(new L.LatLng(40.3279, -74.8049));
+                    document.getElementById("homeBtn").addEventListener("click",Home);     
+                    function Home() {
+                    map.setView(new L.LatLng(40.3279, -74.8049),10);
                     };             
             </script>
    </body>
