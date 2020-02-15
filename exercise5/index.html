@@ -153,7 +153,10 @@ li.dropdown {
                     function zoomIn() {
                     map.setZoom(10);
                     };
-                    document.getElementById("homeBtn").addEventListener("click", Hopewell);                           
+                    document.getElementById("homeBtn").addEventListener("click", Hopewell);     
+                    function Hopewell() {
+                    map.panTo(new L.LatLng(40.3279, -74.8049));
+                    };             
             </script>
    </body>
 </html>
