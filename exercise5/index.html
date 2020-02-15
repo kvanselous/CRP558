@@ -85,7 +85,10 @@
                     map.setZoom(10);
                     };
                     document.getElementById("homeBtn").addEventListener("click", DesMoines);                    
-                    };      
-        </script>
+                    }
+                    function DesMoines() {
+                    map.panTo(new L.LatLng(41.619549, -93.598022));
+                    };            
+            </script>
    </body>
 </html>
