@@ -10,9 +10,10 @@
              
              <title>Exercise 5</title>
             
-             <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
-                  integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
-                  crossorigin=""/>
+             <link rel="stylesheet" 
+                  href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css">
+                  <script>integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+                      crossorigin=""/></script>
              
              <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
                      integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
@@ -21,9 +22,10 @@
                
               <style>
                     #map {
-                     width: 800px;
-                     height: 600px;
-                     }    
+                    width: 800px;
+                    height: 600px;
+                    background-color:black
+                    }    
               </style>
             
         </head>
@@ -37,9 +39,7 @@
                 I lived and worked in Colorodo for 3 years after college: <a href="javascript:Denver()">Denver, CO</a><br>
                 I moved to Philadelphia for my Master's Degree and stayed for 6 years: <a href="javascript:Philadelphia()">Philadelphia, PA</a><br>      
                 I moved to Iowa to work with a mentor from my undergraduate: <a href="javascript:DesMoines()">Des Moines, IA</a><br>
-                <br>
                 <a href="javascript:zoomOut()">Zoom out to United States</a><br>
-
                 Press the button to go back to my hometown: <button id="HomeBtn">Go Home</button> <br>
                 
                 <script>   
