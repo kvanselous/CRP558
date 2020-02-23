@@ -103,12 +103,11 @@ li.dropdown {
    
             
             <div id='map'></div>
-               
-                This is a map of North America. <br>
-		The purple circle shows my use of a circleMarker to highlight the area I currently live, Des Moines.<br>
-		The blue circle shows my use of a. circl to highlight where I previously lived, Philadelphia. <br>
+                The marker shows my use of a marker and pop up to highlight the area I grew up, Hopewell. <br> 
+		The large blue circle shows my use of a circleMarker to highlight the area I currently live, Des Moines.<br>
+		The small blue circle shows my use of a circle to highlight where I previously lived, Philadelphia. <br>
                 The orange line shows my use of a polyline to connect Philadelphia and Des Moines.<br>  
-                The red square shows my use of a polygone to create a square around all of the places I lived. <br>
+                The yellow square shows my use of a polygon to create a square around all of the places I lived. <br>
 
                 
                 <script>   
@@ -121,11 +120,11 @@ li.dropdown {
                     }).addTo(map);       
 		    
 		   L.circleMarker([41.619549, -93.598022], {radius: 400}).addTo(map);
-                   L.circle([39.9526, -75.1652], {radius: 1200}).addTo(map);
+                   L.circle([39.9526, -75.1652], {radius: 800}).addTo(map);
 		   var latlngs = [[41.619549, -93.598022], [39.9526, -75.1652]]; 
                    var polyline = L.polyline(latlngs, {color: 'orange'}).addTo(map);
 		   var latlngs = [[39, -105],[42, -105],[42, -74],[39, -74]]; 
-                   var polygon = L.polygon(latlngs, {color: 'red'}).addTo(map);			
+                   var polygon = L.polygon(latlngs, {color: 'yellow'}).addTo(map);			
 			
                     var Hopewell = [
                     [40.3279, -74.8049, "Hopewell, NJ"],                   
