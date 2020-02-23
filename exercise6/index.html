@@ -130,10 +130,8 @@ li.dropdown {
                     [40.3279, -74.8049, "Hopewell, NJ"],                   
                     ];                     
             
-                    for (var Hopewell) {
-                    marker = new L.marker([40.3279, -74.8049]])
-                    .bindPopup(This is my hometown)
-                    .addTo(map);
+                   var marker1 = L.marker([40.3279, -74.8049]).addTo(map);
+                   marker2.bindPopup("This is my hometown").openPopup();
                     }                     
             </script>
    </body>
