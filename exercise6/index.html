@@ -104,15 +104,12 @@ li.dropdown {
             
             <div id='map'></div>
                
-                This is a map of the United States<br>
-		This is my use of a circle marker
-                This is where I went to college: <a href="javascript:StateCollege()">State College, PA</a><br>  
-                I lived and worked in Colorodo for 3 years after college: <a href="javascript:Denver()">Denver, CO</a><br>
-                I moved to Philadelphia for my Master's Degree and stayed for 6 years: <a href="javascript:Philadelphia()">Philadelphia, PA</a><br>      
-                I moved to Iowa to work with a mentor from my undergraduate: <a href="javascript:DesMoines()">Des Moines, IA</a><br>
-                <a href="javascript:zoomOut()">Zoom out to United States</a><br>
-                <a href="javascript:zoomIn()">Zoom back In</a><br>           
-                Press the button to go back to my hometown: <button id="HomeBtn">Go Home</button> <br>
+                This is a map of North America. <br>
+		The purple circle shows my use of a circleMarker to highlight the area I currently live, Des Moines.<br>
+		The blue circle shows my use of a. circl to highlight where I previously lived, Philadelphia. <br>
+                The orange line shows my use of a polyline to connect Philadelphia and Des Moines.<br>  
+                The red square shows my use of a polygone to create a square around all of the places I lived. <br>
+
                 
                 <script>   
                     var map = L.map('map').setView([41.619549, -93.598022], 2);
@@ -123,12 +120,12 @@ li.dropdown {
                     accessToken: 'pk.eyJ1Ijoia3ZhbnNlbG91cyIsImEiOiJjazZsbHE2NGwwZDdtM2tvNmRjc2N0NHo5In0.h_W_-4R3haPMK-IDBTcL-w' 
                     }).addTo(map);       
 		    
-		   L.circleMarker([42.00185, -93.60], {radius: 43}).addTo(map);
-                  L.circle([42.00185, -93.60], {radius: 1200}).addTo(map);
-		var latlngs = [[45.51, -122.68], [37.77, -122.43], [34.04, -118.2]]; 
-var polyline = L.polyline(latlngs, {color: 'red'}).addTo(map);
-var latlngs = [[37, -109.05],[41, -109.03],[41, -102.05],[37, -102.04]]; 
-var polygon = L.polygon(latlngs, {color: 'red'}).addTo(map);			
+		   L.circleMarker([41.619549, -93.598022], {color: 'purple'} {radius: 43}).addTo(map);
+                   L.circle([39.9526, -75.1652], {radius: 1200}).addTo(map);
+		   var latlngs = [[41.619549, -93.598022], [39.9526, -75.1652]]; 
+                   var polyline = L.polyline(latlngs, {color: 'orange'}).addTo(map);
+		   var latlngs = [[39, -104],[42, -74],[42, -104],[39, -74]]; 
+                   var polygon = L.polygon(latlngs, {color: 'red'}).addTo(map);			
 			
                     var towns = [
                     [40.3279, -74.8049, "Hopewell, NJ"],                   
@@ -143,32 +140,6 @@ var polygon = L.polygon(latlngs, {color: 'red'}).addTo(map);
                     .bindPopup(towns[i][2])
                     .addTo(map);
                     }                     
-                   
-                    function Hopewell() {
-                    map.panTo(new L.LatLng(40.3279, -74.8049));
-                    }   
-                    function StateCollege() {
-                    map.panTo(new L.LatLng(40.7965, -77.8628));
-                    }     
-                    function Denver() {
-                    map.panTo(new L.LatLng(39.7392, -104.9903));
-                    }                         
-                    function Philadelphia() {
-                    map.panTo(new L.LatLng(39.9526, -75.1652));
-                    }                          
-                    function DesMoines() {
-                    map.panTo(new L.LatLng(41.619549, -93.598022));
-                    }                          
-                    function zoomOut() {
-                    map.setZoom(2);
-                    };
-                    function zoomIn() {
-                    map.setZoom(10);
-                    };
-                    document.getElementById("HomeBtn").addEventListener("click", Home);     
-                    function Home() {
-                    map.setView(new L.LatLng(40.3279, -74.8049),10);
-                    };             
             </script>
    </body>
 </html>
