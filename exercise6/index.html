@@ -1,9 +1,17 @@
  <!DOCTYPE html>
-  <html>
-    <head>
-      <title>Exercise 6</title>   
-       <!--//code to help build drop down menu from: https://www.w3schools.com/howto/howto_css_dropdown.asp    -->    
-      <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <html>
+
+        <head>
+        
+             <meta name="description" content="LA/CRP 458/558 Leaflet starter file - 2020">
+             <meta charset="utf-8">
+             <meta name="viewport" content="width=device-width">
+             
+             <title>Exercise 6</title>
+<!--code to help build drop down menu from: https://www.w3schools.com/howto/howto_css_dropdown.asp-->
+<!--code to help build https://leafletjs.com/examples/quick-start/-->            
+            <meta name="viewport" content="width=device-width, initial-scale=1">
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <style>
  ul {
@@ -40,7 +48,7 @@ li.dropdown {
   background-color: #f9f9f9;
   min-width: 160px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 999;
+  z-index: 499;
 }
 
 .dropdown-content a {
@@ -56,14 +64,15 @@ li.dropdown {
 .dropdown:hover .dropdown-content {
   display: block;
 }
-      
-                          #map {
+               
+  
+                    #map {
                     width: 300px;
                     height: 300px;
                     background-color:blue
                     z-index: -1      
-                    }   
-</style>
+                    }    
+         </style>
 </head>
 <body>   
       <ul>
@@ -76,87 +85,90 @@ li.dropdown {
         <a href="https://kvanselous.github.io/CRP558/exercise2/">Exercise 2</a>
         <a href="https://kvanselous.github.io/CRP558/exercise3/">Exercise 3</a>
         <a href="https://kvanselous.github.io/CRP558/exercise4/">Exercise 4</a>
-        <a href="https://kvanselous.github.io/CRP558/exercise5/">Exercise 5</a>   
+        <a href="https://kvanselous.github.io/CRP558/exercise5/">Exercise 5</a>    
         <a href="https://kvanselous.github.io/CRP558/exercise6/">Exercise 6</a>  
         <a href="https://kvanselous.github.io/CRP558/exercise7/">Exercise 7</a>  
         <a href="https://kvanselous.github.io/CRP558/exercise8/">Exercise 8</a> 
-          </div>
+            </div>
      </li>
-  </ul>
-              
- <h1>For this exercise create a new Leaflet.js map project and include an example of each of the following vector layer types. For at least one of the layers also include a pop up window. Before submitting,  double check your code for multiple head, body, script, and style tags. Points will be taken away for those errors. 
-
-Popup window for one layer (0.5pt)
-Marker (0.5pt)
-Circle Marker (1pt)
-Circle (1pt)
-Polyline (1pt)
-  Polygon (1pt) </h1>
- <link rel="stylesheet" 
+  </ul>            
+            <h1>This is a map showing different vector layer types</h1> 
+             <link rel="stylesheet" 
                   href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css">
-  <script>
-console.clear();
 
-var OSM = L.tileLayer('https://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; <a href="https://osm.org/copyright">OpenStreetMap</a> contributors',
-    maxZoom: 18
-});
+             <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+                     integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+                 crossorigin=""></script>
+
    
-var map = L.map('map', {
-   		center: new L.LatLng(42.0908, -93.6208),
-    		zoom: 4,
-    		layers: [OSM, nexrad, someStuff]
-		});
-var Esri_WorldImagery = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
-	attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
-});
-
-
-var Stamen_Watercolor = L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/watercolor/{z}/{x}/{y}.{ext}', {
-	attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-	subdomains: 'abcd',
-	minZoom: 1,
-	maxZoom: 16,
-	ext: 'jpg'
-});
-
-var nexrad = new L.tileLayer.wms("https://mesonet.agron.iastate.edu/cgi-bin/wms/nexrad/n0r.cgi", {
-    		layers: 'nexrad-n0r-900913',
-    		format: 'image/png',
-    		transparent: true,
-    		attribution: "Weather data &copy; 2012 IEM Nexrad"
-		});
-
-
-var Stamen_TonerLines = L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/toner/{z}/{x}/{y}{r}.{ext}', {
-	attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-	subdomains: 'abcd',
-	minZoom: 0,
-	maxZoom: 20,
-	ext: 'png'
-});
-
-
-
-		var baseMaps = {
-			"OpenStreetMap": OSM,
-      "Esri World Imagery": Esri_WorldImagery,
-			"Stamen Watercolor": Stamen_Watercolor,
-			"Aerial Imagery - Not Working": naip,
-		};
-       		
-		var overlayMaps = {
-			"Stamen TonerLines": Stamen_TonerLines,
-			"Some Stuff": someStuff,
-			"Radar": nexrad,
-      "polyline": myPolyline
+            
+            <div id='map'></div>
+               
+                This is a map of the United States<br>
+		This is my use of a circle marker
+                This is where I went to college: <a href="javascript:StateCollege()">State College, PA</a><br>  
+                I lived and worked in Colorodo for 3 years after college: <a href="javascript:Denver()">Denver, CO</a><br>
+                I moved to Philadelphia for my Master's Degree and stayed for 6 years: <a href="javascript:Philadelphia()">Philadelphia, PA</a><br>      
+                I moved to Iowa to work with a mentor from my undergraduate: <a href="javascript:DesMoines()">Des Moines, IA</a><br>
+                <a href="javascript:zoomOut()">Zoom out to United States</a><br>
+                <a href="javascript:zoomIn()">Zoom back In</a><br>           
+                Press the button to go back to my hometown: <button id="HomeBtn">Go Home</button> <br>
+                
+                <script>   
+                    var map = L.map('map').setView([41.619549, -93.598022], 2);
+                    L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+                    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+                    maxZoom: 18,
+                    id: 'mapbox/streets-v11',
+                    accessToken: 'pk.eyJ1Ijoia3ZhbnNlbG91cyIsImEiOiJjazZsbHE2NGwwZDdtM2tvNmRjc2N0NHo5In0.h_W_-4R3haPMK-IDBTcL-w' 
+                    }).addTo(map);       
+		    
+		   L.circleMarker([42.00185, -93.60], {radius: 43}).addTo(map);
+                  L.circle([42.00185, -93.60], {radius: 1200}).addTo(map);
+		var latlngs = [[45.51, -122.68], [37.77, -122.43], [34.04, -118.2]]; 
+var polyline = L.polyline(latlngs, {color: 'red'}).addTo(map);
+var latlngs = [[37, -109.05],[41, -109.03],[41, -102.05],[37, -102.04]]; 
+var polygon = L.polygon(latlngs, {color: 'red'}).addTo(map);			
 			
-		};
-	
-		L.control.layers(baseMaps, overlayMaps).addTo(map);
-		
-               
-               
-    </script>
-    </body>
-    </html>
+                    var towns = [
+                    [40.3279, -74.8049, "Hopewell, NJ"],                   
+                    [40.7965, -77.8628, "State College, PA"],  
+                    [39.7392, -104.9903, "Denver, CO"],
+                    [39.9526, -75.1652, "Philadelphia, PA"],
+                    [41.619549, -93.598022, "Des Moines, Iowa"],
+                    ];                     
+            
+                    for (var i = 0; i < towns.length; i++) {
+                    marker = new L.marker([towns[i][0],towns[i][1]])
+                    .bindPopup(towns[i][2])
+                    .addTo(map);
+                    }                     
+                   
+                    function Hopewell() {
+                    map.panTo(new L.LatLng(40.3279, -74.8049));
+                    }   
+                    function StateCollege() {
+                    map.panTo(new L.LatLng(40.7965, -77.8628));
+                    }     
+                    function Denver() {
+                    map.panTo(new L.LatLng(39.7392, -104.9903));
+                    }                         
+                    function Philadelphia() {
+                    map.panTo(new L.LatLng(39.9526, -75.1652));
+                    }                          
+                    function DesMoines() {
+                    map.panTo(new L.LatLng(41.619549, -93.598022));
+                    }                          
+                    function zoomOut() {
+                    map.setZoom(2);
+                    };
+                    function zoomIn() {
+                    map.setZoom(10);
+                    };
+                    document.getElementById("HomeBtn").addEventListener("click", Home);     
+                    function Home() {
+                    map.setView(new L.LatLng(40.3279, -74.8049),10);
+                    };             
+            </script>
+   </body>
+</html>
