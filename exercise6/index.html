@@ -83,22 +83,80 @@ li.dropdown {
           </div>
      </li>
   </ul>
-              <link rel="stylesheet" 
-                  href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css">
-   
+              
+ <h1>For this exercise create a new Leaflet.js map project and include an example of each of the following vector layer types. For at least one of the layers also include a pop up window. Before submitting,  double check your code for multiple head, body, script, and style tags. Points will be taken away for those errors. 
 
-             <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
-                     integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
-                     crossorigin=""></script>
-      <div id='map'></div>   
-              <script>    
-                     var map = L.map('map').setView([41.619549, -93.598022], 10);
-                    L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
-                    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-                    maxZoom: 18,
-                    id: 'mapbox/streets-v11',
-                    accessToken: 'pk.eyJ1Ijoia3ZhbnNlbG91cyIsImEiOiJjazZsbHE2NGwwZDdtM2tvNmRjc2N0NHo5In0.h_W_-4R3haPMK-IDBTcL-w' 
-                    }).addTo(map);  
+Popup window for one layer (0.5pt)
+Marker (0.5pt)
+Circle Marker (1pt)
+Circle (1pt)
+Polyline (1pt)
+  Polygon (1pt) </h1>
+ <link rel="stylesheet" 
+                  href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css">
+  <script>
+console.clear();
+
+var OSM = L.tileLayer('https://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="https://osm.org/copyright">OpenStreetMap</a> contributors',
+    maxZoom: 18
+});
+   
+var map = L.map('map', {
+   		center: new L.LatLng(42.0908, -93.6208),
+    		zoom: 4,
+    		layers: [OSM, nexrad, someStuff]
+		});
+var Esri_WorldImagery = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+	attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
+});
+
+
+var Stamen_Watercolor = L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/watercolor/{z}/{x}/{y}.{ext}', {
+	attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+	subdomains: 'abcd',
+	minZoom: 1,
+	maxZoom: 16,
+	ext: 'jpg'
+});
+
+var nexrad = new L.tileLayer.wms("https://mesonet.agron.iastate.edu/cgi-bin/wms/nexrad/n0r.cgi", {
+    		layers: 'nexrad-n0r-900913',
+    		format: 'image/png',
+    		transparent: true,
+    		attribution: "Weather data &copy; 2012 IEM Nexrad"
+		});
+
+
+var Stamen_TonerLines = L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/toner/{z}/{x}/{y}{r}.{ext}', {
+	attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+	subdomains: 'abcd',
+	minZoom: 0,
+	maxZoom: 20,
+	ext: 'png'
+});
+
+
+
+		var baseMaps = {
+			"OpenStreetMap": OSM,
+      "Esri World Imagery": Esri_WorldImagery,
+			"Stamen Watercolor": Stamen_Watercolor,
+			"Aerial Imagery - Not Working": naip,
+		};
+       		
+		var overlayMaps = {
+			"Stamen TonerLines": Stamen_TonerLines,
+			"Some Stuff": someStuff,
+			"Radar": nexrad,
+      "polyline": myPolyline
+			
+		};
+	
+		L.control.layers(baseMaps, overlayMaps).addTo(map);
+		
+               
+               
     </script>
     </body>
-                  </html>
+    </html>
