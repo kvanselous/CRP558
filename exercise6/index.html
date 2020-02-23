@@ -104,7 +104,7 @@ li.dropdown {
             
             <div id='map'></div>
                 I used a marker and pop up to highlight the area I grew up in: Hopewell, New Jersey. <br> 
-		I used a blue circleMarker to highlight the area I currently live in: Des Moines, Iowa.<br>
+		I used a green circleMarker to highlight the area I currently live in: Des Moines, Iowa.<br>
 		I used a blue circle to highlight where I previously lived: Philadelphia, Pennslyvania. <br>
                 I used an orange polyline to connect Philadelphia and Des Moines.<br>  
                 I used a yellow polygon to create a square around all of the places I lived. <br>
@@ -119,8 +119,8 @@ li.dropdown {
                     accessToken: 'pk.eyJ1Ijoia3ZhbnNlbG91cyIsImEiOiJjazZsbHE2NGwwZDdtM2tvNmRjc2N0NHo5In0.h_W_-4R3haPMK-IDBTcL-w' 
                     }).addTo(map);       
 		    
-		   L.circleMarker([41.619549, -93.598022], {radius: 800}).addTo(map);
-                   L.circle([39.9526, -75.1652], {radius: 800}).addTo(map);
+		   L.circleMarker([41.619549, -93.598022], {radius: 800, fill: true, color: 'green', fillColor: 'green'}).bindPopup("This the area I currently live").addTo(map);			
+                   L.circle([39.9526, -75.1652], {radius: 800, fill: true, color: 'blue', fillColor: 'blue'}).bindPopup("This the area I previously lived").addTo(map);	
 		   var latlngs = [[41.619549, -93.598022], [39.9526, -75.1652]]; 
                    var polyline = L.polyline(latlngs, {color: 'orange'}).addTo(map);
 		   var latlngs = [[39, -105],[42, -105],[42, -74],[39, -74]]; 
