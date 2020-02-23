@@ -130,9 +130,9 @@ li.dropdown {
                     [41.619549, -93.598022, "Des Moines, Iowa"],
                     ];                     
             
-                    for (var Hopewell {
-                    marker = new L.marker([40.3279, -74.8049)
-                    .bindPopup(towns Hopewell)
+                    for (var i = 0; i < towns.length; i++) {
+                    marker = new L.marker([towns[i][0],towns[i][1]])
+                    .bindPopup(towns[i][2])
                     .addTo(map);
                     }                     
                    
