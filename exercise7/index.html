@@ -102,7 +102,7 @@ li.dropdown {
                 My layer control can be seen in the top right corner of my map. <br>
 		My basemaps include an open street map and an open topography map. <br>
 		My vector layers include a set of markers that show the places I've lived and a set of circlemarkers that highlight the areas I received education. <br>
-		My raster layer shows the overlay of hiking and biking locations. 
+		My raster layer shows the overlay of rail lines. 
             
                 <script>   
 		// 2 basemaps
@@ -125,9 +125,9 @@ li.dropdown {
 			
 		//1 raster layer overlay	
 			
-var HikeBike_HikeBike = L.tileLayer('https://tiles.wmflabs.org/hikebike/{z}/{x}/{y}.png', {
+var OpenRailwayMap = L.tileLayer('https://{s}.tiles.openrailwaymap.org/standard/{z}/{x}/{y}.png', {
 	maxZoom: 19,
-	attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+	attribution: 'Map data: &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors | Map style: &copy; <a href="https://www.OpenRailwayMap.org">OpenRailwayMap</a> (<a href="https://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA</a>)'
 });
 			
 		//2 vector layers 			          
@@ -154,7 +154,7 @@ var HikeBike_HikeBike = L.tileLayer('https://tiles.wmflabs.org/hikebike/{z}/{x}/
 		var overlayMaps = {
 		"Towns I've Lived": towns,
 		"Locations I received Education": edutowns,
-		"Hiking and Biking Locations": HikeBike_HikeBike
+		"Rail Roads": OpenRailwayMap
 		};			
 
 		L.control.layers(baseMaps, overlayMaps).addTo(map);			
