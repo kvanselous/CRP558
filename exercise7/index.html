@@ -106,19 +106,29 @@ li.dropdown {
 
                 
                 <script>   
-		
-		
-		var map = L.map('map', {
-  		  center: [41.619549, -93.598022],
-  		  zoom: 10,
-  		  layers: [grayscale, towns]
-		});
-			
 		var OSM = L.tileLayer('https://{s}.tile.osm.org/{z}/{x}/{y}.png', {
    		 attribution: '&copy; <a href="https://osm.org/copyright">OpenStreetMap</a> contributors',
-   		 maxZoom: 18
+    		 maxZoom: 18
+		 });	
+			
+		var NASAGIBS_ModisTerraSnowCover = L.tileLayer('https://map1.vis.earthdata.nasa.gov/wmts-webmerc/MODIS_Terra_Snow_Cover/default/{time}/{tilematrixset}{maxZoom}/{z}/{y}/{x}.{format}', {
+		attribution: 'Imagery provided by services from the Global Imagery Browse Services (GIBS), operated by the NASA/GSFC/Earth Science Data and Information System (<a href="https://earthdata.nasa.gov">ESDIS</a>) with funding provided by NASA/HQ.',
+		bounds: [[-85.0511287776, -179.999999975], [85.0511287776, 179.999999975]],
+		minZoom: 1,
+		maxZoom: 8,
+		format: 'png',
+		time: '',
+		tilematrixset: 'GoogleMapsCompatible_Level',
+		opacity: 0.75
 		});
-		
+			
+		var OpenWeatherMap_Clouds = L.tileLayer('http://{s}.tile.openweathermap.org/map/clouds/{z}/{x}/{y}.png?appid={apiKey}', {
+		maxZoom: 19,
+		attribution: 'Map data &copy; <a href="http://openweathermap.org">OpenWeatherMap</a>',
+		apiKey: '<insert your api key here>',
+		opacity: 0.5
+		});
+					
 			
 		var towns = new L.LayerGroup();
 	    	L.marker([40.3279, -74.8049]).bindPopup ['This is Hopewell, NJ.  My Home Town.'].addTo(town),
@@ -127,20 +137,24 @@ li.dropdown {
 	        L.marker([39.9526, -75.1652]).bindPopup ['This is Philadelphia, PA.  I attended graduate school at The University of Pennsylvania.'].addTo(town),
   		L.marker([41.619549, -93.59802]).bindPopup ['This is Des Moines, IA.  Now I live in Des Moines and commute to Iowa State to earn my PhD.'].addTo(town);
                  
-
-var grayscale = L.tileLayer(mapboxUrl, {id: 'MapID', tileSize: 512, zoomOffset: -1, attribution: mapboxAttribution}),
-    streets   = L.tileLayer(mapboxUrl, {id: 'MapID', tileSize: 512, zoomOffset: -1, attribution: mapboxAttribution});
-
-		var baseLayers = {
-   		"Mapbox": mapbox,
-    		"OpenStreetMap": osm
-		};
+		
+		 var map = L.map('map', {
+  		 center: [41.619549, -93.598022],
+  		 zoom: 10,
+  	  	 layers: [OSM, towns]
+		});
 			
-		var overlays = {
-   		 "Marker": marker,
-   		 "Roads": roadsLayer
+		var baseMaps = {
+		"OpenStreetMap": OSM,
+		"Snow Cover": NASAGIBS_ModisTerraSnowCover,
+		"Clouds": OpenWeatherMap_Clouds,
 		};
-		L.control.layers(baseLayers, overlays).addTo(map);			
+       		
+		var overlayMaps = {
+			"towns": towns,
+		};			
+
+		L.control.layers(baseMaps, overlayMaps).addTo(map);			
 			
 
             </script>
