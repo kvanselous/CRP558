@@ -99,12 +99,11 @@ li.dropdown {
             <h1>This is a map showing multiple layers and basemaps</h1> 
             
             <div id='map'></div>
-                Layer Control (1 pt)
-		2 basemaps (2 pts)
-		2 vector layers (markers, circle marker, polygon, or line) (1 pt) 
-		1 raster layer overlay (1 pt)
-
-                
+                My Layer Control can be seen in the top right corner of my map. <br>
+		My basemaps include an open street map and an open topography map. <br>
+		My vector layers include a set of markers that should the places I'ved lived and a set of circlemarkers that highlight the areas I received educations <br>
+		My raster layer shows the overlay of snow covered areas on my map. 
+            
                 <script>   
 		// 2 basemaps
 		var OSM = L.tileLayer('https://{s}.tile.osm.org/{z}/{x}/{y}.png', {
@@ -152,12 +151,13 @@ li.dropdown {
 		//layer control
 		var baseMaps = {
 		"OpenStreetMap": OSM,
-		"Snow Cover": NASAGIBS_ModisTerraSnowCover,
+		"Topography": OpenTopoMap,
 		};
        		
 		var overlayMaps = {
 		"Towns I've Lived": towns,
-		"Locations I received Education"; edutowns,
+		"Locations I received Education": edutowns,
+		"Snow Covered Areas": NASAGIBS_ModisTerraSnowCover,
 		};			
 
 		L.control.layers(baseMaps, overlayMaps).addTo(map);			
