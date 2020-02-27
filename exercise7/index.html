@@ -125,15 +125,11 @@ li.dropdown {
 			
 		//1 raster layer overlay	
 			
-var NASAGIBS_ModisTerraSnowCover = L.tileLayer('https://map1.vis.earthdata.nasa.gov/wmts-webmerc/MODIS_Terra_Snow_Cover/default/{time}/{tilematrixset}{maxZoom}/{z}/{y}/{x}.{format}', {
-	attribution: 'Imagery provided by services from the Global Imagery Browse Services (GIBS), operated by the NASA/GSFC/Earth Science Data and Information System (<a href="https://earthdata.nasa.gov">ESDIS</a>) with funding provided by NASA/HQ.',
-	bounds: [[-85.0511287776, -179.999999975], [85.0511287776, 179.999999975]],
-	minZoom: 1,
-	maxZoom: 8,
-	format: 'png',
-	time: '',
-	tilematrixset: 'GoogleMapsCompatible_Level',
-	opacity: 0.75
+var OpenWeatherMap_Wind = L.tileLayer('http://{s}.tile.openweathermap.org/map/wind/{z}/{x}/{y}.png?appid={apiKey}', {
+	maxZoom: 19,
+	attribution: 'Map data &copy; <a href="http://openweathermap.org">OpenWeatherMap</a>',
+	apiKey: '<insert your api key here>',
+	opacity: 0.5
 });
 			
 		//2 vector layers 			          
@@ -160,7 +156,7 @@ var NASAGIBS_ModisTerraSnowCover = L.tileLayer('https://map1.vis.earthdata.nasa.
 		var overlayMaps = {
 		"Towns I've Lived": towns,
 		"Locations I received Education": edutowns,
-		"Snow Covered Areas": NASAGIBS_ModisTerraSnowCover
+		"Wind Pattern": OpenWeatherMap_Wind
 		};			
 
 		L.control.layers(baseMaps, overlayMaps).addTo(map);			
