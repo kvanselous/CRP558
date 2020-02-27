@@ -106,11 +106,16 @@ li.dropdown {
 
                 
                 <script>   
+		// 2 basemaps
 		var OSM = L.tileLayer('https://{s}.tile.osm.org/{z}/{x}/{y}.png', {
    		 attribution: '&copy; <a href="https://osm.org/copyright">OpenStreetMap</a> contributors',
     		 maxZoom: 18
 		 });	
-			
+		var OpenTopoMap = L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
+		maxZoom: 17,
+		attribution: 'Map data: &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, <a href="http://viewfinderpanoramas.org">SRTM</a> | Map style: &copy; <a href="https://opentopomap.org">OpenTopoMap</a> (<a href="https://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA</a>)'
+		});
+		//1 raster layer overlay	
 		var NASAGIBS_ModisTerraSnowCover = L.tileLayer('https://map1.vis.earthdata.nasa.gov/wmts-webmerc/MODIS_Terra_Snow_Cover/default/{time}/{tilematrixset}{maxZoom}/{z}/{y}/{x}.{format}', {
 		attribution: 'Imagery provided by services from the Global Imagery Browse Services (GIBS), operated by the NASA/GSFC/Earth Science Data and Information System (<a href="https://earthdata.nasa.gov">ESDIS</a>) with funding provided by NASA/HQ.',
 		bounds: [[-85.0511287776, -179.999999975], [85.0511287776, 179.999999975]],
@@ -122,36 +127,37 @@ li.dropdown {
 		opacity: 0.75
 		});
 			
-		var OpenWeatherMap_Clouds = L.tileLayer('http://{s}.tile.openweathermap.org/map/clouds/{z}/{x}/{y}.png?appid={apiKey}', {
-		maxZoom: 19,
-		attribution: 'Map data &copy; <a href="http://openweathermap.org">OpenWeatherMap</a>',
-		apiKey: '<insert your api key here>',
-		opacity: 0.5
-		});
-					
-			          
+		//2 vectory layers 			          
 		var Hopewell = L.marker([40.3279, -74.8049]).bindPopup ('This is Hopewell, NJ.  My Home Town.'),
     			StateCollege = L.marker([40.7965, -77.8628]).bindPopup ['This is State College, PA.  I went to college at Penn State.'],
     			Denver = L.marker([39.7392, -104.9903]).bindPopup ('This is Denver, CO.  I moved to Colorado after college.'),
    			Philadelphia = L.marker([39.9526, -75.1652]).bindPopup ('This is Philadelphia, PA.  I attended graduate school at The University of Pennsylvania.'),
    		        DesMoines = L.marker([41.619549, -93.59802]).bindPopup ('This is Des Moines, IA.  Now I live in Des Moines and commute to Iowa State to earn my PhD.');
 
-		var townlayerGroup = L.layerGroup([Hopewell, StateCollege, Denver, Philadelphia, DesMoines]);
+		var towns = L.layerGroup([Hopewell, StateCollege, Denver, Philadelphia, DesMoines]);
 			
+		var BAStateCollege = L.circleMarker([40.7965, -77.8628]),{radius: 10, fill: true, color: 'green', fillColor: 'green'}).bindPopup ["I went to college at Penn State."],
+   		    MSWPhiladelphia = L.circleMarker([39.9526, -75.1652]),{radius: 10, fill: true, color: 'green', fillColor: 'green'}).bindPopup ("I attended graduate school at The University of Pennsylvania."),
+   		    PhDDesMoines = L.circleMarker([41.619549, -93.59802]),{radius: 10, fill: true, color: 'green', fillColor: 'green'}).bindPopup (" Now I live in Des Moines and commute to Iowa State to earn my PhD.");
+			
+		var edutowns =	L.layerGroup([BAStateCollege, MSWPhiladelphia, phDDesMoines]);
+	
+		//map		
 		 var map = L.map('map', {
   		 center: [41.619549, -93.598022],
   		 zoom: 10,
   	  	 layers: [OSM, townLayerGroup]
 		});
-			
+		
+		//layer control
 		var baseMaps = {
 		"OpenStreetMap": OSM,
 		"Snow Cover": NASAGIBS_ModisTerraSnowCover,
-		"Clouds": OpenWeatherMap_Clouds,
 		};
        		
 		var overlayMaps = {
-			"towns": towns,
+		"Towns I've Lived": towns,
+		"Locations I received Education"; edutowns,
 		};			
 
 		L.control.layers(baseMaps, overlayMaps).addTo(map);			
