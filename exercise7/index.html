@@ -136,8 +136,8 @@ li.dropdown {
 		var towns = L.layerGroup([Hopewell, StateCollege, Denver, Philadelphia, DesMoines]);
 			
 		var BAStateCollege = L.circleMarker([40.7965, -77.8628]),{radius: 10, fill: true, color: 'green', fillColor: 'green'}).bindPopup ["I went to college at Penn State."],
-   		    MSWPhiladelphia = L.circleMarker([39.9526, -75.1652]),{radius: 10, fill: true, color: 'green', fillColor: 'green'}).bindPopup ("I attended graduate school at The University of Pennsylvania."),
-   		    PhDDesMoines = L.circleMarker([41.619549, -93.59802]),{radius: 10, fill: true, color: 'green', fillColor: 'green'}).bindPopup (" Now I live in Des Moines and commute to Iowa State to earn my PhD.");
+   		    MSWPhiladelphia = L.circleMarker([39.9526, -75.1652]),{radius: 10, fill: true, color: 'green', fillColor: 'green'}).bindPopup ["I attended graduate school at The University of Pennsylvania."],
+   		    PhDDesMoines = L.circleMarker([41.619549, -93.59802]),{radius: 10, fill: true, color: 'green', fillColor: 'green'}).bindPopup [" Now I live in Des Moines and commute to Iowa State to earn my PhD."];
 			
 		var edutowns =	L.layerGroup([BAStateCollege, MSWPhiladelphia, phDDesMoines]);
 	
