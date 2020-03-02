@@ -15,10 +15,6 @@
     <script src="https://github.com/kvanselous/CRP558/GeoJSONFolder.streets.geojson"></script>
     <script src="https://github.com/kvanselous/CRP558/GeoJSONFolder.zoning-districts.geojson"></script>
     
-   
-    <!--  You can link to your geojson file using the file path (like example above) or using the full URL              
-    <script src="https://baileyhanson.github.io/CRP558/geojson/USA.geojson"></script>
-    -->
     <style>
  ul {
   list-style-type: none;
@@ -108,45 +104,7 @@ li.dropdown {
     The streets in Chapel Hill, North Carolina is my GeoJSON polyline layer<br>
     The zoning districts in Chapel Hill, North Carolinais my GeoJSON polygon layer <br>  
   
-  <script>
-  //JSON-checked with JSONLint
-   var cities = [{
-		"name": "Hopewell",
-		"lat": "40.3279",
-		"long": "-74.8049",
-		"iconColor": "0000ff",
-		"popupText": "This is my hometown: Hopewell, NJ."
-	},
-	{
-		"name": "State College",
-		"lat": "40.7965",
-		"long": "77.8628",
-		"iconColor": "ff0000",
-		"popupText": "The the town I went to college in: State College, PA."
-	}, {
-		"name": "Denver",
-		"lat": "39.7392",
-		"long": "-104.9903",
-		"iconColor": "0000ff",
-		"popupText": "This is where I moved after college: Denver, CO."
-	}, {
-		"name": "Philadelphia",
-		"lat": "39.9526",
-		"long": "-75.1652",
-		"iconColor": "0000ff",
-		"popupText": "This is where I moved for my Master's: Philadelphia, PA."
-	}, {
-		"name": "Des Moines",
-		"lat": "41.619549",
-		"long": "-93.59802",
-		"iconColor": "0000ff",
-		"popupText": "This is where I moved for my PhD: Des Moines, IA."
-	}
-];
-  //GeoJson completed with geojson.io and JSON formatter
-var myGeoJSON = {"type":"FeatureCollection","features":[{"type":"Feature","properties":{},"geometry":{"type":"Point","coordinates":[-74.6630859375,40.39676430557203]}},{"type":"Feature","properties":{},"geometry":{"type":"Point","coordinates":[-75.25634765625,39.9434364619742]}},{"type":"Feature","properties":{},"geometry":{"type":"Point","coordinates":[-77.98095703125,40.81380923056958]}},{"type":"Feature","properties":{},"geometry":{"type":"Point","coordinates":[-105.732421875,39.095962936305476]}},{"type":"Feature","properties":{},"geometry":{"type":"Point","coordinates":[-93.603515625,42.22851735620852]}}]}
-
-   
+  <script> 
   //Base Layer
   		var OSM = L.tileLayer('https://{s}.tile.osm.org/{z}/{x}/{y}.png', {
    		 attribution: '&copy; <a href="https://osm.org/copyright">OpenStreetMap</a> contributors',
