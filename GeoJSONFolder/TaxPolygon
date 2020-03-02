@@ -1,0 +1,185 @@
+{
+ "currentVersion": 10.51,
+ "id": 1,
+ "name": "tax_rate_local_option",
+ "parentLayerId": -1,
+ "defaultVisibility": false,
+ "minScale": 0,
+ "maxScale": 0,
+ "type": "Feature Layer",
+ "geometryType": "esriGeometryPolygon",
+ "description": "Local option sales tax rates. Rate boundaries are from best available U.S. Census geographic data and published tax rates from the Iowa Dept. of Revenue.",
+ "copyrightText": "Iowa Dept. of Revenue, State of Iowa",
+ "editFieldsInfo": null,
+ "ownershipBasedAccessControlForFeatures": null,
+ "syncCanReturnChanges": false,
+ "relationships": [],
+ "isDataVersioned": false,
+ "supportsRollbackOnFailureParameter": true,
+ "archivingInfo": {
+  "supportsQueryWithHistoricMoment": false,
+  "startArchivingMoment": -1
+ },
+ "supportsStatistics": true,
+ "supportsAdvancedQueries": true,
+ "supportsValidateSQL": true,
+ "supportsCalculate": true,
+ "advancedQueryCapabilities": {
+  "supportsPagination": true,
+  "supportsTrueCurve": true,
+  "supportsQueryWithDistance": true,
+  "supportsReturningQueryExtent": true,
+  "supportsStatistics": true,
+  "supportsOrderBy": true,
+  "supportsDistinct": true,
+  "supportsSqlExpression": true
+ },
+ "extent": {
+  "xmin": -96.63951930299999,
+  "ymin": 40.375440000000026,
+  "xmax": -90.14009530300001,
+  "ymax": 43.50119599999999,
+  "spatialReference": {
+   "wkid": 4326,
+   "latestWkid": 4326
+  }
+ },
+ "drawingInfo": {
+  "renderer": {
+   "type": "simple",
+   "symbol": {
+    "type": "esriSFS",
+    "style": "esriSFSSolid",
+    "color": [
+     0,
+     197,
+     255,
+     127
+    ],
+    "outline": {
+     "type": "esriSLS",
+     "style": "esriSLSSolid",
+     "color": [
+      0,
+      0,
+      0,
+      127
+     ],
+     "width": 0.4
+    }
+   },
+   "label": "",
+   "description": ""
+  },
+  "transparency": 0,
+  "labelingInfo": null
+ },
+ "hasM": false,
+ "hasZ": false,
+ "allowGeometryUpdates": false,
+ "allowTrueCurvesUpdates": false,
+ "onlyAllowTrueCurveUpdatesByTrueCurveClients": false,
+ "hasAttachments": false,
+ "supportsApplyEditsWithGlobalIds": false,
+ "htmlPopupType": "esriServerHTMLPopupTypeAsHTMLText",
+ "objectIdField": "objectid",
+ "globalIdField": "",
+ "displayField": "name",
+ "typeIdField": "",
+ "subtypeField": "",
+ "fields": [
+  {
+   "name": "objectid",
+   "type": "esriFieldTypeOID",
+   "alias": "OBJECTID",
+   "domain": null,
+   "editable": false,
+   "nullable": false
+  },
+  {
+   "name": "name",
+   "type": "esriFieldTypeString",
+   "alias": "Name",
+   "domain": null,
+   "editable": true,
+   "nullable": true,
+   "length": 50
+  },
+  {
+   "name": "taxtype",
+   "type": "esriFieldTypeString",
+   "alias": "TaxType",
+   "domain": null,
+   "editable": true,
+   "nullable": true,
+   "length": 50
+  },
+  {
+   "name": "taxrate",
+   "type": "esriFieldTypeDouble",
+   "alias": "TaxRate",
+   "domain": null,
+   "editable": true,
+   "nullable": true
+  },
+  {
+   "name": "startdate",
+   "type": "esriFieldTypeDate",
+   "alias": "StartDate",
+   "domain": null,
+   "editable": true,
+   "nullable": true,
+   "length": 8
+  },
+  {
+   "name": "enddate",
+   "type": "esriFieldTypeDate",
+   "alias": "EndDate",
+   "domain": null,
+   "editable": true,
+   "nullable": true,
+   "length": 8
+  }
+ ],
+ "indexes": [
+  {
+   "name": "r21_sde_rowid_uk",
+   "fields": "objectid",
+   "isAscending": true,
+   "isUnique": true,
+   "description": ""
+  },
+  {
+   "name": "a12_ix1",
+   "fields": "shape",
+   "isAscending": true,
+   "isUnique": true,
+   "description": ""
+  }
+ ],
+ "dateFieldsTimeReference": {
+  "timeZone": "UTC",
+  "respectsDaylightSaving": false
+ },
+ "types": [],
+ "templates": [
+  {
+   "name": "tax_rate_local_option",
+   "description": "",
+   "prototype": {
+    "attributes": {
+     "startdate": null,
+     "enddate": null,
+     "name": null,
+     "taxtype": null,
+     "taxrate": null
+    }
+   },
+   "drawingTool": "esriFeatureEditToolPolygon"
+  }
+ ],
+ "maxRecordCount": 1000,
+ "supportedQueryFormats": "JSON, AMF, geoJSON",
+ "capabilities": "Query,Extract",
+ "useStandardizedQueries": true
+}
