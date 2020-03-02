@@ -9,6 +9,16 @@
       <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css">
       <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js" integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
                  crossorigin=""></script> 
+	    
+	    
+    <script src="https://github.com/kvanselous/CRP558/GeoJSONFolder.bus-stops.geojson"></script>
+    <script src="https://github.com/kvanselous/CRP558/GeoJSONFolder.streets.geojson"></script>
+    <script src="https://github.com/kvanselous/CRP558/GeoJSONFolder.zoning-districts.geojson"></script>
+    
+   
+    <!--  You can link to your geojson file using the file path (like example above) or using the full URL              
+    <script src="https://baileyhanson.github.io/CRP558/geojson/USA.geojson"></script>
+    -->
     <style>
  ul {
   list-style-type: none;
@@ -94,9 +104,9 @@ li.dropdown {
 	 <div id="map"></div>
     This leaflet map is saved within an index.html file inside my exercise 8 directory<br>
     The geojson directory is saved in my GitHub and stores this maps geojson layers  <br>
-    The XXX is my GeoJSON point layer<br>
-    The XXX is my GeoJSON polyline layer<br>
-    The XXX is my GeoJSON polygon layer <br>  
+    The bus stops in Chapel Hill, North Carolina is my GeoJSON point layer<br>
+    The streets in Chapel Hill, North Carolina is my GeoJSON polyline layer<br>
+    The zoning districts in Chapel Hill, North Carolinais my GeoJSON polygon layer <br>  
   
   <script>
   //JSON-checked with JSONLint
@@ -169,19 +179,15 @@ var myGeoJSON = {"type":"FeatureCollection","features":[{"type":"Feature","prope
 }
 
   
-  //GeoJSON point layer
-    
+  //GeoJSON point layer          
+        L.geoJSON(bus-stops).addTo(map);
+
   //GeoJSON polyline layer
-var myStyle = {
-    "color": "#ff7800",
-    "weight": 5,
-    "opacity": 0.65,
-};
-    
+        L.geoJSON(streets).addTo(map);
+
   //GeoJSON polgon layer
-	L.geoJSON(myGeoJSON, {
-  	  style: myStyle,
-	}).addTo(map);
+        L.geoJSON(zoning-districts).addTo(map);
+
      </script>
    </body>
 </html>
