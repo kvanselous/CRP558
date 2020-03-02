@@ -105,37 +105,14 @@ li.dropdown {
     The zoning districts in Chapel Hill, North Carolinais my GeoJSON polygon layer <br>  
   
   <script> 
-  //Base Layer
-  		var OSM = L.tileLayer('https://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-   		 attribution: '&copy; <a href="https://osm.org/copyright">OpenStreetMap</a> contributors',
-    		 maxZoom: 18
-		 });
-  
-  //map
-  		 var map = L.map('map', {
-  		 center: [41.619549, -93.598022],
-  		 zoom: 2,
-  	  	 layers: [OSM]
-		});
-
-  //Adding JSON to map
-		var iconMarkerURL = "http://www.googlemapsmarkers.com/v1/";
- 		for (var i = 0; i < cities.length; i++) {
-
- //access the data by index i   for example   
-  console.log(cities[i].name);
-
-  var marker = L.marker([cities[i].lat, cities[i].long], {    
-    icon: L.icon({
-      iconUrl: iconMarkerURL + cities[i].iconColor,
-      iconSize:[10, 17],
-      iconAnchor:[5, 17],
-      popupAnchor:[0, -20]
-    }),
-    title: cities[i].name
-  }).bindPopup("<b>"+cities[i].name+"</b><br>"+cities[i].popupText+".").addTo(map);
-}
-
+  //Map
+      var map = L.map('map').setView([35.9132, 79.0558], 8);
+      L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+      attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+      maxZoom: 18,
+      id: 'mapbox/streets-v11',
+      accessToken: 'pk.eyJ1Ijoia3ZhbnNlbG91cyIsImEiOiJjazZsbHE2NGwwZDdtM2tvNmRjc2N0NHo5In0.h_W_-4R3haPMK-IDBTcL-w' 
+      }).addTo(map);   
   
   //GeoJSON point layer          
         L.geoJSON(bus-stops).addTo(map);
