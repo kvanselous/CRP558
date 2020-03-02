@@ -3,6 +3,7 @@
     <head>
       <title>Exercise 8</title>   
        <!--//code to help build drop down menu from: https://www.w3schools.com/howto/howto_css_dropdown.asp    -->    
+       <!--//code to help build maps and data from lecture LA 558 course materials and videos -->
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <style>
@@ -124,7 +125,10 @@ li.dropdown {
 		"popupText": "This is where I moved for my PhD: Des Moines, IA."
 	}
 ];
+  //GeoJson completed with geojson.io and JSON formatter
+var myGeoJSON = {"type":"FeatureCollection","features":[{"type":"Feature","properties":{},"geometry":{"type":"Point","coordinates":[-74.6630859375,40.39676430557203]}},{"type":"Feature","properties":{},"geometry":{"type":"Point","coordinates":[-75.25634765625,39.9434364619742]}},{"type":"Feature","properties":{},"geometry":{"type":"Point","coordinates":[-77.98095703125,40.81380923056958]}},{"type":"Feature","properties":{},"geometry":{"type":"Point","coordinates":[-105.732421875,39.095962936305476]}},{"type":"Feature","properties":{},"geometry":{"type":"Point","coordinates":[-93.603515625,42.22851735620852]}}]}
 
+   
   //Base Layer
   		var OSM = L.tileLayer('https://{s}.tile.osm.org/{z}/{x}/{y}.png', {
    		 attribution: '&copy; <a href="https://osm.org/copyright">OpenStreetMap</a> contributors',
