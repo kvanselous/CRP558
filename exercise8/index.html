@@ -81,7 +81,7 @@ li.dropdown {
         <h3>GeoJson Map</h3>
 	
 	 <div id='map'></div>
-    This leaflet map is saved within an index.html file inside my exercise 8 directory in GitHubn layers<br>
+    This leaflet map is saved within an index.html file inside my exercise 8 directory<br>
     The geojson directory is saved in my GitHub and stores this maps geojson layers  <br>
     The XXX is my GeoJSON point layer<br>
     The XXX is my GeoJSON polyline layer<br>
@@ -143,6 +143,8 @@ li.dropdown {
  		for (var i = 0; i < cities.length; i++) {
 
  //access the data by index i   for example   
+  console.log(cities[i].name);
+
   var marker = L.marker([cities[i].lat, cities[i].long], {    
     icon: L.icon({
       iconUrl: iconMarkerURL + cities[i].iconColor,
