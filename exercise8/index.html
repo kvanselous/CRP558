@@ -78,12 +78,38 @@ li.dropdown {
         </div>
      </li>
   </ul>
-        <h3>Exercise 8</h3>
+        <h3>GeoJson Map</h3>
+    This leaflet map is saved within an index.html file inside my exercise 8 directory in GitHubn layers<br>
+    The geojson directory is saved in my GitHub and stores this maps geojson layers  <br>
+    The XXX is my GeoJSON point layer<br>
+    The XXX is my GeoJSON polyline layer<br>
+    The XXX is my GeoJSON polygon layer <br>  
   
-  Create an index.html file inside an exercise8 directory in GitHub with a leaflet map displaying your geojson layers (see type of geojson files required below) (1pt)<br>
-Create a geojson directory (folder) in GitHub to store your geojson layers (this should be inside your root directory (CRP558 repository)not inside your exercise8 directory) (1pt) <br>
-GeoJSON point layer (1pt) <br>
-GeoJSON polyline layer (1pt)<br>
-GeoJSON polygon layer (1pt) <br>
+  //GeoJSON
+  
+  <script>
+  //Base Layer
+  		var OSM = L.tileLayer('https://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+   		 attribution: '&copy; <a href="https://osm.org/copyright">OpenStreetMap</a> contributors',
+    		 maxZoom: 18
+		 });
+  
+  //map
+  		 var map = L.map('map', {
+  		 center: [41.619549, -93.598022],
+  		 zoom: 2,
+  	  	 layers: [OSM]
+		});
+
+  
+  //Adding JSON to map
+  
+  //GeoJSON point layer
+    
+  //GeoJSON polyline layer
+    
+  //GeoJSON polgon layer
+
+     </script>
    </body>
 </html>
