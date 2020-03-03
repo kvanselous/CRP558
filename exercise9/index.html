@@ -4,6 +4,9 @@
       <title>Exercise 9</title>   
        <!--//code to help build drop down menu from: https://www.w3schools.com/howto/howto_css_dropdown.asp    -->    
        <!--//code to help build maps and data from lecture LA 558 course materials and videos -->
+       <!--//www.washingtonpost.com/graphics/2019/investigations/dea-pain-pill-database/ Inserted pill data into County data-->
+	   <!--//open-iowa.opendata.arcgis.com/datasets/8a1c2d500d8847d79aa47d45d44eb133_0  Created Geojson in QGIS-->
+
           <meta name="viewport" content="width=device-width, initial-scale=1">
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
       <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css">
@@ -11,6 +14,7 @@
                  crossorigin=""></script> 
 	    
       <script src="../GeoJSONFolder/IowaCountyBoundary.geojson"></script>
+        <script src="../GeoJSONFolder/IowaPills"></script>
 	     
     <style>
  ul {
@@ -96,9 +100,9 @@ li.dropdown {
 	
 	 <div id="map"></div>
 My leaflet map with my geoJSON layers is displayed in an index.html file inside my exercise9 directory in GitHub <br>
-My GeoJSON polygon layer symbolizes as a choropleth map (2pt)<br>
-My Iowa Counties layer is a GeoJSon polygon layer and displays the county outlines on my map. (1pt)<br>
-My Leaflet Layer Control displays my two GeoJSON layers of and my open streets basemap. (1pt)<br>
+My GeoJSON polygon layer symbolizes the rate of pain pills distributed per person per year between 2006-2014 from released data from the washington post <br>
+My Iowa Cities layer is a GeoJSon point layer and displays the top ten largest cities in Iowa. <br>
+My Leaflet Layer Control displays my two GeoJSON layers of and my open streets basemap.<br>
   
   <script> 
   		// 1 basemap
@@ -123,12 +127,71 @@ My Leaflet Layer Control displays my two GeoJSON layers of and my open streets b
 		};
        		
 		var overlayMaps = {
-		"Iowa Counties":  L.geoJSON(county)
+		"Top Ten Largest Cities by Population":  L.geoJSON(city),
+        "Iowa Pain Pill Distribution Rate Per Person Per Year 2006-2014": L.geoJSON(pill)
 		};			
 
 		L.control.layers(baseMap, overlayMaps).addTo(map);			
 
 
+// polygon choropleth map 
+	function getColor(d) {
+		return d  > 30 ? '#253494' :
+				d     > 25  ? '#2c7fb8' :
+				d > 20  ? '#41b6c4' :
+				d > 15   ? '#7fcdbb' :
+				d > 10   ? '#c7e9b4' :
+							'#ffffcc';
+	}
+
+	function style(feature) {
+		return {
+			weight: 1,
+			opacity: 1,
+			color: 'white',
+			fillOpacity: 0.7,
+			fillColor: getColor(feature.properties.PillRate)
+		};
+	}
+
+	function highlightFeature(e) {
+		var layer = e.target;
+
+		layer.setStyle({
+			weight: 2,
+			color: 'black',
+			dashArray: '',
+			fillOpacity: 0.7
+		});
+
+		if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
+			layer.bringToFront();
+		}
+
+	}
+
+	var geojson;
+
+	function resetHighlight(e) {
+		geojson.resetStyle(e.target);
+	}
+
+	function zoomToFeature(e) {
+		map.fitBounds(e.target.getBounds());
+	}
+
+	function onEachFeature(feature, layer) {
+		layer.on({
+			mouseover: highlightFeature,
+			mouseout: resetHighlight,
+			click: zoomToFeature
+		});
+	}
+
+	geojson = L.geoJson(pill, {
+		style: style,
+		onEachFeature: onEachFeature
+	}).addTo(map);
 
 
      </script>
