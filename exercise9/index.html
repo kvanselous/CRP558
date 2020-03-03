@@ -65,8 +65,8 @@ li.dropdown {
 }
 	    
 	                        #map {
-                    width: 300px;
-                    height: 300px;
+                    width: 500px;
+                    height: 500px;
                     background-color:blue
                     z-index: -1      
                     }    
@@ -122,9 +122,7 @@ My Leaflet Layer Control displays my two GeoJSON layers of and my open streets b
 		};
        		
 		var overlayMaps = {
-		"Cities I've Lived": point,
-		"Locations I received Education": edutowns,
-		"Night Time": NASAGIBS_ViirsEarthAtNight2012
+		"Cities I've Lived": point
 		};			
 
 		L.control.layers(baseMaps, overlayMaps).addTo(map);			
