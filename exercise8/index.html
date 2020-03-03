@@ -10,11 +10,10 @@
       <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js" integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
                  crossorigin=""></script> 
 	    
-	    
-    <script src="https://github.com/kvanselous/CRP558/GeoJSONFolder/polyline.geojson"></script>
-    <script src="https://github.com/kvanselous/CRP558/GeoJSONFolder/polygon.geojson"></script>
-    <script src="https://github.com/kvanselous/CRP558/GeoJSONFolder/point.geojson"></script>
-    
+    <script src="../GeoJSONFolder/polyline.geojson"></script>	    
+    <script src="../GeoJSONFolder/point.geojson"></script>
+    <script src="../GeoJSONFolder/polygon.geojson"></script>
+ 
     <style>
  ul {
   list-style-type: none;
@@ -101,8 +100,8 @@ li.dropdown {
     This leaflet map is saved within an index.html file inside my exercise 8 directory<br>
     The geojson directory is saved in my GitHub and stores this maps geojson layers  <br>
     The city markers in my map is my GeoJSON point layer<br>
-    The line between Philadelphia and Des Moinesis my GeoJSON polyline layer<br>
-    The polygon around the city markers is my GeoJSON polygon layer <br>  
+    The line orange between Philadelphia and Des Moinesis my GeoJSON polyline layer<br>
+    The blue polygon around the city markers is my GeoJSON polygon layer <br>  
   
   <script> 
   //Map
@@ -122,6 +121,17 @@ li.dropdown {
 
   //GeoJSON polgon layer
         L.geoJSON(polygon).addTo(map);
+      
+   //style for line from Module Lecture    
+      var lineStyle = {
+        "color": "#ff7800",
+        "weight": 5,
+        "opacity": 0.65,
+      };
+
+      L.geoJSON(polyline, {
+          style: lineStyle,
+        }).addTo(map);
 
      </script>
    </body>

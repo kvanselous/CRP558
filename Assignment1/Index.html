@@ -1,7 +1,8 @@
-  <!DOCTYPEhtml>
   <html>
     <head>
       <title>CRP 558</title>     
+      <!--//code to help build drop down menu from: https://www.w3schools.com/howto/howto_css_dropdown.asp
+      //code to help meet criteria from CRP 558 materials and W3 Schools Tutorials-->
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <style>
@@ -70,24 +71,94 @@ li.dropdown {
         <li><a href="https://kvanselous.github.io/CRP558/">Home</a></li>
         <li><a href="https://kvanselous.github.io/CRP558/assignment1/"> Assignment</a></li>
         <li class="dropdown">
-             <a href="javascript:void(0)" class="dropbtn">Dropdown</a>
-          <div class="dropdown-content" 
-        <a href="https://kvanselous.github.io/CRP558/exercise1/">Exercise 1</a>
+             <a href="javascript:void(0)" class="dropbtn">Exercises</a>
+          <div class="dropdown-content">  
+        <a href="https://kvanselous.github.io/CRP558/exercise1/">Exercise 1</a>           
         <a href="https://kvanselous.github.io/CRP558/exercise2/">Exercise 2</a>
-        <a href="https://github.com/kvanselous/CRP558/blob/master/exercise3/CRP558.KVS.Exercise3.geojson">Exercise 3</a>
-      </div>
+        <a href="https://kvanselous.github.io/CRP558/exercise3/">Exercise 3</a>
+        <a href="https://kvanselous.github.io/CRP558/exercise4/">Exercise 4</a>
+	<a href="https://kvanselous.github.io/CRP558/exercise5/">Exercise 5</a>
+        <a href="https://kvanselous.github.io/CRP558/exercise6/">Exercise 6</a>  
+        <a href="https://kvanselous.github.io/CRP558/exercise7/">Exercise 7</a>  
+        <a href="https://kvanselous.github.io/CRP558/exercise8/">Exercise 8</a> 
+	<a href="https://kvanselous.github.io/CRP558/exercise9/">Exercise 9</a>  
+        <a href="https://kvanselous.github.io/CRP558/exercise10/">Exercise 10</a>  
+	      </div>
      </li>
   </ul>
-        <h3>Assignment 1</h3>
+               <h3>Assignment 1</h3>
         <p>This page demonstrates how to use JavaScript Items within the below categories</p>
-        <p1>Function</p1>
-        <p1>Array</p1>
-        <p1>Object</p1>
-        <p1>Loop</p1>
-        <p1>If Else</p1>
-        <p1>Buttons</p1>   
-        <p1>Two user input fields-two different types of inputs</p1>
-        <p1>Output (to screen or to console log) of the user after it has been manipulated or changed in some way by your code</p1>
-      
-</body>
+        <br><strong>Function: The number below is the result of a functin (a-b).  In this example, a=100 and b=2.</strong>
+<em><p id="demo"></p></em>
+        <script>
+        var x = myFunction(100, 2);
+        document.getElementById("demo").innerHTML = x;
+        function myFunction(a, b) {
+        return a - b;
+        }
+        </script>
+        <br><strong>Array: The list below is the result of an array for cereal types. In this example, the cereal types include <em>Cheerios, Fruit Loops, and Lucky Charms</em>.</strong>
+          <em><p id="demo1"></p></em>
+        <script>
+        var cereal = [
+        "Cheerios", 
+        " Fruit Loops", 
+        " Lucky Charms"
+        ];
+        document.getElementById("demo1").innerHTML = cereal;
+        </script>        
+        <br><strong>Object: The object below is the result of created the variable cereal and adding the descriptor of breakfast to form the sentence:<em>'Cereal is eaten for breakfast'.</em></strong>
+<em><p id="demo2"></p></em>
+        <script>
+        var cereal = {Meal:"Breakfast"};
+        document.getElementById("demo2").innerHTML = "Cereal is eaten for " + cereal.Meal;
+        </script>
+        <br><strong>Loop: The list below is the result of a loop for cereal types.  In this example, the cereal types include <em>Cheerios, Fruit Loops, Luck Charms, Frosten Flaks, and Mini Wheats.</em></strong>
+<em><p id="demo3"></p></em>
+        <script>
+        var cereal = ["Cheerios", "Fruit Loops", "Lucky Charms", "Frosted Flakes", "Mini Wheats"];
+        var text = "";
+        var i;
+        for (i = 0; i < cereal.length; i++) {
+        text += cereal[i] + "<br>";
+        }
+        document.getElementById("demo3").innerHTML = text;
+        </script>
+<br><strong>Button: This button below allows users to click to see the date and time.</strong>   
+        <button type="button"
+        onclick="document.getElementById('button').innerHTML = Date()">
+        Click here to display Date and Time.</button>
+        <p id="button"></p>        
+<br><strong>Input fields: Below is an example of two fields users can utilize on the page.</strong>
+<br>What is your name? <input type="text" id="usersName">
+	
+<br>What is your favorite type of cereal?
+<br><em>Cheerios: <input type="radio" name="cerealFav" id="cereal1" value="Cheerios"></em>
+<br><em> Fruit Loops: <input type="radio" name="cerealFav" id="cereal2" value="Fruit Loops"></em>
+<br><em> Lucky Charms: <input type="radio" name="cerealFav"id="cereal3" value="Lucky Charms"></em>
+<br><em> Frosted Flakes: <input type="radio" name="cerealFav"id="cereal4" value="Frosted Flakes"></em>	
+<br><em> Mini Wheats: <input type="radio" name="cerealFav" id="cereal5" value="Mini Wheats"></em>
+
+        <br><strong>Output with 'If else': Click the display button to show output from the two users inputs from previous step. 'If Else' is used within this code to inform the output based on what cereal is selected for favorite cereal.</strong>
+<br><button onclick="displayFunction()">Display</button>  
+<p id="display"></p>
+<script>
+	function displayFunction() {
+	var name = document.getElementById("usersName").value;
+	if (document.getElementById('cereal1').checked){
+		cerealFav_value = document.getElementById('cereal1').value;
+	} else if (document.getElementById('cereal2').checked){
+		cerealFav_value = document.getElementById('cereal2').value;	
+	} else if (document.getElementById('cereal3').checked){
+		cerealFav_value = document.getElementById('cereal3').value;
+	} else if (document.getElementById('cereal4').checked){
+		cerealFav_value = document.getElementById('cereal4').value;	      
+	} else if (document.getElementById('cereal5').checked){
+		cerealFav_value = document.getElementById('cereal5').value;	
+	}
+	document.getElementById("display").innerHTML = "My name is " + name + " and my favorite cereal is " + cerealFav_value;
+	};
+
+</script>
+	</body>
 </html>
