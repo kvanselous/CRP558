@@ -130,9 +130,7 @@ My Leaflet Layer Control displays my two GeoJSON layers of and my open streets b
   		 zoom: 6,
   	  	 layers: [OSM]
 		});
-	  	//polygon choropleth map 
-	  
-	  
+      
 	 	 //layer control
 		var baseMap = {
 		"OpenStreetMap": OSM
@@ -140,14 +138,15 @@ My Leaflet Layer Control displays my two GeoJSON layers of and my open streets b
        		
 		var overlayMaps = {
 		"Top Ten Largest Cities by Population":  L.geoJSON(city),
-        "Iowa Pain Pill Distribution Rate Per Person Per Year 2006-2014": L.geoJSON(pill)
+        "Iowa County Boundaries": L.geoJSON(pill)
 		};			
 
 		L.control.layers(baseMap, overlayMaps).addTo(map);			
 
 
+
 // polygon choropleth map 
-	function getColor(d) {
+function getColor(d) {
 		return d  > 30 ? '#54278f' :
 				d     > 25  ? '#756bb1' :
 				d > 20  ? '#9e9ac8' :
@@ -225,8 +224,6 @@ info.update = function (props) {
 };
 
 info.addTo(map);
-      
-
 
      </script>
    </body>
