@@ -10,7 +10,7 @@
       <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js" integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
                  crossorigin=""></script> 
 	    
-      <script src="../GeoJSONFolder/point.geojson"></script>
+      <script src="../GeoJSONFolder/IowaCountyBoundary.geojson"></script>
 	     
     <style>
  ul {
@@ -92,12 +92,12 @@ li.dropdown {
         </div>
      </li>
   </ul>
-        <h3>Leaf;et Map With GeoJson Layers</h3>
+        <h3>Leaflet Map With GeoJson Layers</h3>
 	
 	 <div id="map"></div>
 My leaflet map with my geoJSON layers is displayed in an index.html file inside my exercise9 directory in GitHub <br>
 My GeoJSON polygon layer symbolizes as a choropleth map (2pt)<br>
-My XXX point, line, polygone, GeoJSON layer is XX and related to my map in XX. (1pt)<br>
+My Iowa Counties layer is a GeoJSon polygon layer and displays the county outlines on my map. (1pt)<br>
 My Leaflet Layer Control displays my two GeoJSON layers of and my open streets basemap. (1pt)<br>
   
   <script> 
@@ -111,13 +111,11 @@ My Leaflet Layer Control displays my two GeoJSON layers of and my open streets b
 		 //map		
 		 var map = L.map('map', {
   		 center: [41.619549, -93.598022],
-  		 zoom: 2,
+  		 zoom: 6,
   	  	 layers: [OSM]
 		});
 	  	//polygon choropleth map 
 	  
-	  	//GEoJson layer 
-	 	 var mypointLayer = L.geoJSON(point).addTo(map);
 	  
 	 	 //layer control
 		var baseMap = {
@@ -125,7 +123,7 @@ My Leaflet Layer Control displays my two GeoJSON layers of and my open streets b
 		};
        		
 		var overlayMaps = {
-		"Cities I've Lived": point
+		"Iowa Counties":  L.geoJSON(county)
 		};			
 
 		L.control.layers(baseMap, overlayMaps).addTo(map);			
