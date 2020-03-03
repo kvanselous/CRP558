@@ -11,9 +11,9 @@
                  crossorigin=""></script> 
 	    
 	    
-    <script src="../GeoJSONFolder/mapcity.geojson"></script>
-    <script src="../GeoJSONFolder/mapline.geojson"></script>
-    <script src="../GeoJSONFolder/mappolygon.geojson"></script>
+    <script src="https://github.com/kvanselous/CRP558/tree/master/GeoJSONFolder/polyline.geojson"></script>
+    <script src="https://github.com/kvanselous/CRP558/tree/master/GeoJSONFolder/polygon.geojson"></script>
+    <script src="https://github.com/kvanselous/CRP558/tree/master/GeoJSONFolder/point.geojson"></script>
     
     <style>
  ul {
@@ -115,13 +115,13 @@ li.dropdown {
       }).addTo(map);   
   
   //GeoJSON point layer          
-        L.geoJSON(mapcity).addTo(map);
+        L.geoJSON(point).addTo(map);
 
   //GeoJSON polyline layer
-        L.geoJSON(mapline).addTo(map);
+        L.geoJSON(polyline).addTo(map);
 
   //GeoJSON polgon layer
-        L.geoJSON(mappolygon).addTo(map);
+        L.geoJSON(polygon).addTo(map);
 
      </script>
    </body>
