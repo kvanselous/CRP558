@@ -1,7 +1,7 @@
 <!DOCTYPE html>
   <html>
     <head>
-      <title>Exercise 8</title>   
+      <title>Exercise 9</title>   
        <!--//code to help build drop down menu from: https://www.w3schools.com/howto/howto_css_dropdown.asp    -->    
        <!--//code to help build maps and data from lecture LA 558 course materials and videos -->
           <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -9,6 +9,8 @@
       <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css">
       <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js" integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
                  crossorigin=""></script> 
+	    
+      <script src="../GeoJSONFolder/point.geojson"></script>
 	     
     <style>
  ul {
@@ -90,24 +92,44 @@ li.dropdown {
         </div>
      </li>
   </ul>
-        <h3>GeoJson Map</h3>
+        <h3>Leafket Map With GeoJson Layers</h3>
 	
 	 <div id="map"></div>
-Create an index.html file inside an exercise9 directory in GitHub with a leaflet map displaying your geojson layers (see type of geojson files required below) (1pt)<br>
-GeoJSON polygon layer symbolized as a choropleth map (2pt)<br>
-A second GeoJSON layer (could be any type - point, line, or polygon) but it must be related to your choropleth map in some way. (1pt)<br>
-Leaflet Layer Control set up and working for your two GeoJSON layers and at least one basemap. (1pt)<br>
+My leaflet map with my geoJSON layers is displayed in an index.html file inside my exercise9 directory in GitHub <br>
+My GeoJSON polygon layer symbolizes as a choropleth map (2pt)<br>
+My XXX point, line, polygone, GeoJSON layer is XX and related to my map in XX. (1pt)<br>
+My Leaflet Layer Control displays my two GeoJSON layers of and my open streets basemap. (1pt)<br>
   
   <script> 
-  //Map
-      var map = L.map('map').setView([41.619549, -93.598022], 2);
-      L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
-      attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-      maxZoom: 18,
-      id: 'mapbox/streets-v11',
-      accessToken: 'pk.eyJ1Ijoia3ZhbnNlbG91cyIsImEiOiJjazZsbHE2NGwwZDdtM2tvNmRjc2N0NHo5In0.h_W_-4R3haPMK-IDBTcL-w' 
-      }).addTo(map);   
-  
+  		// 1 basemap
+			
+		var OSM = L.tileLayer('https://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+   		 attribution: '&copy; <a href="https://osm.org/copyright">OpenStreetMap</a> contributors',
+    		 maxZoom: 18
+		 });	
+
+		 //map		
+	  	var map = L.map('map').setView([41.619549, -93.598022], 2);
+
+	  	//polygon choropleth map 
+	  
+	  	//GEoJson layer 
+	 	 var mypointLayer = L.geoJSON(point).addTo(map);
+	  
+	 	 //layer control
+		var baseMap = {
+		"OpenStreetMap": OSM
+		};
+       		
+		var overlayMaps = {
+		"Towns I've Lived": towns,
+		"Locations I received Education": edutowns,
+		"Night Time": NASAGIBS_ViirsEarthAtNight2012
+		};			
+
+		L.control.layers(baseMaps, overlayMaps).addTo(map);			
+
+
 
 
      </script>
