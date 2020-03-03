@@ -109,8 +109,13 @@ My Leaflet Layer Control displays my two GeoJSON layers of and my open streets b
 		 });	
 
 		 //map		
-	  	var map = L.map('map').setView([41.619549, -93.598022], 2);
-
+   		   var map = L.map('map').setView([41.619549, -93.598022], 2);
+   		   L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+   		   attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+   		   maxZoom: 18,
+   		   id: 'mapbox/streets-v11',
+   		   accessToken: 'pk.eyJ1Ijoia3ZhbnNlbG91cyIsImEiOiJjazZsbHE2NGwwZDdtM2tvNmRjc2N0NHo5In0.h_W_-4R3haPMK-IDBTcL-w' 
+   		   }).addTo(map);  
 	  	//polygon choropleth map 
 	  
 	  	//GEoJson layer 
