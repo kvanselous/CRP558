@@ -1,1 +1,26 @@
-var point = {"type":"FeatureCollection","features":[{"type":"Feature","properties":{},"geometry":{"type":"Point","coordinates":[-74.70703125,40.613952441166596]}},{"type":"Feature","properties":{},"geometry":{"type":"Point","coordinates":[-78.0029296875,41.11246878918088]}},{"type":"Feature","properties":{},"geometry":{"type":"Point","coordinates":[-75.322265625,39.80853604144591]}},{"type":"Feature","properties":{},"geometry":{"type":"Point","coordinates":[-105.029296875,39.90973623453719]}},{"type":"Feature","properties":{},"geometry":{"type":"Point","coordinates":[-93.69140625,41.902277040963696]}}]}
+var point = {
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {},
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -74.970703125,
+            39.842286020743394
+          ],
+          [
+            -93.779296875,
+            41.902277040963696
+          ],
+          [
+            -105.732421875,
+            38.8225909761771
+          ]
+        ]
+      }
+    }
+  ]
+}
