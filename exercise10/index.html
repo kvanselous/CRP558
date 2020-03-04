@@ -1,10 +1,21 @@
 <!DOCTYPE html>
   <html>
     <head>
-      <title>Exercise 10 </title>   
+      <title>Exercise 10</title>   
        <!--//code to help build drop down menu from: https://www.w3schools.com/howto/howto_css_dropdown.asp    -->    
-      <meta name="viewport" content="width=device-width, initial-scale=1">
+       <!--//code to help build maps and data from lecture LA 558 course materials and videos -->
+       <!--//www.washingtonpost.com/graphics/2019/investigations/dea-pain-pill-database/ Inserted pill data into County data-->
+	   <!--//open-iowa.opendata.arcgis.com/datasets/8a1c2d500d8847d79aa47d45d44eb133_0  Created Geojson in QGIS-->
+       <!--//https://leafletjs.com/examples/choropleth/-->
+          <meta name="viewport" content="width=device-width, initial-scale=1">
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+      <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css">
+      <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js" integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+                 crossorigin=""></script> 
+	    
+      <script src="../GeoJSONFolder/IowaCountyBoundary.geojson"></script>
+        <script src="../GeoJSONFolder/IowaPills"></script>
+	     
     <style>
  ul {
   list-style-type: none;
@@ -40,7 +51,7 @@ li.dropdown {
   background-color: #f9f9f9;
   min-width: 160px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 1;
+  z-index: 1001;
 }
 
 .dropdown-content a {
@@ -55,6 +66,48 @@ li.dropdown {
 
 .dropdown:hover .dropdown-content {
   display: block;
+}
+	    
+	                        #map {
+                    width: 400px;
+                    height: 400px;
+                    background-color:blue
+                    z-index: -1      
+ }
+        .info {
+    padding: 6px 8px;
+    font: 14px/16px Arial, Helvetica, sans-serif;
+    background: white;
+    background: rgba(255,255,255,0.8);
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    border-radius: 5px;
+}
+.info h4 {
+    margin: 0 0 5px;
+    color: #777;
+}
+               
+.legend {
+    line-height: 10px;
+    color: #555;
+}
+.legend i {
+    width: 18px;
+    height: 20px;
+    float: left;
+    margin-right: 8px;
+    opacity: 0.9;
+}
+.info {
+    padding: 6px 8px;
+    font: 10px/20px Arial, Helvetica, sans-serif;
+    background: rgba(255,255,255,0.8);
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    border-radius: 5px;
+}
+.info h4 {
+    margin: 0 0 5px;
+    color: #777;
 }
 </style>
 </head>
@@ -78,16 +131,153 @@ li.dropdown {
         </div>
      </li>
   </ul>
-        <h3>Exercise 10</h3>
+        <h3>Adding Legend to Leaflet Map With GeoJson Layers</h3>
+	
+	 <div id="map"></div>
+My leaflet map with my geoJSON layers is displayed in an index.html file inside my exercise=10 directory in GitHub <br>
+My legend is added to my map from exercise 9 <br>
+All other components of my map remained the same from exercise 9<br>
   
-This exercise requires you to build upon your Leaflet map from exercise 9. Exercises 9 asked you to create a leaflet map with a GeoJSON polygon layer that is symbolized to create a choropleth map. In this exercises you will add a legend to your exercise 9 map. 
+  <script> 
+  		// 1 basemap
+			
+		var OSM = L.tileLayer('https://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+   		 attribution: '&copy; <a href="https://osm.org/copyright">OpenStreetMap</a> contributors',
+    		 maxZoom: 18
+		 });	
 
-I will also be looking for errors in your code (error messages sent to the browser console and basic JS and HTML errors). 
+		 //map		
+		 var map = L.map('map', {
+  		 center: [42.219549, -93.598022],
+  		 zoom: 6,
+  	  	 layers: [OSM]
+		});
+      
+	//two new lines
+      var cities = L.geoJSON(city);
+      
+      var iowaPills = L.geoJSON(pill, {
+        style: style});
 
-Requirements:
 
-Create an index.html file inside an exercise10 directory in GitHub with a leaflet map displaying your geojson layers (1pt) <br>
-Create a legend for your GeoJSON polygon layer that is symbolized as a choropleth map (3pt)<br>
-All other components of your maps should stay the same and follow requirements from exercise 9 (1pt) <br>
+// polygon choropleth map 
+function getColor(d) {
+		return d  > 30  ? '#54278f' :
+				d     > 25  ? '#756bb1' :
+				d > 20  ? '#9e9ac8' :
+				d > 15   ? '#bcbddc' :
+				d > 10   ? '#dadaeb' :
+				d > 5   ? '#f2f0f7' :
+               "#FFFFFF"; 
+	}
+
+	  
+	function style(feature) {
+		return {
+			weight: 1,
+			opacity: 1,
+			color: 'white',
+			fillOpacity: 0.7,
+			fillColor: getColor(feature.properties.PillRate)
+		};
+	}
+
+	function highlightFeature(e) {
+		var layer = e.target;
+        info.update(layer.feature.properties);
+
+		layer.setStyle({
+			weight: 2,
+			color: 'black',
+			dashArray: '',
+			fillOpacity: 0.7
+		});
+
+		if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
+			layer.bringToFront();
+		}
+
+	}
+
+	var geojson;
+
+	function resetHighlight(e) {
+		geojson.resetStyle(e.target);
+        info.update();
+	}
+
+	function zoomToFeature(e) {
+		map.fitBounds(e.target.getBounds());
+	}
+
+	function onEachFeature(feature, layer) {
+		layer.on({
+			mouseover: highlightFeature,
+			mouseout: resetHighlight,
+			click: zoomToFeature
+		});
+	}
+
+      // legend
+
+      var legend = L.control({
+        position: 'bottomright'
+      });
+
+      legend.onAdd = function(map) {
+
+       var div = L.DomUtil.create('div', 'info legend'),
+        PillDist = [0, 10, 15, 20, 25, 30],
+        labels = [];
+
+       for (var i = 0; i < PillDist.length; i++) {
+         div.innerHTML +=
+         '<i style="background:' + getColor(PillDist[i] + 1) + '"></i> ' +
+            PillDist[i] + (PillDist[i + 1] ? '&ndash;' + PillDist[i + 1] + '<br>' : '+');
+    }
+        
+        return div;
+        };
+
+       legend.addTo(map);
+
+
+      //layer control
+		var baseMap = {
+		"OpenStreetMap": OSM
+		};
+       		
+		var overlayMaps = {
+		"Top Ten Largest Cities by Population": cities,
+        "Pain Pill Distribution Per Person Per Year 2006-2014": iowaPills
+		};			
+
+		L.control.layers(baseMap, overlayMaps).addTo(map);	
+      
+      geojson = L.geoJson(pill, {
+		style: style,
+		onEachFeature: onEachFeature
+	   })
+      
+      
+//not working      
+//var info = L.control();
+
+//info.onAdd = function (map) {
+    //this._div = L.DomUtil.create('div', 'info'); 
+    //this.update();
+    //return this._div;
+//};
+
+
+//info.update = function (props) {
+    //this._div.innerHTML = '<h4>Pain Pill Distrbution Rate 2006-2014</h4>' +  (props ?
+        //'<b>' + props.PillRate + '</b><br />' + ' per person per year'
+        //: 'Hover over a county');
+//};
+
+//info.addTo(map);
+
+     </script>
    </body>
 </html>
