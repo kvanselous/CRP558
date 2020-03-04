@@ -112,7 +112,7 @@ li.dropdown {
 	
 	 <div id="map"></div>
 My leaflet map with my geoJSON layers is displayed in an index.html file inside my exercise9 directory in GitHub <br>
-My GeoJSON polygon layer symbolizes the rate of pain pills distributed per person per year between 2006-2014 from released data from the Washington post.  The dark purple represents pain pill rates that are higher than 30 pain pills distributed per person per year and the light purple represents counties that distributed less than 10 pain pills per person per year <br>
+My GeoJSON polygon layer symbolizes the average rate of pain pills distributed per person per year between 2006-2014 from released data from the Washington post.  The dark purple represents pain pill rates that are higher than 30 pain pills distributed per person per year and the light purple represents counties that distributed less than 10 pain pills per person per year <br>
 My Iowa Cities layer is a GeoJSon point layer and displays the top ten largest cities in Iowa. <br>
 My Leaflet Layer Control displays my two GeoJSON layers of and my open streets basemap.<br>
   
@@ -196,27 +196,7 @@ function getColor(d) {
 		});
 	}
 
-	geojson = L.geoJson(pill, {
-		style: style,
-		onEachFeature: onEachFeature
-	})
-      
-      var info = L.control();
 
-info.onAdd = function (map) {
-    this._div = L.DomUtil.create('div', 'info'); 
-    this.update();
-    return this._div;
-};
-
-
-info.update = function (props) {
-    this._div.innerHTML = '<h4>Pain Pill Distrbution Rate 2006-2014</h4>' +  (props ?
-        '<b>' + props.PillRate + '</b><br />' + ' per person per year'
-        : 'Hover over a county');
-};
-
-info.addTo(map);
 
       //layer control
 		var baseMap = {
@@ -228,7 +208,29 @@ info.addTo(map);
         "Pain Pill Distribution Per Person Per Year 2006-2014": iowaPills
 		};			
 
-		L.control.layers(baseMap, overlayMaps).addTo(map);			
+		L.control.layers(baseMap, overlayMaps).addTo(map);	
+      
+geojson = L.geoJson(pill, {
+		style: style,
+		onEachFeature: onEachFeature
+	})
+//not working      
+//var info = L.control();
+
+//info.onAdd = function (map) {
+    //this._div = L.DomUtil.create('div', 'info'); 
+    //this.update();
+    //return this._div;
+//};
+
+
+//info.update = function (props) {
+    //this._div.innerHTML = '<h4>Pain Pill Distrbution Rate 2006-2014</h4>' +  (props ?
+        //'<b>' + props.PillRate + '</b><br />' + ' per person per year'
+        //: 'Hover over a county');
+//};
+
+//info.addTo(map);
 
      </script>
    </body>
