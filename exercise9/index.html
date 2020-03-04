@@ -131,18 +131,11 @@ My Leaflet Layer Control displays my two GeoJSON layers of and my open streets b
   	  	 layers: [OSM]
 		});
       
-	 	 //layer control
-		var baseMap = {
-		"OpenStreetMap": OSM
-		};
-       		
-		var overlayMaps = {
-		"Top Ten Largest Cities by Population":  L.geoJSON(city),
-        "Iowa County Boundaries": L.geoJSON(pill)
-		};			
-
-		L.control.layers(baseMap, overlayMaps).addTo(map);			
-
+	//two new lines
+      var cities = L.geoJSON(city);
+      
+      var iowaPills = L.geoJSON(pill, {
+        style: style});
 
 
 // polygon choropleth map 
@@ -206,7 +199,7 @@ function getColor(d) {
 	geojson = L.geoJson(pill, {
 		style: style,
 		onEachFeature: onEachFeature
-	}).addTo(map);
+	})
       
       var info = L.control();
 
@@ -224,6 +217,18 @@ info.update = function (props) {
 };
 
 info.addTo(map);
+
+      //layer control
+		var baseMap = {
+		"OpenStreetMap": OSM
+		};
+       		
+		var overlayMaps = {
+		"Top Ten Largest Cities by Population": cities,
+        "Pain Pill Distribution Per Person Per Year 2006-2014": iowaPills
+		};			
+
+		L.control.layers(baseMap, overlayMaps).addTo(map);			
 
      </script>
    </body>
