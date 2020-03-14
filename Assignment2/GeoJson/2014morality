@@ -1,0 +1,11 @@
+var mortality = [
+  ["10", 43.1543, -93.2030, "Cerro Gordo County"],
+  ["21", 41.6699, -91.5984, "Johnson County"],
+  ["30", 42.0660, -91.6761, "Linn County"],
+  ["50", 41.6278, -93.5003, "Polk County"],
+  ["12", 41.3912, -95.4778, "Pottawattamie County"],
+  ["19", 41.6393, -90.6394, "Scott County"],
+  ["10", 42.3166, -95.9833, "Woodbury County"],
+];
+
+
