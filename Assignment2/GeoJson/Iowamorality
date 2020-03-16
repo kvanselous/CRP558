@@ -1,0 +1,124 @@
+var mortality = {
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "marker-color": "#7e7e7e",
+        "marker-size": "medium",
+        "marker-symbol": "",
+        "Name": "Johnson",
+        "DrugDeath": 21
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -91.6204833984375,
+          41.65239288426814
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "marker-color": "#7e7e7e",
+        "marker-size": "medium",
+        "marker-symbol": "",
+        "Name": "Cerro Gordo",
+        "DrugDeath": 10
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -93.36181640625,
+          43.09697190802465
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "marker-color": "#7e7e7e",
+        "marker-size": "medium",
+        "marker-symbol": "",
+        "Name": "Linn",
+        "DrugDeath": 30
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -91.571044921875,
+          42.09007006868398
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "marker-color": "#7e7e7e",
+        "marker-size": "medium",
+        "marker-symbol": "",
+        "Name": "Polk",
+        "DrugDeath": 50
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -93.658447265625,
+          41.599013054830216
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "marker-color": "#7e7e7e",
+        "marker-size": "medium",
+        "marker-symbol": "",
+        "Name": "Pottawattamie",
+        "DrugDeath": 12
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -95.7568359375,
+          41.32732632036622
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "marker-color": "#7e7e7e",
+        "marker-size": "medium",
+        "marker-symbol": "",
+        "Name": "Scott",
+        "DrugDeath": 19
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -91.109619140625,
+          41.44272637767212
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "marker-color": "#7e7e7e",
+        "marker-size": "medium",
+        "marker-symbol": "",
+        "Name": "Woodbury",
+        "DrugDeath": 10
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -96.26220703125,
+          42.52879629320373
+        ]
+      }
+    }
+  ]
+}

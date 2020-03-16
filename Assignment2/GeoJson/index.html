@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+  <head>
+<meta name="description" content="LA 458/558 17d Leaflet legends intro - 2020" />
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" />
+
+<script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
+
+<style>
+html, body, 
+
+#map { height: 480px; margin: 0; padding: 0; }
+
+
+.legend {
+    line-height: 10px;
+    color: #555;
+}
+.legend i {
+    width: 18px;
+    height: 20px;
+    float: left;
+    margin-right: 8px;
+    opacity: 0.9;
+}
+.info {
+    padding: 6px 8px;
+    font: 10px/20px Arial, Helvetica, sans-serif;
+    background: rgba(255,255,255,0.8);
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    border-radius: 5px;
+}
+.info h4 {
+    margin: 0 0 5px;
+    color: #777;
+}
+</style>
+	  
+  </head>
+  <body>
+<div id="map"></div>
+<script>
+console.clear();
+
+var map = L.map('map').setView([43, -93], 7);
+
+// add an OpenStreetMap tile layer
+L.tileLayer('https://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+  attribution: '&copy; <a href="https://osm.org/copyright">OpenStreetMap</a> contributors',
+  maxZoom: 18
+}).addTo(map);
+
+            var geojsonMarkerOptions = {
+            fillColor: "gray",
+            color: "#000",
+            weight: 1,
+            opacity: 1,
+            fillOpacity: 0.8
+        };     
+
+    
+ var Iowamortality = [
+  ["10", 43.1543, -93.2030, "Cerro Gordo County"],
+  ["21", 41.6699, -91.5984, "Johnson County"],
+  ["30", 42.0660, -91.6761, "Linn County"],
+  ["50", 41.6278, -93.5003, "Polk County"],
+  ["12", 41.3912, -95.4778, "Pottawattamie County"],
+  ["19", 41.6393, -90.6394, "Scott County"],
+  ["10", 42.3166, -95.9833, "Woodbury County"],
+];
+
+
+//set color of marker
+function getColormort(d) {
+  return "#ff0000" ; 
+}
+
+for (var i = 0; i < Iowamortality.length; i++) {
+  marker = new L.circleMarker([Iowamortality[i][1], Iowamortality[i][2]], {
+      radius: Iowamortality[i][0] / 2 + 5,
+      fillColor: getColormort (Iowamortality[i][0]),
+      color: "#000",
+      weight: 0,
+      opacity: 1,
+      fillOpacity: 0.9
+    })
+    .bindPopup("Number of Drug Induced Mortalities in 2014: " + Iowamortality[i][0])
+    .addTo(map);
+}
+
+var legend = L.control({
+  position: 'bottomleft'
+});
+
+legend.onAdd = function(map) {
+
+  var div = L.DomUtil.create('div', 'info legend'),
+    breakfast = ['apple', 'banana', 'cereal', 'donuts', 'eggs'],
+    labels = [''];
+
+  // loop through items and generate a label with a colored square for each
+  for (var i = 0; i < breakfast.length; i++) {
+    div.innerHTML +=
+      '<i style="background:' + getColor(breakfast[i]) + ' "></i> ' +
+      breakfast[i] + (breakfast ? '' + '<br>' : '');
+  }
+
+  return div;
+};
+
+</script>
+  </body>
+</html>
