@@ -154,7 +154,8 @@
      <h3>Assignment 2</h3>
      <b>Substance Use in Iowa</b>; <em>A county level comparison of pain pill distribution rates and drug induced mortalitiy across Iowa</em>
      <br><em>Data released from The Washington Post and The Center for Disease Control for 2014</em></p>
-	 <p>The map below displays a map of Iowa with a control layer option to display an open street map, a world imagery map, a choropleth map, and a graduated symbols map.  The graduated symbols map displays the number of drug induced mortalities in 10 Iowa counties for the year 2014.  The choropleth map displays the pain pill distribution rate of pain pills distributed per person per county for the year of 2014.  To navigate through this information, please use the layer control in the top right-hand side of the map to turn the layers on and off.  You can also use the buttons at the bottom of the map to zoom into an urban area and a rural area.  To learn more about the differences between urban and rural areas, scroll to the bottom of the page to see maps I created for my Intro to GIS course.</p>
+	 <p>The map below displays a map of Iowa with a control layer option to display an open street map, a world imagery map, a choropleth map, and a graduated symbols map.  The graduated symbols map displays the number of drug induced mortalities in 7 Iowa counties for the year 2014.  To see the number of drug induced mortality, click on the circle.  The choropleth map displays the pain pill distribution rate of pain pills distributed per person per county for the year of 2014.  To navigate through this information, please use the layer control in the top right-hand side of the map to turn the layers on and off.  You can also use the buttons at the bottom of the map to zoom into an urban area and a rural area.  To learn more about the differences between urban and rural areas, scroll to the bottom of the page to see maps I created for my Intro to GIS course.</p>
+    <p>The data for this map was retrieved from the Center for Disease Control and The Washington post.  The Center for Disease Control only reported 7 counties with drug induced substance mortality for the year 2014.  To retrieve the data for mortalities, please find it <a href=”https://wonder.cdc.gov/ucd-icd10.html”>here</a>.  To locate the pain pill distribution data, please find it <a href=”www.washingtonpost.com/graphics/2019/investigations/dea-pain-pill-database/”> here </a></p>
     <!--inserting map-->
      <div id="map"></div>
     <!--Buttons-->
@@ -166,6 +167,7 @@
      <img src="images/Dallas%20County.png" width="600" height ="400" alt="Dallas County">
   
         <script> 
+            console.clear();
             // 2 basemaps		
                 var OSM = L.tileLayer('https://{s}.tile.osm.org/{z}/{x}/{y}.png', {
                     attribution: '&copy; <a href="https://osm.org/copyright">OpenStreetMap</a> contributors',
@@ -197,9 +199,17 @@
 
                     //set color of marker
                     function getColormort(d) {
-                    return "#ff0000" ; 
-                    }
-
+                        return  d > 45  ? '#943126' :
+				        d > 35  ? '#CB4335' :
+				        d > 25   ? '#EC7063' :
+				        d > 15   ? '#F5B7B1' :
+				        d > 5   ? '#FDEDEC' :
+                        "#FFFFFF"; 
+	                   }
+                    
+                    //make data into layer
+                    var IowamortalityLayer = L.layerGroup([]);
+            
                     for (var i = 0; i < Iowamortality.length; i++) {
                     marker = new L.circleMarker([Iowamortality[i][1], Iowamortality[i][2]], {
                         radius: Iowamortality[i][0] / 2 + 5,
@@ -210,7 +220,7 @@
                         fillOpacity: 0.9
                         })
                         .bindPopup("Number of Drug Induced Mortalities in 2014: " + Iowamortality[i][0])
-                        .addTo(map);
+                        .addTo(IowamortalityLayer);
                         }
        
                 var iowaPills = L.geoJSON(painpills, {
@@ -271,27 +281,45 @@
 		});
 	}
 
-      // legend
-            var legend = L.control({
+      // legend pain pills
+            var legend1 = L.control({
                 position: 'bottomright'
                 });
 
-            legend.onAdd = function(map) {
+            legend1.onAdd = function(map) {
 
             var div = L.DomUtil.create('div', 'info legend'),
                 PillDist = [0, 10, 15, 20, 25, 30],
                 labels = [];
-
+            div.innerHTML += "<b>Pain Pills Distributed</b><br>";
             for (var i = 0; i < PillDist.length; i++) {
-                div.innerHTML +=
+                div.innerHTML += 
                     '<i style="background:' + getColor(PillDist[i] + 1) + '"></i> ' +
                     PillDist[i] + (PillDist[i + 1] ? '&ndash;' + PillDist[i + 1] + '<br>' : '+');
                 }
         
             return div;
             };
+     
+        // legend mortaltity data
+            var legend2 = L.control({
+                position: 'bottomright'
+                });
 
-            legend.addTo(map);
+            legend2.onAdd = function(map) {
+
+            var div = L.DomUtil.create('div', 'info legend'),
+                DrugDeath = [5, 15, 25, 35, 45],
+                labels = [];
+            div.innerHTML +="<b>Drug Deaths</b><br>"
+            for (var i = 0; i < DrugDeath.length; i++) {
+                div.innerHTML +=
+                    '<i style="background:' + getColormort(DrugDeath[i] + 1) + '"></i> ' +
+                    DrugDeath[i] + (DrugDeath[i + 1] ? '&ndash;' + DrugDeath[i + 1] + '<br>' : '');
+                }
+        
+            return div;
+            };
 
       //layer control
 		  var baseMap = {
@@ -301,11 +329,30 @@
        		
 		  var overlayMaps = {
               "Pain Pill Distribution Per Person Per Year 2014": iowaPills,
-              "Substance Use Mortality Rate 2014": Iowamortality
+              "Substance Use Mortality Rate 2014": IowamortalityLayer
               };			
 
 		L.control.layers(baseMap, overlayMaps).addTo(map);	
     
+      //add and remove legends 
+            map.on('overlayremove', function (eventLayer) {
+                console.log(eventLayer.name  + " off");
+                if (eventLayer.name == "Pain Pill Distribution Per Person Per Year 2014") {
+                    this.removeControl(legend1);
+                }else if (eventLayer.name == "Substance Use Mortality Rate 2014"){
+                    this.removeControl(legend2);
+                }
+                });
+            map.on('overlayadd', function (eventLayer) {
+                console.log(eventLayer.name + " on");
+                if (eventLayer.name == "Pain Pill Distribution Per Person Per Year 2014") {
+                legend1.addTo(this);
+                }else if (eventLayer.name == "Substance Use Mortality Rate 2014"){
+                legend2.addTo(this);
+                }	
+                });
+
+            
       //geojson  
             geojson = L.geoJson(painpills, {
                 style: style,
