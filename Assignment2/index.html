@@ -1,29 +1,36 @@
+<!--The first item in the index.html indicates the markup language used to create the file.  The below indicates html 5 is used-->
 <!DOCTYPE html>
+<!-- The <html> section houses the sub sections <head> and <body> of the file.  In my files, I have started to store annotations between the initial html and head sections that help the reader to know what sources I referenced to build the page.-->
 <html>
-       <!--Index created by references below sources-->
+       <!--Below are the references I used to help build my page-->
             <!--//code to help build drop down menu from: https://www.w3schools.com/howto/howto_css_dropdown.asp    -->    
-            <!--//code to help build maps and data from lecture LA 558 course materials and videos -->
-            <!--//https://leafletjs.com/examples/choropleth/-->
-       <!--Data used in this Index can be found from below data sources-->
-            <!--//www.washingtonpost.com/graphics/2019/investigations/dea-pain-pill-database/ Inserted pill data into County data-->
-	        <!--//open-iowa.opendata.arcgis.com/datasets/8a1c2d500d8847d79aa47d45d44eb133_0  Created Geojson in QGIS-->
-            <!--//https://wonder.cdc.gov/ucd-icd10.html-->
+            <!--//code to help build maps and data: lecture LA 558 course materials and videos -->
+            <!--//code to help build choropleth maps: https://leafletjs.com/examples/choropleth/-->
+            <!--//resource to help inform comments: https://www.linkedin.com/learning/html-essential-training/exploring-an-html-document?autoplay=true&trk=learning-course_table-of-contents_video&upsellOrderOrigin=default_guest_learning-->
+       <!--Below are links to the data I used in this-->
+            <!--pain pill data: //www.washingtonpost.com/graphics/2019/investigations/dea-pain-pill-database/-->
+	        <!--Iowa mapping data: //open-iowa.opendata.arcgis.com/datasets/8a1c2d500d8847d79aa47d45d44eb133_0 -->
+            <!--mortality data: //https://wonder.cdc.gov/ucd-icd10.html-->
+  
+    <!--The <head> section of the document stores the pages title and non-visual elements that help the page work -->
     <head>
+      <!-- The <title> communicates to the browser what title will appear at the top of the browser.--> 
       <title>Assignment 2</title>  
 
-       <!--style sources-->
-            <meta name="viewport" content="width=device-width, initial-scale=1">
+            <!--The below information tells the browser where to locate and use the leaflet map -->            <meta name="viewport" content="width=device-width, initial-scale=1">
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
             <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css">
-        
-        <!--script sources-->
             <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js" integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
-                 crossorigin=""></script>	    
+                 crossorigin=""></script>
+        
+            <!--Code can also be used to tell the browser where to access other JavaScript files that the user has created.  The below directs the Brower to obtain my GEOJson files I've created for this assignment. -->                
             <script src="../Assignment2/GeoJson/2014Pills"></script>
             <script src="../Assignment2/GeoJson/Iowamorality"></script>
 
-<!--style section includes style information for drop down menu, map, and legend--> 
+        <!--The <style> section lives within the <head> and tells the browsers how to style certain items on the page.  For this assignment, this section provides information on how to style my drop-down menu, map, and legend--> 
         <style>
+         
+            /*The following code gives the browsers information about my drop-down menu.  For example, this section tells the browser the size, font, and location of items in my top navigation bar and drop-down menus. The Z-Index is important as that tells the browser how the images are ordered on the page.  For example, the z-code of 1001 allows the drop-down menu to appear on top of the map. */
             ul {
                 list-style-type: none;
                 margin: 0;
@@ -74,28 +81,16 @@
             .dropdown:hover .dropdown-content {
                 display: block;
                 }
-                       
+           
+            /*The below information gives the styling information for my map. This allows the browser to tell the size of my map.  The z-index is important here as it tells the browser how images are ordered in the page.  The -1 indicates this image will be on the bottom of the page, this allows the drop down menu to appear on top of the map when activated.*/                      
             #map {
                 width: 700px;
                 height: 500px;
                 background-color:blue
                 z-index: -1      
                 }
-                
-            .info {
-                padding: 6px 8px;
-                font: 14px/16px Arial, Helvetica, sans-serif;
-                background: white;
-                background: rgba(255,255,255,0.8);
-                box-shadow: 0 0 15px rgba(0,0,0,0.2);
-                border-radius: 5px;
-                }
-            
-            .info h4 {
-                margin: 0 0 5px;
-                color: #777;
-                }
-               
+          
+            /* The below information is used to style the legend.  This code tells the browser the font, text size, colors, and location of the legend*/         
             .legend {
                 line-height: 10px;
                 color: #555;
@@ -123,8 +118,11 @@
                 }
         </style>
     </head>
-<body>   
-    <!--code to build dropdown menu-->
+     
+    <!--The body section is the second section within html and provides the visual information for the page.  This includes content for the drop-down menu, links, text for the page, and code for my map.  This section also contains script or the action information for the page -->
+    <body>   
+        
+      <!--The below code is used to fill the information and behavior for the dropdown menu by giving the browser the link and title for each of links in the menu.  The <div class.. is used to group several of the items together into each drop-down, the browser retrieves information from the <style> section to properly format this section. -->
       <ul> 
         <li><a href="https://kvanselous.github.io/CRP558/">Home</a></li>
         <li class="dropdown">
@@ -150,43 +148,46 @@
         <li><a href="https://kvanselous.github.io/CRP558/TechReport/">Tech Report</a></li>
      </ul>
  
-    <!--creating narrative text and style to describe map-->
+     <!--The below is the direct text that is displayed in my page.  The <h#></h#> tells the browser if text should be displayed as a header on the page.  The <em></em> indicates text that should be displayed as italicized.  The <p> shows text that should be in a paragraph.  <b></b> shows if the text should be bolded.  And <Br> shows if text should break onto a new line.  The <a href=... is also used to build links to the word 'here' to link he reader to the pages data sources. -->
      <h3>Assignment 2</h3>
      <b>Substance Use in Iowa</b>; <em>A county level comparison of pain pill distribution rates and drug induced mortalitiy across Iowa</em>
-     <br><em>Data released from The Washington Post (2006-2014) and The Center for Disease Control (2014)</em></p>
-	 <p>The map below displays a map of Iowa with a control layer option to display an open street map, a world imagery map, a choropleth map, and a graduated symbols map.  The graduated symbols map displays the number of drug induced mortalities in 7 Iowa counties for the year 2014.  To see the number of drug induced mortality, click on the circle.  The choropleth map displays the pain pill distribution average rate of pain pills distributed per person per county for years 2006-2014.  To navigate through this information, please use the layer control in the top right-hand side of the map to turn the layers on and off.  You can also use the buttons at the bottom of the map to zoom into an urban area and a rural area.  To learn more about the differences between urban and rural areas, scroll to the bottom of the page to see maps I created for my Intro to GIS course.</p>
-    <p>The data for this map was retrieved from the Center for Disease Control and The Washington post.  The Center for Disease Control only reported 7 counties with drug induced substance mortality for the year 2014.  To retrieve the data for mortalities, please find it <a href="https://wonder.cdc.gov/ucd-icd10.html/">here</a>.  To locate the pain pill distribution data, please find it <a href="https://www.washingtonpost.com/graphics/2019/investigations/dea-pain-pill-database/"> here </a>.</p>
-    <!--inserting map-->
+     <br><em>Data released from The Washington Post (2006-2014) and The Center for Disease Control (2014)</em>
+	 <p>The map below displays a map of Iowa with a control layer option to display an open street map, a world imagery map, a choropleth map, and a graduated symbols map.  The graduated symbols map displays the number of drug induced mortalities in 7 Iowa counties for the year 2014.  To see the number of drug induced mortalities, click on the circle.  The choropleth map displays the pain pill distribution average rate of pain pills distributed per person per county for years 2006-2014.  To navigate through this information, please use the layer control in the top right-hand side of the map to turn the layers on and off.  You can also use the buttons at the bottom of the map to zoom into an urban area and a rural area.  To learn more about the differences between urban and rural areas, scroll to the bottom of the page to see maps I created for my Intro to GIS course.</p>
+     <p>The data for this map was retrieved from the Center for Disease Control and The Washington post.  The Center for Disease Control only reported 7 counties with drug induced substance mortality for the year 2014.  To retrieve the data for mortalities, please find it <a href="https://wonder.cdc.gov/ucd-icd10.html/">here</a>.  To locate the pain pill distribution data, please find it <a href="https://www.washingtonpost.com/graphics/2019/investigations/dea-pain-pill-database/"> here </a>.</p>
+    
+     <!--The below is a <div.. that tells my page where to insert information related to my 'map' id from the <style> and <script> sections.-->
      <div id="map"></div>
-    <!--Buttons-->
+    
+     <!--The below is the text and code I used to create my buttons for my map.  The <button... code tells the browser to place a button in this location and then perform the function associated with the button id. This information is found in the <script>-->
      Press the button to see the features of Dallas County: <button id="DallasBtn">Dallas</button>
      <br>Press the button to see the features of Cass County: <button id="CassBtn">Cass</button>     
-    <p>The images below show the number of pain pills distributed per person per year between 2006 and 2012 as a graduated star symbol for Dallas and Cass County. The stars are placed on the cities in each county and represent the number of pills distributed per person per year for that city or town. You'll notice that Dallas county and Cass County distributed similar amounts of pain pills per person per year despite differences in population size.</p>
-    <!--inserting images into page-->
+     <p>The images below show the number of pain pills distributed per person per year between 2006 and 2012 as a graduated star symbol for Dallas and Cass County. The stars are placed on the cities in each county and represent the number of pills distributed per person per year for that city or town. You'll notice that Dallas county and Cass County distributed similar amounts of pain pills per person per year despite differences in population size. Use the buttons above to explore these counties further.</p>
+   
+     <!--The below code tells the browser to insert an image from the identified source.  It also tells the browser the size and alternative text to display for the image.  -->
      <img src="Images/CassCounty.png" width ="600" height = "400" alt="Cass County">  
      <img src="Images/DallasCounty.png" width="600" height ="400" alt="Dallas County">
   
+        <!--The below sections tells the page how to behave by using JavaScript.  On this page the JavaScript is used to build the items in my map, legends, and buttons that are displayed in my page-->
         <script> 
-            // 2 basemaps		
+               
+                //Below is the code that is used to create the 2 base maps featured in my map.  This code tells the browser where to locate this information and identifies it into a 'var' that will be referenced later in the script.		
                 var OSM = L.tileLayer('https://{s}.tile.osm.org/{z}/{x}/{y}.png', {
                     attribution: '&copy; <a href="https://osm.org/copyright">OpenStreetMap</a> contributors',
-                    maxZoom: 18
                     });	 
             
                 var Esri_WorldImagery = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
                     attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
                     });
 
-            //map		
+                //The code below creates my map variable and indicates the latitude and longitude I want the map to center in, the layers that I want to be included in the map, and the zoom feature I want the map to display.  The zoom number of 7 allows the map to show the state of Iowa.  If this number is increased it zooms in, if this number is decreased it zooms out. The code below also references my 'map' id featured in my earlier code, indicating that this is where my map will populate.	Additionally, this map includes the above variables that reference the names of the base maps I want to include in the map.  		
                 var map = L.map('map', {
                     center: [41.95, -93.30],
                     zoom: 7,
                     layers: [OSM, Esri_WorldImagery]
 		              });
       
-            //2 overlays
-   
-               var Iowamortality = [
+                //The variable below is created my popuating the mortality rate in spot 0, the latitude in spot 1 the longitude in spot 2, and the county name in spot 3 of this array.
+                var Iowamortality = [
                      ["10", 43.1543, -93.2030, "Cerro Gordo County"],
                      ["21", 41.6699, -91.5984, "Johnson County"],
                      ["30", 42.0660, -91.6761, "Linn County"],
@@ -196,179 +197,141 @@
                      ["10", 42.3166, -95.9833, "Woodbury County"],
                      ];
 
-                    //set color of marker
-                    function getColormort(d) {
-                        return  d > 45  ? '#943126' :
-				        d > 35  ? '#CB4335' :
-				        d > 25   ? '#EC7063' :
-				        d > 15   ? '#F5B7B1' :
-				        d > 5   ? '#FDEDEC' :
-                        "#FFFFFF"; 
-	                   }
+                //The function below is created to fill colors for the graduated symbols that appear in my page for Iowa Mortality
+                function getColormort(d) {
+                    return  d > 45  ? '#943126' :
+                            d > 35  ? '#CB4335' :
+				            d > 25   ? '#EC7063' :
+				            d > 15   ? '#F5B7B1' :
+				            d > 5   ? '#FDEDEC' :
+                            "#FFFFFF"; 
+	                         }
                     
-                    //make data into layer
-                    var IowamortalityLayer = L.layerGroup([]);
-            
-                    for (var i = 0; i < Iowamortality.length; i++) {
+                //The below code creates my Iowamortality variable into a layer group. 
+                var IowamortalityLayer = L.layerGroup([]);
+                
+                //This code creates my data into graduated symbols with the 'marker' code, retreives the colors from the function above to fill the graduated symbols, and identifies the size of the symbols.  Additionally, this layer included pop-up information that tells the browser what information should appear as each marker is hovered on.
+                for (var i = 0; i < Iowamortality.length; i++) {
                     marker = new L.circleMarker([Iowamortality[i][1], Iowamortality[i][2]], {
-                        radius: Iowamortality[i][0] / 2 + 5,
-                        fillColor: getColormort (Iowamortality[i][0]),
-                        color: "#000",
-                        weight: 0,
-                        opacity: 1,
-                        fillOpacity: 0.9
-                        })
-                        .bindPopup("Number of Drug Induced Mortalities in 2014: " + Iowamortality[i][0])
-                        .addTo(IowamortalityLayer);
-                        }
-       
+                    radius: Iowamortality[i][0] / 2 + 5,
+                    fillColor: getColormort (Iowamortality[i][0]),
+                    color: "#000",
+                    weight: 0,
+                    opacity: 1,
+                    fillOpacity: 0.9
+                    })
+                    .bindPopup("Number of Drug Induced Mortalities in 2014: " + Iowamortality[i][0])
+                    .addTo(IowamortalityLayer);
+                     }
+                
+                //This information creates the variable 'iowaPills' by telling the browser the retrieve the 'painpills' variable from my geoJSON file identified at the top of the file.  
                 var iowaPills = L.geoJSON(painpills, {
                     style: style});
    
-
-            // polygon choropleth map 
+                //This function identifies the colors that will be used to create the polygon choropleth map. 
                 function getColor(d) {
                     return d  > 30  ? '#1A5276' :
-                        d     > 25  ? '#2471A3' :
-				        d > 20  ? '#5499C7' :
-				        d > 15   ? '#A9CCE3' :
-				        d > 10   ? '#D4E6F1' :
-				        d > 5   ? '#EAF2F8' :
-                        "#FFFFFF"; 
-	                   }
+                           d  > 25  ? '#2471A3' :
+				           d  > 20  ? '#5499C7' :
+				           d  > 15  ? '#A9CCE3' :
+				           d  > 10  ? '#D4E6F1' :
+				           d  > 5   ? '#EAF2F8' :
+                                      "#FFFFFF"; 
+                           }
 
-	        //style function for choropleth map 
-	           function style(feature) {
-		          return {
-                     weight: 1,
-			         opacity: 1,
-			         color: 'white',
-			         fillOpacity: 0.7,
-			         fillColor: getColor(feature.properties.PillRate)
-		              }
-	                  }
+                //The below function styles my iowaPills data and tells the browser to show and color the information for PillRate within my painpills geoJSON file.
+	            function style(feature) {
+		             return {
+                        weight: 1,
+			             opacity: 1,
+                         color: 'white',
+			             fillOpacity: 0.7,
+                         fillColor: getColor(feature.properties.PillRate)
+                         }
+                         }
 
-	           function highlightFeature(e) {
-		          var layer = e.target;
-                   info.update(layer.feature.properties);
-                   layer.setStyle({
-                   weight: 2,
-                   color: 'black',
-                   dashArray: '',
-                   fillOpacity: 0.7
+                // The below creates the legend for my pain pill data.  The first code tells my browser where to place the legend and identifies a function will be used to display the legend when the layer control is turned on.  The second part of this code tells the browser what appears in this legend.  In this case, the code tells the browser what labels to show, where to retrieve the colors, and the title for the legend.   
+                var legend1 = L.control({
+                    position: 'bottomright'
                     });
-                  if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
-			       layer.bringToFront();
-		            }
-	              }
 
-	var geojson;
-            function resetHighlight(e) {
-		      geojson.resetStyle(e.target);
-                info.update();
-	               }
+                    legend1.onAdd = function(map) {
 
-	function zoomToFeature(e) {
-		map.fitBounds(e.target.getBounds());
-	}
-
-	function onEachFeature(feature, layer) {
-		layer.on({
-			mouseover: highlightFeature,
-			mouseout: resetHighlight,
-			click: zoomToFeature
-		});
-	}
-
-      // legend pain pills
-            var legend1 = L.control({
-                position: 'bottomright'
-                });
-
-            legend1.onAdd = function(map) {
-
-            var div = L.DomUtil.create('div', 'info legend'),
-                PillDist = [0, 10, 15, 20, 25, 30],
-                labels = [];
-            div.innerHTML += "<b>Pain Pills Distributed</b><br>";
-            for (var i = 0; i < PillDist.length; i++) {
-                div.innerHTML += 
+                var div = L.DomUtil.create('div', 'info legend'),
+                    PillDist = [0, 10, 15, 20, 25, 30],
+                    labels = [];
+                    div.innerHTML += "<b>Pain Pills Distributed</b><br>";
+                    for (var i = 0; i < PillDist.length; i++) {
+                    div.innerHTML += 
                     '<i style="background:' + getColor(PillDist[i] + 1) + '"></i> ' +
                     PillDist[i] + (PillDist[i + 1] ? '&ndash;' + PillDist[i + 1] + '<br>' : '+');
-                }
+                    }
         
-            return div;
-            };
+                    return div;
+                    };
      
-        // legend mortaltity data
-            var legend2 = L.control({
-                position: 'bottomright'
-                });
+                //This code creates the legend for my mortality data and similarly indicates the location and function to display my legend, the title in the legend, the labels, and identified the function to retrieve the colors for my legend.
+                var legend2 = L.control({
+                    position: 'bottomright'
+                    });
 
-            legend2.onAdd = function(map) {
+                    legend2.onAdd = function(map) {
 
-            var div = L.DomUtil.create('div', 'info legend'),
-                DrugDeath = [5, 15, 25, 35, 45],
-                labels = [];
-            div.innerHTML +="<b>Drug Deaths</b><br>"
-            for (var i = 0; i < DrugDeath.length; i++) {
-                div.innerHTML +=
+                var div = L.DomUtil.create('div', 'info legend'),
+                    DrugDeath = [5, 15, 25, 35, 45],
+                    labels = [];
+                    div.innerHTML +="<b>Drug Deaths</b><br>"
+                    for (var i = 0; i < DrugDeath.length; i++) {
+                    div.innerHTML +=
                     '<i style="background:' + getColormort(DrugDeath[i] + 1) + '"></i> ' +
                     DrugDeath[i] + (DrugDeath[i + 1] ? '&ndash;' + DrugDeath[i + 1] + '<br>' : '');
-                }
+                    }
         
-            return div;
-            };
-
-      //layer control
-		  var baseMap = {
-		      "OpenStreetMap": OSM,
-              "ESRI World Imagery":Esri_WorldImagery
-		      };
-       		
-		  var overlayMaps = {
-              "Pain Pill Distribution Per Person Per Year 2014": iowaPills,
-              "Substance Use Mortality Rate 2014": IowamortalityLayer
-              };			
-
-		L.control.layers(baseMap, overlayMaps).addTo(map);	
-    
-      //add and remove legends 
-            map.on('overlayremove', function (eventLayer) {
-                console.log(eventLayer.name  + " off");
-                if (eventLayer.name == "Pain Pill Distribution Per Person Per Year 2014") {
-                    this.removeControl(legend1);
-                }else if (eventLayer.name == "Substance Use Mortality Rate 2014"){
-                    this.removeControl(legend2);
-                }
-                });
-            map.on('overlayadd', function (eventLayer) {
-                console.log(eventLayer.name + " on");
-                if (eventLayer.name == "Pain Pill Distribution Per Person Per Year 2014") {
-                legend1.addTo(this);
-                }else if (eventLayer.name == "Substance Use Mortality Rate 2014"){
-                legend2.addTo(this);
-                }	
-                });
-
+                    return div;
+                    };
             
-      //geojson  
-            geojson = L.geoJson(painpills, {
-                style: style,
-                onEachFeature: onEachFeature
-                })
+                //This code is used to create my layer control.  It creates the variable basemaps by identifying which items will go within this section of the layer control and identifies the label that will display in quotations.  Similarly, it creates the variable overlays and tells the browser what label to display and which information to turn on and off when clicked within the layer control.
+                var baseMap = {
+                    "OpenStreetMap": OSM,
+                    "ESRI World Imagery":Esri_WorldImagery
+                    };
+       		
+		        var overlayMaps = {
+                    "Pain Pill Distribution Per Person Per Year 2014": iowaPills,
+                    "Substance Use Mortality Rate 2014": IowamortalityLayer
+                    };			
 
-      //functions for buttons   
-            document.getElementById("DallasBtn").addEventListener("click", Dallas);     
-                function Dallas() {
+		        L.control.layers(baseMap, overlayMaps).addTo(map);	
+    
+                //The below codes tells the browser when to turn on and off each of the legends.  In this case, this code tells the browser to remove the legend if the item is not activated with a click in the layer control.  Similarly, it tells the browser to display the legend if the item is activated in the layer control.
+                map.on('overlayremove', function (eventLayer) {
+                    console.log(eventLayer.name  + " off");
+                    if (eventLayer.name == "Pain Pill Distribution Per Person Per Year 2014") {
+                    this.removeControl(legend1);
+                    }else if (eventLayer.name == "Substance Use Mortality Rate 2014"){
+                    this.removeControl(legend2);
+                    }
+                    });
+          
+                map.on('overlayadd', function (eventLayer) {
+                    console.log(eventLayer.name + " on");
+                    if (eventLayer.name == "Pain Pill Distribution Per Person Per Year 2014") {
+                    legend1.addTo(this);
+                    }else if (eventLayer.name == "Substance Use Mortality Rate 2014"){
+                    legend2.addTo(this);
+                    }	
+                    });
+
+                //The below information is the code used to inform the behavior of my buttons.  This code references the buttons ID and specifies the behavior the button should do when clicked.  In this case, the buttons reference the longitude and latitude identified below to zoom to different counties on my map.  
+                document.getElementById("DallasBtn").addEventListener("click", Dallas);     
+                    function Dallas() {
                     map.setView(new L.LatLng(41.6120, -93.9878),10);
                     }; 
             
-            document.getElementById("CassBtn").addEventListener("click", Cass);     
-                function Cass() {
+                document.getElementById("CassBtn").addEventListener("click", Cass);     
+                    function Cass() {
                     map.setView(new L.LatLng(41.2538, -94.9767),10);
                     }; 
      </script>
    </body>
 </html>
-
