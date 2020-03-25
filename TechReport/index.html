@@ -1,64 +1,90 @@
 <!DOCTYPE html>
   <html>
+       <!--In my files, I like to include annotations between the initial html and head sections that help the reader know what sources I utilized to build the page.-->
+       <!--Below are the references I used to help build my page-->
+            <!--code to help build ArcGIS JavaScript API demo: <!-- The <html> section houses the sub sections <head> and <body> of the file.  In my files, I have started to store annotations between the initial html and head sections that help the reader to know what sources I referenced to build the page.-->
+            <!--code to help build drop down menu from: https://www.w3schools.com/howto/howto_css_dropdown.asp    -->    
+            <!--code to help build maps and data: lecture LA 558 course materials and videos -->
+       <!--Below are links to the data I used in this-->
+            <!--pain pill data: //www.washingtonpost.com/graphics/2019/investigations/dea-pain-pill-database/-->
+	        <!--Iowa mapping data: //open-iowa.opendata.arcgis.com/datasets/8a1c2d500d8847d79aa47d45d44eb133_0 -->
+            <!--mortality data: //https://wonder.cdc.gov/ucd-icd10.html-->
     <head>
-      <title>CRP 558</title>   
-       <!--//code to help build drop down menu from: https://www.w3schools.com/howto/howto_css_dropdown.asp    -->    
+      <!--Below is code to build ArcGIS API for JavaScript Demo--> 
+      <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <style>
- ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-  background-color: #333;
-}
+      <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+      <title>CRP 558</title>   
+      <!--Below is code to build ArcGIS API for JavaScript Demo--> 
+      <link rel="stylesheet" href="https://js.arcgis.com/4.14/esri/themes/light/main.css">
+      <script src="https://js.arcgis.com/4.14/"></script>
+        
 
-li {
-  float: left;
-}
+        <style>
+            
+            /*The following code gives the browsers information about my drop-down menu.  For example, this section tells the browser the size, font, and location of items in my top navigation bar and drop-down menus. The Z-Index is important as that tells the browser how the images are ordered on the page.  For example, the z-code of 1001 allows the drop-down menu to appear on top of the map. */
+            ul {
+                list-style-type: none;
+                margin: 0;
+                padding: 0;
+                overflow: hidden;
+                background-color: #333;
+                }
 
-li a, .dropbtn {
-  display: inline-block;
-  color: white;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-}
+            li {
+                float: left;
+                }
 
-li a:hover, .dropdown:hover .dropbtn {
-  background-color: red;
-}
+            li a, .dropbtn {
+                display: inline-block;
+                color: white;
+                text-align: center;
+                padding: 14px 16px;
+                text-decoration: none;
+                }
 
-li.dropdown {
-  display: inline-block;
-}
+            li a:hover, .dropdown:hover .dropbtn {
+                background-color: red;
+                }
 
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #f9f9f9;
-  min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 1;
-}
+            li.dropdown {
+                display: inline-block;
+                }
 
-.dropdown-content a {
-  color: black;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
-  text-align: left;
-}
+            .dropdown-content {
+                display: none;
+                position: absolute;
+                background-color: #f9f9f9;
+                min-width: 160px;
+                box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+                z-index: 1;
+                }
 
-.dropdown-content a:hover {background-color: #f1f1f1;}
+            .dropdown-content a {
+                color: black;
+                padding: 12px 16px;
+                text-decoration: none;
+                display: block;
+                text-align: left;
+                }
 
-.dropdown:hover .dropdown-content {
-  display: block;
-}
-</style>
-</head>
-<body>   
+            .dropdown-content a:hover {background-color: #f1f1f1;}
+
+            .dropdown:hover .dropdown-content {
+                display: block;
+                }
+            
+            /*Below is code to build ArcGIS API for JavaScript Demo*/
+            html, body, #viewDiv {
+                    padding: 0;
+                    margin: 0;
+                    height: 500px;
+                    width: 700px;
+                    }
+        </style>
+    </head>
+    <body>   
+      <!--The below code is used to fill the information and behavior for the dropdown menu by giving the browser the link and title for each of links in the menu.  The <div class.. is used to group several of the items together into each drop-down, the browser retrieves information from the <style> section to properly format this section. -->
       <ul>
         <li><a href="https://kvanselous.github.io/CRP558/">Home</a></li>
         <li class="dropdown">
@@ -82,40 +108,80 @@ li.dropdown {
         <a href="https://kvanselous.github.io/CRP558/exercise10/">Exercise 10</a>  
         </div>        
         <li><a href="https://kvanselous.github.io/CRP558/TechReport/">Tech Report</a></li>
-          
-     </li>
-  </ul>
-        <h3>Tech Report</h3>
-        <p>ArcGIS JavaScript API </p>
-      
-      <p> Report Requirements from canvas:
-          
-<p>"558 Students only - output will be shared with 458 students who are then required to look it over and provide feedback.
+      </ul>
+        
+        <!--The below is the direct text related to my Tech Report.-->
+        <h2>Tech Report: ArcGIS JavaScript API </h2>
+        <h3>Introduction:</h3>
+        <p>The ArcGIS JavaScript API is a unique tool used by developers to visualize data in an approachable, creative, and consistent way with minimal code.  This tool allows the author to web maps that allow the map to display data in 3D.  The newest version, 4.0, has received positive reviews from developers for its consistent use of an API, or Application Programming Interface (Powell, 2016).  To learn more about a developer's review of this product please click <a href="https://www.esri.com/about/newsroom/arcuser/six-reasons-you-should-use-arcgis-api-4-0-for-javascript/">here</a>.  Please continue reading my page for my evaluation of using this tool.  But first, please review the below refresher and resources to gain more information about ArcGIS online, API's, and JavaScript.    </p>
+        <h5>What is ArcGIS online?</h5>
+        ArcGIS online is communication platform that allows users to map location data and connect it with a variety of information.  This tool is used by a variety of industries including private companies, government, and non-profits, and is easy to share.  Not only is it a tool that can that can help organizations drive data informed decision making, but it is also a tool that can help visualize data in interesting and easily interpreted ways (Esri, 2015).  For more information click <a href="https://youtu.be/FRcv9xmmojE">here</a> to watch a short informational video from Esri or <a href="https://www.arcgis.com/index.html">here</a> to view this tools home page.   
+        <h5>JavaScript Refresher</h5>
+        JavaScript is a programming languague that is read by an internet browser to create actions on webpages (Code School, 2015). We have been using JavaScript throughout the semester to add various behaviors to our visualizations.  If you are interested in vieweing a video refresher, please click <a href="https://youtu.be/nItSSTwBvSU">here</a>.
+        <h5>What is an API?</h5>
+        An API, or Application Programming Interface, is often described as similar to a waiter in a restaurant (MuleSoft Videos, 2015; Simply Explained, 2019).  In other words, it is a tool that transitions data and information between computer applications, similar to the way a waiter delivers food to a table from the kitchen.  Commonly used applications, such as the weather app or cheap airfare applications like Kayak, use APIs to connect data to the user by way of the application.  Four key purposes of the API's, as identified in the linked resource in this section, include support in accessing data, hiding website complexities for developers, extending functionality of systems, and acting as gatekeepers to protect user's personal data (Simply Explained, 2019).  These are important aspects to keep in mind as the API allows developers to use minimal and consistent code when creating data visualizations with maps. For more information and examples of APIs can be found in the references <a href="https://www.youtube.com/watch?v=OVvTv9Hy91Q&feature=youtu.be">here</a> and <a href="https://www.youtube.com/watch?v=s7wmiS2mSXY">here</a>.
+        <h3>Getting Started</h3>
+        The above section provides a general overview of the tool, what it can be used for, and the key items that make up this tool.  Next, we will move on to how to register, use, and build a map with this tool. 
+        <h5>Sign Up, Download, and Become Familiar With The Tool</h5>
+        Follow steps 1 and 2 below to sign up, register, and download ArcGIS JavaScript API.  Follow steps 3-5 to familiarize yourself with the tool and it's capabilities.  
+        <br>1) Navigate to the tool's home page and explore the site.  To register for this product, click the 'Get Started' button the home page: <a href="https://developers.arcgis.com/javascript/">ArcGIS JavaScript Home Page</a>
+        <br>2) From this page, follow the instructions under the Quick Start Guide to make an ArcGIS for developers account. <a href="https://developers.arcgis.com/javascript/latest/guide/quick-start/"> Quick Start Guide</a>.
+        <br>3) After you make an account, experiment with code from step 3 in the Quick Start Guide and then proceed through the tutorials at the bottom of the Quick Start Guide.  Please note LA 458/558 students can use there preferred code editors and local environments as described in Step 2 of the Quick Guide.  To access the tutorial, you can also follow this link <a href="https://developers.arcgis.com/javascript/latest/guide/create-a-starter-app/">Tutorials</a>.
+        <br>4) Work through the tutorials.  You'll notice some of the tutorials teach the user familar concepts learned in LA 458/558 such as adding layers, popups, and mapping line, polygon, and point graphics.  You'll also notice this tool allows the user to learn new skills such as creating a 3D scence, mapping driving directions, and adding layers to 3D maps.  
+        <br>5) Similar to previous coursework, ArcGIS has a variety of basemaps that can be added to the map.  Explore the basemaps here: <a href="https://livingatlas.arcgis.com/en/browse/#d=2&type=layers&cont=esriOnly&categories=Basemaps:11111">Basemaps</a>.
+        <h3>Example</h3>
+        Below, please find an example of a map I created with this tool.  You'll notice this tool allows the map to display in 3D and gives the viewer the angled view of the map.  Each of these items can be adjusted based on the author's preferences for display.  Please click the link <a href="https://github.com/kvanselous/CRP558/blob/master/TechReport/index.html">here</a> to view the code I used to create this map.  I left comments throughout to help readers understand the function of each line of code.    
+        
+        <!--Below is the code used to display my map with ArcGIS JavaScript API.-->
+        <div id="viewDiv"></div>
+        
+                
+        <!--Below are links to resources for ArcGIS JavaScript API-->
+        <h3>Resources</h3>
+        <a href="https://developers.arcgis.com/sign-up/" >Sign Up for ArcGIS Developer Subscription</a>
+        <a href="https://developers.arcgis.com/labs/"> Explore Getting Started Materials</a>
+        <a href="https://developers.arcgis.com/labs/what-is-arcgis/"> What is ArcGIS</a>
+       Videos:<a href="https://www.youtube.com/watch?v=_9AkqXOd3C0"> Intro to ArcGIS API for JavaScript</a>
+       <a href="https://www.youtube.com/watch?v=pYHWoSNsSIU">ArcGIS API for JavaScript Getting STarted</a>
+        <a href="https://youtu.be/4oozpKPrFts">Getting Started with Web Development and the ArcGIS API for JavaScript</a>
 
-<p>Think about a topic that you would like to investigate further and then prepare the equivalent of a 2-page or 10 slide report on the topic. The report itself could be communicated via a web page you have developed or provided as a PDF on your site. The product that you produce will be shared with the rest of the class so that they can be exposed to the new topic - so make sure and provide some insight based on your experience with the product or code library.
+          <script>
+           //Below is the script required to run my map with ArcGIS JavaScript API.Please note the "escri/views/..." line is how you display a 2d vs 3d map. To display a 2D map, update your code to show: "escri/views/MapView".  To display a 3D map, update your code to show: "escri/views/SceneView".  Also be sure to update the function line below to display: "function(Map, MapView)" for 2D or "function(Map, SceneView)" for 3D.  This example code shows how to build a 3D map.  -->
+            require([
+                "esri/Map",
+                "esri/views/SceneView"
+                 ], function(Map, SceneView) {
+         
+            //Please note if building a 3D map, you need to add 'ground: "world-elevation" ' to your code below.  If building a 2D map this line of code is not needed.
+            var map = new Map({
+                basemap: "topo-vector",
+                ground: "world-elevation" 
+                });
+                
+                
+            //The below will tell the broswer what view to show your map.  If you ar ebuilding a 2D map, you would follow the below annotated code.  Please note the longitude appears first when telling the mao where/how to center.
+            //var view = new MapView({
+            //    container: "viewDiv",
+            //    map: map,
+            //    center: [-106.8175,39.00],
+            //    zoom: 7
+            //    });
+            //Because thie example displays a 3D code, the var view will display as below.  Please note the poistion tells the borwser how the viewer will see the map.  X is the latitude, Y is longitude, z is altitude in meters, and the tilt is the perspective or angle the viewer sees the map in.  
+            var view = new SceneView({
+                container: "viewDiv",
+                map: map,
+                camera: {
+                    position: {  
+                        x: -106.8175,
+                        y: 39.00,
+                        z: 20000 
+                        },
+                        tilt: 45  
+                        }
+                });
+             });
+           </script>
 
-<p>The topic could be anything related to mapping or data visualization that goes up and beyond what we have discussed so far. Examples such as:
-
-<br>A Leaflet Plugin (Links to an external site.) that has not been discussed in the class
-<br>ArcGIS Online (Links to an external site.)
-<br>Carto (Links to an external site.)
-<br>MapBox APIs (Links to an external site.)
-<br>Turf.js (Links to an external site.)
-<br>D3.js (Links to an external site.)
-<br>Google Map API (Links to an external site.)
-<br>OpenStreetMap (Links to an external site.)
-<br>Mapping with R Studio (Links to an external site.)
-<br>Your topic does not need to cover one of the ones I have listed, these are just to get your ideas going. Once you have selected a topic email the idea to me by Thursday March 12th. If you don't get your idea approve by me beforehand points will be taken off your final grade.  
-
-<p>Requirements:
-
-<br>email topic idea to me by Thursday March 12th
-<br>2 page or 10 slide report covering your topic
-<br>background information about what the tool is and how it can be used to create maps or data visualization
-<br>A small example or demo project 
-<br>the steps and explanation of how you used the tool complete your project
-<br>overall evaluation of the tool (was it easy or difficult to learn or use, does it do what you want and expected, etc.)
-<br>links to any resources or datasets you used to complete the report and example project using this technology".</p>
-   </body>
+      </body>
 </html>
 
