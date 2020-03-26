@@ -113,13 +113,14 @@
         <!--The below is the direct text related to my Tech Report.-->
         <h2>Tech Report: ArcGIS JavaScript API </h2>
         <h3>Introduction:</h3>
-        <p>The ArcGIS JavaScript API is a unique tool used by developers to visualize data in an approachable, creative, and consistent way with minimal code (Powell, 2016).  This tool allows the author to create web maps that allow the map to display data in 3D.  The newest version 4.14, or sometimes referred to as 4.x, has received positive reviews from developers for its consistent use of an API, or Application Programming Interface (Powell, 2016; Powell & Svensson, 2019).  Additionally, the newest version includes improved capabilities such as the addition of label options for 3D features, the daylight widget which allows shadows and lightening variations to be displayed in 3D scenes, a widget that allows the viewer to analyze the line of sight which the 3D scene, the ability to update and add attachments to feature layers, tools that help the layer compare visualizations over time periods, and improved clustering abilities that includes GeoJSON layers (Powell & Svensson, 2019).  To learn more about developers review of this product please click <a href="https://www.esri.com/about/newsroom/arcuser/six-reasons-you-should-use-arcgis-api-4-0-for-javascript/">here</a> and <a href="https://www.esri.com/arcgis-blog/products/product/announcements/whats-new-in-arcgis-api-for-javascript-december-2019/"> here</a>.  Please continue reading my page for my evaluation of using this tool.  But first, please review the below refresher and resources to gain more information about ArcGIS online, API's, and JavaScript.    </p>      
+        <p>ArcGIS JavaScript API is similar to Leaflet as they are both tool's developer's use to build maps (Teixeira, 2020). Both tools allow the creator to embed maps into webpages and pull from libraries to build their products.  ArcGIS JavaScript API differs from Leaflet in that it offers developer's tools to build features with 3D visualization, conduct additional geospatial analysis, and share data easily across Esri products (Teixeira, 2020).  Because ArcGIS JavaScript API works across Esri products, it allows creators to pull data from ArcGIS Online or ArcGIS servers to build maps.  Additionally, it allows creators to integrate ArcGIS widgets across Esri products to increase efficiency (Powell, 2016).  The newest version is 4.14 and includes improved capabilities such as the addition of label options for 3D features, a daylight widget which allows creators to display shadows and lightening in 3D scenes, a widget that allows creators to examine the 'line of sight' from various points in a 3D scene, the ability to update and add attachments to feature layers, tools that help the layer compare visualizations over time periods, and improved clustering abilities that includes GeoJSON layers (Powell & Svensson, 2019).  To learn more about developers review of this product please click <a href="https://www.esri.com/about/newsroom/arcuser/six-reasons-you-should-use-arcgis-api-4-0-for-javascript/">here</a>, <a href="https://geodera.net/leaflet-vs-arcgis-api-javascript/">here</a>, and <a href="https://www.esri.com/arcgis-blog/products/product/announcements/whats-new-in-arcgis-api-for-javascript-december-2019/">here</a>.  Please continue reading my page for my evaluation of this tool.  But first, please review the below refresher and resources to gain more information about ArcGIS online, API's, and JavaScript.    </p>      
         <h5>What is ArcGIS online?</h5>
-        ArcGIS online is a communication platform that allows users to map location data and connect it with a variety of information.  This tool is used by a wide array of industries including private companies, government, and non-profits, and is easy to share.  Not only is it a tool that can that can help organizations drive data informed decision making, but it is also a tool that can help visualize data in interesting and easily interpreted ways (Esri, 2015; Esri, 2020).  For more information click <a href="https://youtu.be/FRcv9xmmojE">here</a> to watch a short informational video from Esri or <a href="https://www.esri.com/en-us/arcgis/products/arcgis-online/overview">here</a> to view this tools home page.   
+        ArcGIS online is a communication platform that allows users to map location data and connect it with a variety of information.  This tool is used by a wide array of industries including private companies, government, and non-profits, and is easy to share.  Not only is it a tool that can that can help organizations drive data informed decision making, but it is also a tool that can help visualize data in interesting and easily interpreted ways (Esri, 2015; Esri, 2020a).  This tool can also be used to store and share data that is used to build maps in ArgGIS JavaScript API.  For more information click <a href="https://youtu.be/FRcv9xmmojE">here</a> to watch a short informational video from Esri or <a href="https://www.esri.com/en-us/arcgis/products/arcgis-online/overview">here</a> to view this tools home page.   
         <h5>JavaScript Refresher</h5>
         JavaScript is a programming language that is read by an internet browser to create actions on webpages (Code School, 2015). We have been using JavaScript throughout the semester to add various behaviors to our visualizations.  If you are interested in viewing a video refresher, please click <a href="https://youtu.be/nItSSTwBvSU">here</a>.        
         <h5>What is an API?</h5>
         An API, or Application Programming Interface, is often described as similar to a waiter in a restaurant (MuleSoft Videos, 2015; Simply Explained, 2019).  In other words, it is a tool that transitions data and information between computer applications, similar to the way a waiter delivers food to a table from the kitchen.  Commonly used applications, such as the weather app or cheap airfare applications like Kayak, use APIs to connect data to the user by way of the application.  Four key purposes of the API's, as identified in the linked resource in this section, include support in accessing data, hiding website complexities for developers, extending functionality of systems, and acting as gatekeepers to protect user's personal data (Simply Explained, 2019).  These are important aspects to keep in mind as the API allows developers to use minimal and consistent code when creating data visualizations with maps. For more information and examples of APIs can be found in the references <a href="https://www.youtube.com/watch?v=OVvTv9Hy91Q&feature=youtu.be">here</a> and <a href="https://www.youtube.com/watch?v=s7wmiS2mSXY">here</a>.
+        <p>While Leafet and ArcGIS JavaScript API both use APIs, ArcGIS JavaScript API has more features than Leaflet.  Take a look at the feature page for <a href="https://leafletjs.com/#features">Leaflet</a> and <a href="https://developers.arcgis.com/javascript/latest/api-reference/">ArcGIS JavaScript API</a>.  You'll notice that the Leaflet page emphasizes its focus on basic features.  Some of the features we've used in previous coursework includes visual features to change our maps such as the zoom and pan map options, as well as layer controls (Leaflet, 2019).  You'll notice these features are included in the ArcGIS API reference guide and that this tool includes features for additional analysis such as features that calculate area measurement, conduct time series animation, and conduct 'line of sight' analysis (Esri, 2020b).  </p>
         <h3>Getting Started</h3>
         The above section provides a general overview of the tool, what it can be used for, and the key items that make up this tool.  Next, we will move on to how to register, use, and build a map with this tool (ArcGIS for Developers, 2020). 
         <h5>Sign Up, Download, and Become Familiar With The Tool</h5>
@@ -129,6 +130,12 @@
         <br>3) After you make an account, experiment with code from step 3 in the Quick Start Guide and then proceed through the tutorials at the bottom of the Quick Start Guide.  Please note LA 458/558 students can use their preferred code editors and local environments as described in Step 2 of the Quick Guide.  To access the tutorial, you can also follow this link: <a href="https://developers.arcgis.com/javascript/latest/guide/create-a-starter-app/">Tutorials</a>.
         <br>4) Work through the tutorials.  You'll notice some of the tutorials teach the user familiar concepts learned in LA 458/558 such as adding layers, popups, and mapping line, polygon, and point graphics.  You'll also notice this tool allows the user to learn new skills such as creating a 3D scene, mapping driving directions, and adding layers to 3D maps.  
         <br>5) Similar to previous coursework, ArcGIS has a variety of base maps that can be added to the map.  Explore the base maps here: <a href="https://livingatlas.arcgis.com/en/browse/#d=2&type=layers&cont=esriOnly&categories=Basemaps:11111">Basemaps</a>.
+        <h5>Creating and Adding Data with ArcGIS online</h5>
+        <p>ArcGIS JavaScript API allows creators to create and add data via ArcGIS online.  To learn more about this process, follow the below steps.</p>
+        <br>1)  To begin, navigate back to your ArcGIS for developer's account which you created in the steps above.  You'll notice this connects you to your ArcGIS for Developers account and ArcGIS Online: <a href="https://developers.arcgis.com/dashboard">Developer Dashboard</a>.
+        <br>2)  Next download structure data from Aspen, Colorado to follow along with my example:<a href="https://mapaspen-cityofaspen.opendata.arcgis.com/datasets/aspen-structures-1">Aspen Buidling Data</a>. 
+        <br>3)  From your dashabord, click the 'manage content' button next to your ArcGIS online row and add your Aspen data by clicking 'Add Item' and 'From Your Computer'.  Upload the zipped folder you downloaded in the previous step.  This may take a few minutes to upload.
+        <br>4)  While your file is uploading, scroll to the bottom of this page and locate the 'URL' box on the bottom right side of the page.  Copy this link and look at line XXX in my code to see how I added this data as a layer in my code.
         <h3>Example</h3>
         Below, please find an example of a map I created with this tool.  You'll notice this tool allows the map to display in 3D and gives the viewer the angled view of the map.  Each of these items can be adjusted based on the author's preferences for display.  Please click the link <a href="https://github.com/kvanselous/CRP558/blob/master/TechReport/index.html">here</a> to view the code I used to create this map.  I left comments throughout to help reader understand the function of each line of code.    
         
@@ -144,11 +151,14 @@
         <li>ArcGIS for Developers (2020).  ArcGIS API for JavaScript: Everything You Need to Build a Compelling Location Experience For Your Business.  Retrieved from https://developers.arcgis.com/javascript/</li>
         <li>Code School (2015, June, 16).  What is JavaScript? [Video File].  Retrieved from https://www.youtube.com/watch?v=nItSSTwBvSU&feature=youtu.be</li>
         <li>Esri (2015, August, 18).  What is ArcGIS? [Video File].  Retrieved from https://www.youtube.com/watch?v=FRcv9xmmojE&feature=youtu.be</li>
-        <li>Esri  (2020).  ArcGIS Online; Mapping and Analysis: Location intelligence for everyone. Retrieved from https://www.esri.com/en-us/arcgis/products/arcgis-online/overview</li>
+        <li>Esri  (2020a).  ArcGIS Online; Mapping and Analysis: Location intelligence for everyone. Retrieved from https://www.esri.com/en-us/arcgis/products/arcgis-online/overview</li>
+        <li>Esri (2020b).  API Reference.  Retrieved from https://developers.arcgis.com/javascript/latest/api-reference/</li>
+        <li>Leaflet (2019).  Leaflet API Reference.  Retrieved from https://leafletjs.com/reference-1.6.0.html</li>
         <li>MuleSoft Videos (2015,  June, 19).  What is an APi? [Video File.]  Retrieved from https://www.youtube.com/watch?v=s7wmiS2mSXY</li>
         <li>Powell, J. (2016).  Six Reasons You Should Use ArcGIS API 4.0 for JavaScript[Esri NewsRoom].  Retrieved from https://www.esri.com/about/newsroom/arcuser/six-reasons-you-should-use-arcgis-api-4-0-for-javascript/</li>
         <li>Powell, J. & Svensson, B. (2019, December, 19). What's New in ArcGIS API for JavaScript [ArcGIS Blog Post].  Retrieved from https://www.esri.com/arcgis-blog/products/product/announcements/whats-new-in-arcgis-api-for-javascript-december-2019/ </li>
         <li>Simply Explained (2019, November, 12).  What Are APIs?-Simply Explained.  [Video File].  Retrieved from https://www.youtube.com/watch?v=OVvTv9Hy91Q&feature=youtu.be</li>
+        <li> Teixeira, R. (2020).  ArcGIS API JavaScript Vs Leaflet API.  Retrieved from https://geodera.net/leaflet-vs-arcgis-api-javascript/</li>
         </ol>
         
         <h3>Additional Resources</h3>
@@ -161,7 +171,8 @@
             require([
                 "esri/Map",
                 "esri/views/SceneView"
-                 ], function(Map, SceneView) {
+                "esri/layers/Layer"
+                 ], function(Map, SceneView, Layer) {
          
             //Please note if building a 3D map, you need to add 'ground: "world-elevation" ' to your code below.  If building a 2D map this line of code is not needed.
             var map = new Map({
@@ -190,7 +201,12 @@
                         tilt: 45  
                         }
                 });
-             });
+            
+            Layer.fromPortalItem({portalItem: {id: "e70dd69e9255473583f5b446de86e030"}
+                 })
+                .then(function(layer) (map.add(layer):
+                });
+                
            </script>
 
       </body>
