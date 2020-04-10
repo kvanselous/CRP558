@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+       <!--Below are the references I used to help build my page-->
+            <!--code to help build drop down menu from: https://www.w3schools.com/howto/howto_css_dropdown.asp    -->    
+            <!--code to help build maps and data: lecture LA 558 course materials and videos -->
+            <!--mapbox references: https://docs.mapbox.com/studio-manual/reference/styles/ -->
+       <!--Below are links to the data I used for this exercise-->
+            <!--Des Moines Fire Stations https://www.dsm.city/city_of_des_moines_gis_data/index.php-->
+	        <!--Iowa hospital data: https://iastate.app.box.com/s/dboob8jvve6qvk639smhbpsw0b7g4qbf/file/310184840497-->
+  
+    <head>
+      <title>Exercise 12</title>  
+
+            <!--Below is my information for my leaflet map -->           
+            <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
+            <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+        
+            <!--Below is the location of Esri Leaflet javascript library. -->                
+            <script src="https://unpkg.com/esri-leaflet/dist/esri-leaflet.js"></script>
+
+        <style>
+         
+            /*Below is styling information for my drop-down menu */
+            ul {
+                list-style-type: none;
+                margin: 0;
+                padding: 0;
+                overflow: hidden;
+                background-color: #333;
+                }
+
+            li {
+                float: left;
+                }
+
+            li a, .dropbtn {
+                display: inline-block;
+                color: white;
+                text-align: center;
+                padding: 14px 16px;
+                text-decoration: none;
+                }
+
+            li a:hover, .dropdown:hover .dropbtn {
+                background-color: red;
+                }
+
+            li.dropdown {
+                display: inline-block;
+                }
+
+            .dropdown-content {
+                display: none;
+                position: absolute;
+                background-color: #f9f9f9;
+                min-width: 160px;
+                box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+                z-index: 1001;
+                }
+
+            .dropdown-content a {
+                color: black;
+                padding: 12px 16px;
+                text-decoration: none;
+                display: block;
+                text-align: left;
+                }
+
+            .dropdown-content a:hover {background-color: #f1f1f1;}
+
+            .dropdown:hover .dropdown-content {
+                display: block;
+                }
+           
+            /*Below is the styling information for my map.*/                      
+            #map {
+                width: 700px;
+                height: 500px;
+                background-color:blue
+                z-index: -1      
+                }
+
+        </style>
+    </head>
+    <body>   
+        
+      <!--Below is the code for my drop-down menu.-->
+      <ul> 
+        <li><a href="https://kvanselous.github.io/CRP558/">Home</a></li>
+        <li class="dropdown">
+                <a href="javascript:void(0)" class="dropbtn">Assignments</a>
+            <div class="dropdown-content"> 
+                <a href="https://kvanselous.github.io/CRP558/Assignment1/">Assignment 1</a>
+                <a href="https://kvanselous.github.io/CRP558/Assignment2/">Assignment 2</a>
+            </div>
+        <li class="dropdown">
+                <a href="javascript:void(0)" class="dropbtn">Exercises</a>
+            <div class="dropdown-content"> 
+                <a href="https://kvanselous.github.io/CRP558/exercise1/">Exercise 1</a>           
+                <a href="https://kvanselous.github.io/CRP558/exercise2/">Exercise 2</a>
+                <a href="https://kvanselous.github.io/CRP558/exercise3/">Exercise 3</a>
+                <a href="https://kvanselous.github.io/CRP558/exercise4/">Exercise 4</a>
+                <a href="https://kvanselous.github.io/CRP558/exercise5/">Exercise 5</a>   
+                <a href="https://kvanselous.github.io/CRP558/exercise6/">Exercise 6</a>  
+                <a href="https://kvanselous.github.io/CRP558/exercise7/">Exercise 7</a>  
+                <a href="https://kvanselous.github.io/CRP558/exercise8/">Exercise 8</a>  
+                <a href="https://kvanselous.github.io/CRP558/exercise9/">Exercise 9</a>  
+                <a href="https://kvanselous.github.io/CRP558/exercise10/">Exercise 10</a>  
+                <a href="https://kvanselous.github.io/CRP558/exercise11/">Exercise 11</a>  
+                <a href="https://kvanselous.github.io/CRP558/exercise12/">Exercise 12</a>     
+            </div>        
+        <li><a href="https://kvanselous.github.io/CRP558/TechReport/">Tech Report</a></li>
+      <li><a href="https://kvanselous.github.io/CRP558/ProjectProposal/">Project Proposal</a></li>
+     </ul>
+     <h3>Exercise 12</h3>
+        
+     <!--Below is my map-->
+     <div id='map'></div>
+     <br>This map is created and stored with an index.html file stored inside my exercise 12 directory in github
+     <br>I used data from Dea Moines County for the locations of fire stations.  <a href="https://www.dsm.city/city_of_des_moines_gis_data/index.php">Data can be downloaded here.</a>
+     <br>I used mapbox to style my base map color black, my fire stations locations to red, all of my road features to white, turned off the land use feature, and made the location names green.
+
+        <script> 
+               
+        var map = L.map('map').setView([41.5868, -93.6250], 12);
+
+        L.tileLayer('https://api.mapbox.com/styles/v1/kvanselous/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+            attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+            maxZoom: 18,
+            //KVS style ID
+            id: 'ck8thyk0x0epr1ipfe8zuzaum',
+            //KVS access Token
+            accessToken: 'pk.eyJ1Ijoia3ZhbnNlbG91cyIsImEiOiJjazZsbGtnNGwwZ2VpM2RxdGtveXh0am1lIn0.FieozVNDDyN5CeuvdZ3NYg' 
+        }).addTo(map);
+
+     </script>
+   </body>
+</html>
