@@ -27,19 +27,9 @@
             require([
                 "esri/Map",
                 "esri/views/MapView",
-                "esri/layers/FeatureLayer",
-                "esri/widgets/Legend"
-                 ], function(Map, MapView, FeatureLayer, Legend) {
+                "esri/layers/FeatureLayer"
+                 ], function(Map, MapView, FeatureLayer) {
        
-              var legend = new Legend({
-  view: view,
-  layerInfos: [{
-    layer: featureLayer,
-    title: "Legend"
-  }]
-});
-
-view.ui.add(legend, "bottom-right");
 
              var map = new Map({
                 basemap: "topo-vector"
@@ -53,10 +43,8 @@ view.ui.add(legend, "bottom-right");
                   });
 
             
-            //The below code shows how to add an ArcGIS Online Layer to your map.  Please note, this code corresponds with Step 4 of the 'Creating and Adding Data with ArcGIS online' tutorial.  This code references the unique ID provided from ArcGIS online to pull the layer from the ArcGIS Online Dashboard.  The functions below add this information to the map or tell the browser the display an error message if this information does not show. Esri's example code was used to help build this section: https://codepen.io/pen?&editable=true&editors=100    
            var county = new FeatureLayer ({
                url:"https://services8.arcgis.com/wBQHtQCVrZQRDeMX/arcgis/rest/services/county_1/FeatureServer",
-               colorfill: "white"
            })
            map.add(county)
         
