@@ -49,16 +49,16 @@
            })
            map.add(county)
         
-//         var popupCOVID ={
-//             "title": "Number of Active COVID-19 Cases",
-//             "content": "{Active} Number of Active Cases <br>{Confirmed} Number of Confirmed Cases<br>{Recovered} Number of Recovered Cases <br> {Deaths} Number of Deaths"
-//         }
-//         var COVID =new FeatureLayer({
-//              url:"https://services1.arcgis.com/0MSEUqKaxRlEPj5g/arcgis/rest/services/ncov_cases_US/FeatureServer/0/query?outFields=*&where=1%3D1",
-//              outFields: ["Active","Confrimed","Recovered","Deaths"],
-//              popupTemplate: popupCOVID    
-//         })
-//          map.add(COVID)
+         var popupCOVID ={
+             "title": "Number of Active COVID-19 Cases",
+             "content": "{Cases} Number of Total Cases"
+         }
+         var COVID =new FeatureLayer({
+              url:"https://services8.arcgis.com/wBQHtQCVrZQRDeMX/arcgis/rest/services/covid_nyt_iowa/FeatureServer",
+              outFields: ["Cases"],
+              popupTemplate: popupCOVID    
+         })
+          map.add(COVID)
                 
           var popupIRP ={
                 "title": "Iowa Recovery Provider",
