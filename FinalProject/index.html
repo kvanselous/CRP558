@@ -44,20 +44,21 @@
             
             //The below code shows how to add an ArcGIS Online Layer to your map.  Please note, this code corresponds with Step 4 of the 'Creating and Adding Data with ArcGIS online' tutorial.  This code references the unique ID provided from ArcGIS online to pull the layer from the ArcGIS Online Dashboard.  The functions below add this information to the map or tell the browser the display an error message if this information does not show. Esri's example code was used to help build this section: https://codepen.io/pen?&editable=true&editors=100    
            var county = new FeatureLayer ({
-               url:"https://services8.arcgis.com/wBQHtQCVrZQRDeMX/arcgis/rest/services/county_1/FeatureServer"
+               url:"https://services8.arcgis.com/wBQHtQCVrZQRDeMX/arcgis/rest/services/county_1/FeatureServer",
+               colorfill: "white"
            })
            map.add(county)
         
-         var popupCOVID ={
-             "title": "Number of Active COVID-19 Cases",
-             "content": "{Active} Number of Active Cases <br>{Confirmed} Number of Confirmed Cases<br>{Recovered} Number of Recovered Cases <br> {Deaths} Number of Deaths"
-         }
-         var COVID =new FeatureLayer({
-              url:"https://services1.arcgis.com/0MSEUqKaxRlEPj5g/arcgis/rest/services/ncov_cases_US/FeatureServer/0/query?outFields=*&where=1%3D1",
-              outFields: ["Active","Confrimed","Recovered","Deaths"],
-              popupTemplate: popupCOVID    
-         })
-          map.add(COVID)
+//         var popupCOVID ={
+//             "title": "Number of Active COVID-19 Cases",
+//             "content": "{Active} Number of Active Cases <br>{Confirmed} Number of Confirmed Cases<br>{Recovered} Number of Recovered Cases <br> {Deaths} Number of Deaths"
+//         }
+//         var COVID =new FeatureLayer({
+//              url:"https://services1.arcgis.com/0MSEUqKaxRlEPj5g/arcgis/rest/services/ncov_cases_US/FeatureServer/0/query?outFields=*&where=1%3D1",
+//              outFields: ["Active","Confrimed","Recovered","Deaths"],
+//              popupTemplate: popupCOVID    
+//         })
+//          map.add(COVID)
                 
           var popupIRP ={
                 "title": "Iowa Recovery Provider",
