@@ -44,7 +44,7 @@
 
             
            var county = new FeatureLayer ({
-               url:"https://services.arcgis.com/XORNS2fPFySPlBgy/arcgis/rest/services/county_1/FeatureServer",
+               url:"https://services9.arcgis.com/bigv3A1go6FEXCNK/arcgis/rest/services/county/FeatureServer",
            })
            map.add(county)
         
@@ -53,7 +53,7 @@
              "content": "{Cases} Number of Total Cases"
          }
          var COVID =new FeatureLayer({
-              url:"https://services.arcgis.com/XORNS2fPFySPlBgy/arcgis/rest/services/covid_nyt_iowa/FeatureServer",
+              url:"https://services9.arcgis.com/bigv3A1go6FEXCNK/arcgis/rest/services/covid_nyt_iowa/FeatureServer",
               outFields: ["Cases"],
               popupTemplate: popupCOVID    
          })
@@ -66,7 +66,7 @@
         
           
             var IRP = new FeatureLayer({
-                url:"https://services.arcgis.com/XORNS2fPFySPlBgy/arcgis/rest/services/datasetiowarecoveryproviderskvs200413/FeatureServer",  
+                url:"https://services9.arcgis.com/bigv3A1go6FEXCNK/arcgis/rest/services/datasetiowarecoveryproviderskvs200413/FeatureServer",  
                 outFields:["Name","Street","City","State","Zip","URL","Services Offered","Fees","COVID"],
                 popupTemplate: popupIRP
             });
