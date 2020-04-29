@@ -285,22 +285,7 @@
                 layers: [OSM1]
 		          });
             //map 1 mortaltity data, style, and funtion       
-            var mort= L.geoJSON(mort, {
-                style: function (feature) {
-                return {
-                    stroke: false,
-                    fillColor: 'FFFFFF',
-                    fillOpacity: 0
-                };
-                },style: style, 
-                onEachFeature: function (feature, layer) {
-                popupOptions = {maxWidth: 200};
-                layer.bindPopup("<b>State: </b>" + feature.properties.NAME +
-                    "<br><b>Substance Induced Crude Death Rate per 100,000:</b>" + feature.properties.SubstanceInducedMortality_CrudeRate
-                    ,popupOptions);
-                }
-                })     
-                .addTo(map1);
+
 
             function getColorMort(d) {
 		          return d  > 1000  ? '#FF0000' :
@@ -321,6 +306,63 @@
 			     fillColor: getColorMort(feature.properties.SubstanceInducedMortality_CrudeRate)
 		          };
 	              }  
+     //testing  start     
+     function highlightFeature(e) {
+		var layer = e.target;
+
+		layer.setStyle({
+			weight: 5,
+			color: '#666',
+			dashArray: '',
+			fillOpacity: 0.7
+		});
+
+		if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
+			layer.bringToFront();
+		}
+
+		info.update(layer.feature.properties);
+	}
+
+	var mort;
+
+	function resetHighlight(e) {
+		geojson.resetStyle(e.target);
+		info.update();
+	}
+
+	function zoomToFeature(e) {
+		map.fitBounds(e.target.getBounds());
+	}
+
+	function onEachFeature(feature, layer) {
+		layer.on({
+			mouseover: highlightFeature,
+			mouseout: resetHighlight,
+			click: zoomToFeature
+		});
+	}
+       //testing end
+            
+             var mort= L.geoJSON(mort, {
+                style: function (feature) {
+                return {
+                    stroke: false,
+                    fillColor: 'FFFFFF',
+                    fillOpacity: 0
+                };
+                },style: style, 
+                onEachFeature: function (feature, layer) {
+                popupOptions = {maxWidth: 200};
+                layer.bindPopup("<b>State: </b>" + feature.properties.NAME +
+                    "<br><b>Substance Induced Crude Death Rate per 100,000:</b>" + feature.properties.SubstanceInducedMortality_CrudeRate
+                    ,popupOptions);
+                }
+                })     
+                .addTo(map1);     
+          
+            
+            
             //Map1 Legend
             var legend = L.control({
                 position: 'bottomright'
@@ -340,7 +382,6 @@
                 };
 
                 legend.addTo(map1);
-            //testing
             
               //Map2   
             var OSM2 = L.tileLayer('https://{s}.tile.osm.org/{z}/{x}/{y}.png', {
