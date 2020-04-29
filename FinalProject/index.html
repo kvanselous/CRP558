@@ -28,7 +28,15 @@
             <script src="https://unpkg.com/esri-leaflet@2.4.0/dist/esri-leaflet.js"
                 integrity="sha512-kq0i5Xvdq0ii3v+eRLDpa++uaYPlTuFaOYrfQ0Zdjmms/laOwIvLMAxh7cj1eTqqGG47ssAcTY4hjkWydGt6Eg=="
                 crossorigin=""></script>
-            
+         
+            <!--Marker Cluster-->
+            <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.css" />
+            <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css" />
+            <script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster-src.js"></script>
+        
+</head> 
+        
+        
             <!--KVS geoJSON-->    
             <script src="IRP200428.geojson"></script>
             <script src="substanceinducedmortality.geojson"></script>
@@ -427,6 +435,7 @@
 		          });
             
             //Map3 provider data, style, and function
+            var markers = L.markerClusterGroup();
             var IRP =L.geoJSON(IRP, {
                 style: function (feature) {
                 return {
@@ -444,9 +453,12 @@
                                          "<br><b>Link: </b>" + '<a href="'+feature.properties.URL+'">'+feature.properties.URL+'</a>'                   
                     ,popupOptions);   }
                     }
-                    })         
-                    .addTo(map3);
-            
+                    })      
+            markers.addLayer(IRP);
+            map3.addLayer(markers);
+            map3.fitBounds(markers.getBounds());
+   
+
             function getColor3(d) {
 		      return d  > 1000  ? '#FF0000' :
                 d     > 500  ? '#DC143C' :
@@ -503,7 +515,7 @@
                 };
        		
 		    var overlayMaps = {
-		      "Iowa Recovery Providers": IRP,
+		      "Iowa Recovery Providers": markers,
               "COVID": COVID
 		      };			
 
