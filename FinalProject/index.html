@@ -1,79 +1,512 @@
 <!<!DOCTYPE html>
   <html>
     <head>
+      <!--Data References-->
+      <!--National substance induced mortality gejson created by joining 1999-2018 drug/alcohol induced causes of death and United States Tiger/Line Shapefiles from data.gov in QGIS.  Link for CDC: https://wonder.cdc.gov/.  Link for data.gov: https://catalog.data.gov/dataset/tiger-line-shapefile-2017-nation-u-s-current-state-and-equivalent-national--> 
+      <!--Iowa substance induced mortality gejson created by joining 1999-2018 drug/alcohol induced causes of death and IowaGEOData Shapefiles in QGIS.  Link for CDC: https://wonder.cdc.gov/.  Link for data.gov: https://geodata.iowa.gov/dataset/county-boundaries-iowa--> 
+      <!--Poverty: https://data.census.gov/cedsci/table?g=0400000US19.050000&tid=ACSST5Y2018.S1701&t=Income%20and%20Poverty&vintage=2018&hidePreview=true&layer=VT_2018_050_00_PY_D1&cid=S1701_C01_001E-->
+      <!--Need to add provider data, COVID data, Iowa data etc-->
+
+      <!--Resources to build this page-->
+      <!--Course materials from CRP 558-->
+      <!--Example of project final posted to CRP 558: https://rahasan17.github.io/LA458-558/FinalProject/index.html-->
+      <!--Leaflet materials from: https://leafletjs.com/-->
+      <!--HTML, CSS, & JavaScript materials from: https://www.w3schools.com/default.asp-->
+      <!--Collaboration with Dr. Shawn Dorius, Dr. Cass Dorius, Dr. Chris Seeger, & Professor Bailey Hanson-->
       <meta charset="utf-8">
       <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
       <title>Iowa Recovery Providers</title>   
-      <link rel="stylesheet" href="https://js.arcgis.com/4.14/esri/themes/light/main.css">
-      <script src="https://js.arcgis.com/4.14/"></script>
-        <style>         
+            <!-- Load Leaflet from CDN -->
+            <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+                integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+                crossorigin=""/>
+            <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+                integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+                crossorigin=""></script>
 
-            html, body, #viewDiv {
-                    padding: 10;
-                    margin: 10;
-                    height: 750px;
-                    width: 95%;
-                    }
-  
+            <!-- Load Esri Leaflet from CDN -->
+            <script src="https://unpkg.com/esri-leaflet@2.4.0/dist/esri-leaflet.js"
+                integrity="sha512-kq0i5Xvdq0ii3v+eRLDpa++uaYPlTuFaOYrfQ0Zdjmms/laOwIvLMAxh7cj1eTqqGG47ssAcTY4hjkWydGt6Eg=="
+                crossorigin=""></script>
+            
+            <!--KVS geoJSON-->    
+            <script src="IRP200428.geojson"></script>
+            <script src="substanceinducedmortality.geojson"></script>
+            <script src="Iowasubstanceinducedmortality.geojson"></script>
+        
+        <style>    
+            /*Drop Down Menu*/
+            ul {
+                list-style-type: none;
+                margin: 0;
+                padding: 0;
+                overflow: hidden;
+                background-color: #333;
+                }
 
+            li {
+                float: left;
+                }
+
+            li a, .dropbtn {
+                display: inline-block;
+                color: white;
+                text-align: center;
+                padding: 14px 16px;
+                text-decoration: none;
+                }
+
+            li a:hover, .dropdown:hover .dropbtn {
+                background-color: red;
+                }
+
+            li.dropdown {
+                display: inline-block;
+                }
+
+            .dropdown-content {
+                display: none;
+                position: absolute;
+                background-color: #f9f9f9;
+                min-width: 160px;
+                box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+                z-index: 1;
+                }
+
+            .dropdown-content a {
+                color: black;
+                padding: 12px 16px;
+                text-decoration: none;
+                display: block;
+                text-align: left;
+                }
+
+            .dropdown-content a:hover {background-color: #f1f1f1;}
+
+            .dropdown:hover .dropdown-content {
+                display: block;
+                }
+            
+            /*map and containers*/
+            #map1container {position:absolute; background-color:#F0F0F0; color:black; text-align:left; margin-right: 0px; margin-left:0px; width:600px; height:400px;padding 0; }
+            #map1 {position: relative; height: 400px; margin-left:600px;border-left:2px; padding 0; overflow:hidden;}
+    
+            #map2container {position:absolute; background-color:#D3D3D3; color:black; text-align:left; margin-right: 0px; margin-left:0px; width:600px; height:400px;padding 0; }
+            #map2 {position: relative;  height: 400px; margin-left:600px;border-left:2px; padding 0; overflow:hidden;}
+       
+            #map3container {position:absolute; background-color:#F0F0F0; color:black; text-align:left; margin-right: 0px; margin-left:0px; width:600px; height:400px;padding 0; }
+            #map3 {position: relative;  height: 400px; margin-left:600px;border-left:2px; padding 0; overflow:hidden;}
+       
+            #map4container {position:absolute; background-color:#D3D3D3; color:black; text-align:left; margin-right: 0px; margin-left:0px; width:98.9%; height:400px;padding 0; }
+
+            /*legends*/
+            .legend {
+                line-height: 18px;
+                color: #555;
+                background color:cornsilk
+                }
+            
+            .legend i {
+                width: 10px;
+                height: 10px;
+                float: left;
+                margin-right: 8px;
+                opacity: 0.7;
+                }
+            
+            .info {
+                padding: 6px 8px;
+                font: 10px/10px Arial, Helvetica, sans-serif;
+                background: white;
+                background: rgba(255,255,255,0.8);
+                box-shadow: 0 0 15px rgba(0,0,0,0.2);
+                border-radius: 5px;
+                }
+            
+            .info h4 {
+                margin: 0 0 5px;
+                color: #777;
+                }
+            
+            .legend2 {
+                line-height: 18px;
+                color: #555;
+                background color:cornsilk
+                }
+            
+            .legend2 i {
+                width: 10px;
+                height: 10px;
+                float: left;
+                margin-right: 8px;
+                opacity: 0.7;
+                }
+            
+            .info2 {
+                padding: 6px 8px;
+                font: 10px/10px Arial, Helvetica, sans-serif;
+                background: white;
+                background: rgba(255,255,255,0.8);
+                box-shadow: 0 0 15px rgba(0,0,0,0.2);
+                border-radius: 5px;
+                }
+            
+            .info2 h4 {
+                margin: 0 0 5px;
+                color: #777;
+                }
+            
+            
+            .legend3 {
+                line-height: 18px;
+                color: #555;
+                background color:cornsilk
+                }
+            
+            .legend3 i {
+                width: 10px;
+                height: 10px;
+                float: left;
+                margin-right: 8px;
+                opacity: 0.7;
+                }
+            
+            .info3 {
+                padding: 6px 8px;
+                font: 10px/10px Arial, Helvetica, sans-serif;
+                background: white;
+                background: rgba(255,255,255,0.8);
+                box-shadow: 0 0 15px rgba(0,0,0,0.2);
+                border-radius: 5px;
+                }
+            
+            .info3 h4 {
+                margin: 0 0 5px;
+                color: #777;
+                }
+                    
+            /*Text Formatingg*/
+            h1 {text-align: center}
+            h4 {text-align: center}
+            
         </style>
     </head>
-    <body>   
-        <h1>Iowa Recovey Provider Map</h1>
-        <div id="viewDiv"></div>
-        <img src="legend.png" width="400" height ="400" alt="Legend">
+    <body>  
+      <!--drop down menu list-->
+      <ul>
+        <li><a href="https://kvanselous.github.io/CRP558/">Home</a></li>
+        <li class="dropdown">
+                <a href="javascript:void(0)" class="dropbtn">Assignments</a>
+            <div class="dropdown-content"> 
+        <a href="https://kvanselous.github.io/CRP558/Assignment1/">Assignment 1</a>
+        <a href="https://kvanselous.github.io/CRP558/Assignment2/">Assignment 2</a>
+          </div>
+        <li class="dropdown">
+             <a href="javascript:void(0)" class="dropbtn">Exercises</a>
+          <div class="dropdown-content"> 
+        <a href="https://kvanselous.github.io/CRP558/exercise1/">Exercise 1</a>           
+        <a href="https://kvanselous.github.io/CRP558/exercise2/">Exercise 2</a>
+        <a href="https://kvanselous.github.io/CRP558/exercise3/">Exercise 3</a>
+        <a href="https://kvanselous.github.io/CRP558/exercise4/">Exercise 4</a>
+        <a href="https://kvanselous.github.io/CRP558/exercise5/">Exercise 5</a>   
+        <a href="https://kvanselous.github.io/CRP558/exercise6/">Exercise 6</a>  
+        <a href="https://kvanselous.github.io/CRP558/exercise7/">Exercise 7</a>  
+        <a href="https://kvanselous.github.io/CRP558/exercise8/">Exercise 8</a>  
+        <a href="https://kvanselous.github.io/CRP558/exercise9/">Exercise 9</a>  
+        <a href="https://kvanselous.github.io/CRP558/exercise10/">Exercise 10</a>  
+        <a href="https://kvanselous.github.io/CRP558/exercise11/">Exercise 11</a>  
+        <a href="https://kvanselous.github.io/CRP558/exercise12/">Exercise 12</a>           
+        </div>        
+        <li><a href="https://kvanselous.github.io/CRP558/TechReport/">Tech Report</a></li>
+      <li><a href="https://kvanselous.github.io/CRP558/ProjectProposal/">Project Proposal</a></li>
+      </ul>  
+        <!--Title-->
+        <h1>CRP 558 Final Project, Spring 2020</h1>
+        <h4>Kelsey Van Selous MSW, LCSW
+        <br> Human Development and Family Studies PhD Student</h4>
+        <!--Maps and Containers-->
+        <div id='map1container'>
+            <h2>Substance Use in the United States</h2>
+            <p>[hold for text about substance use in US]</p>
+            </div>    
+            <div id="map1"></div>
         
+        <div id='map2container'>
+            <h2>Substance Use In Iowa </h2>
+            <br>The rate of alcohol and binge alcohol use are higher.
+            <br>Residents report lower risk associated with substance use. 
+            <br>Decreased economic resources and increased social isolation related to the reductions in family farms has led to increased alcohol consumption and mortalities across the state. 
+            <br>Because Iowa is a large rural state, those that are in need of services may also not have access to the treatment in their communities.
+            </div>    
+            <div id="map2"></div>
+
+        <div id='map3container'>
+            <h2>Providers Located in High COVID Counties</h2>
+            <p>[hold for text regarding impact of COVID on substance use triggers-social isolation/economic vulnerability and provider location]</p>
+            <p>[May add buttons here to sort layers]</p>
+            <p>[working with Chris/Bailey to change covid to heat map]</p>
+            </div>
+            <div id="map3"></div>
+        
+        <div id='map4container'>        
+            <h2>Testing</h2>   
+            <p>[hold for search tool]</p>
+            <input type="radio" >
+            <br><input type="radio" id= "mental health" name="Services" value="mental health">
+            <label for "mental health">Mental health</label><br>
+            <br><input type="radio" >
+            <br><input type="radio" >
+            <br><input type="radio" >
+            <br><input type="radio" >
+            <br>
+            <button onlick="document.getElemntbyID">See Providers</button>
+            </div>
+
         <script>
-            require([
-                "esri/Map",
-                "esri/views/MapView",
-                "esri/layers/FeatureLayer"
-                 ], function(Map, MapView, FeatureLayer) {
-       
-
-             var map = new Map({
-                basemap: "topo-vector"
-                });       
-
-              var view = new MapView({
-                  container: "viewDiv",
-                  map: map,
-                  center: [-93.6250,41.5868],
-                  zoom: 7
-                  });
-
-            
-           var county = new FeatureLayer ({
-               url:"https://services.arcgis.com/XORNS2fPFySPlBgy/arcgis/rest/services/county3/FeatureServer",
-           })
-           map.add(county)
-        
-         var popupCOVID ={
-             "title": "Number of Active COVID-19 Cases",
-             "content": "{Cases} Number of Total Cases"
-         }
-         var COVID =new FeatureLayer({
-              url:"https://services.arcgis.com/XORNS2fPFySPlBgy/arcgis/rest/services/COVID/FeatureServer",
-              outFields: ["Cases"],
-              popupTemplate: popupCOVID    
-         })
-          map.add(COVID)
                 
-          var popupIRP ={
-                "title": "Iowa Recovery Provider",
-                "content": "Name:{Name}<br>Street:{Street}<br>City:{City} <br> State:{State} <br>Zip:{Zip}<br>Website:{URL}<br>Services Offered:{Services Offered}<br>Fees:{Fees}<br>COVID-19 Response-as of 4/6:{COVID}"
-            }
-        
-          
-            var IRP = new FeatureLayer({
-                url:"https://services.arcgis.com/XORNS2fPFySPlBgy/arcgis/rest/services/Dataset_IowaRecoveryProviders_KVS_200413/FeatureServer",  
-                outFields:["Name","Street","City","State","Zip","URL","Services Offered","Fees","COVID"],
-                popupTemplate: popupIRP
-            });
-           map.add(IRP);
-                });      
-    
+            //map 1
+            var OSM1 = L.tileLayer('https://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="https://osm.org/copyright">OpenStreetMap</a> contributors',
+                maxZoom: 18
+                });	
+            
+            var map1 = L.map('map1', {
+                center: [38,-97],
+                zoom: 4,
+                layers: [OSM1]
+		          });
+            //map 1 mortaltity data, style, and funtion       
+            var mort= L.geoJSON(mort, {
+                style: function (feature) {
+                return {
+                    stroke: false,
+                    fillColor: 'FFFFFF',
+                    fillOpacity: 0
+                };
+                },style: style, 
+                onEachFeature: function (feature, layer) {
+                popupOptions = {maxWidth: 200};
+                layer.bindPopup("<b>State: </b>" + feature.properties.NAME +
+                    "<br><b>Substance Induced Crude Death Rate per 100,000:</b>" + feature.properties.SubstanceInducedMortality_CrudeRate
+                    ,popupOptions);
+                }
+                })     
+                .addTo(map1);
+
+            function getColorMort(d) {
+		          return d  > 1000  ? '#FF0000' :
+				    d     > 900  ? '#DC143C' :
+				    d > 800  ? '#CD5C5C' :
+                    d > 700   ? '#F08080' :
+				    d > 600   ? '#E9967A' :
+				    d > 500   ? '#FFA07A' :
+                    "#FFFFFF"; 
+                    }
+            
+	       function style(feature) {
+               return {
+			     weight: 1,
+			     opacity: 1,
+			     color: 'white',
+			     fillOpacity: 0.7,
+			     fillColor: getColorMort(feature.properties.SubstanceInducedMortality_CrudeRate)
+		          };
+	              }  
+            //Map1 Legend
+            var legend = L.control({
+                position: 'bottomright'
+                });
+
+            legend.onAdd = function(map1) {
+
+            var div = L.DomUtil.create('div', 'info legend'),
+                Mort = [500, 600, 700, 800, 900,1000],
+                labels = [];
+                for (var i = 0; i < Mort.length; i++) {
+                    div.innerHTML +=
+                    '<i style="background:' + getColorMort(Mort[i] + 1) + '"></i> ' +
+                    Mort[i] + (Mort[i + 1] ? '&ndash;' + Mort[i + 1] + '<br>' : '+');
+                    }
+                return div;
+                };
+
+                legend.addTo(map1);
+            //testing
+            
+              //Map2   
+            var OSM2 = L.tileLayer('https://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="https://osm.org/copyright">OpenStreetMap</a> contributors',
+                maxZoom: 18
+                });	
+            var map2 = L.map('map2', {
+                center: [42,-90],
+                zoom: 7,
+                layers: [OSM2]
+		          });
+            
+            //Map2 provider data, style, and function
+            var IMort= L.geoJSON(IMort, {
+                style: function (feature) {
+                return {
+                    stroke: false,
+                    fillColor: 'FFFFFF',
+                    fillOpacity: 0
+                };
+                },style: style2, 
+                onEachFeature: function (feature, layer) {
+                popupOptions = {maxWidth: 200};
+                layer.bindPopup("<b>County: </b>" + feature.properties.COUNTY +
+                    "<br><b>Substance Induced Crude Death Rate per 100,000:</b>" + feature.properties.IowaSubstanceInducedMortalityData_CrudeRate
+                    ,popupOptions);
+                }
+                })     
+                .addTo(map2);
+            
+            function getColor2(d) {
+		      return d  > 900  ? '#FF0000' :
+                d     > 800  ? '#DC143C' :
+				d > 700  ? '#CD5C5C' :
+				d > 600   ? '#F08080' :
+				d > 500   ? '#E9967A' :
+				d > 0   ? '#FFA07A' :
+               "#FFFFFF"; 
+	           }
+            
+            function style2(feature) {
+                return {
+                    weight: 1,
+                    opacity: 1,
+                    color: 'white',
+                    fillOpacity: 0.7,
+			        fillColor: getColor2(feature.properties.IowaSubstanceInducedMortalityData_CrudeRate)
+		            };
+	               }                 
+            
+            //Map 2 legend
+            var legend2 = L.control({
+                position: 'bottomright'
+                });
+
+            legend2.onAdd = function(map) {
+                var div = L.DomUtil.create('div', 'info legend'),
+                IMort = [0, 500, 600, 700, 800, 900],
+                labels = [];
+                for (var i = 0; i < IMort.length; i++) {
+                    div.innerHTML +=
+                        '<i style="background:' + getColor2(IMort[i] + 1) + '"></i> ' +
+                        IMort[i] + (IMort[i + 1] ? '&ndash;' + IMort[i + 1] + '<br>' : '+');
+                        }
+                return div;
+                };
+     
+            
+            legend2.addTo(map2);
+            
+            //Map2 Layer Control
+		    var baseMap = {
+		      "OpenStreetMap": OSM2
+                };
+       		
+		    var overlayMaps = {
+		      "Iowa Mortaltiy Rate": IMort
+		      };			
+
+            L.control.layers(baseMap, overlayMaps).addTo(map2);	
+              
+               
+            //Map3   
+            var OSM3 = L.tileLayer('https://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="https://osm.org/copyright">OpenStreetMap</a> contributors',
+                maxZoom: 18
+                });	
+            var map3 = L.map('map3', {
+                center: [42,-90],
+                zoom: 7,
+                layers: [OSM3]
+		          });
+            
+            //Map3 provider data, style, and function
+            var IRP =L.geoJSON(IRP, {
+                style: function (feature) {
+                return {
+                    stroke: false,
+                    fillColor: 'FFFFFF',
+                    fillOpacity: 0
+                    };
+                    },
+                onEachFeature: function (feature, layer) {
+                    popupOptions = {maxWidth: 200};
+                    layer.bindPopup("<b>Site name: </b>" + feature.properties.Name +
+                    "<br><b>Link:</b>" + feature.properties.URL
+                    ,popupOptions);
+                    }
+                    })         
+                    .addTo(map3);
+            
+            function getColor3(d) {
+		      return d  > 1000  ? '#FF0000' :
+                d     > 500  ? '#DC143C' :
+				d > 100  ? '#CD5C5C' :
+				d > 50   ? '#F08080' :
+				d > 10   ? '#E9967A' :
+				d > 0   ? '#FFA07A' :
+               "#FFFFFF"; 
+	           }
+            
+            function style3(feature) {
+                return {
+                    weight: 1,
+                    opacity: 1,
+                    color: 'white',
+                    fillOpacity: 0.7,
+			        fillColor: getColor3(feature.properties.Confirmed)
+		            };
+	               }       
+            //Map3 COVID data, style, and function
+            var COVID =L.esri.featureLayer({     
+                url: 'https://services.arcgis.com/vPD5PVLI6sfkZ5E4/ArcGIS/rest/services/IA_COVID19_Cases/FeatureServer/0', style: style3, 
+                onEachFeature: function
+                (feature, layer) {
+                popupOptions = {maxWidth: 200};
+                layer.bindPopup("<b>County: </b>" + feature.properties.Name +
+                    "<br><b>Confirmed COVID Cases:</b>" + feature.properties.Confirmed
+                    ,popupOptions);
+                    }
+                    })             
+
+            //Map 3 legend
+            var legend3 = L.control({
+                position: 'bottomright'
+                });
+
+            legend3.onAdd = function(map) {
+                var div = L.DomUtil.create('div', 'info legend'),
+                COVID = [0, 10, 50, 100, 500, 1000],
+                labels = [];
+                for (var i = 0; i < COVID.length; i++) {
+                    div.innerHTML +=
+                        '<i style="background:' + getColor3(COVID[i] + 1) + '"></i> ' +
+                        COVID[i] + (COVID[i + 1] ? '&ndash;' + COVID[i + 1] + '<br>' : '+');
+                        }
+                return div;
+                };
+
+            legend3.addTo(map3);
+            
+            //Map3 Layer Control
+		    var baseMap = {
+		      "OpenStreetMap": OSM3
+                };
+       		
+		    var overlayMaps = {
+		      "Iowa Recovery Providers": IRP,
+              "COVID": COVID
+		      };			
+
+            L.control.layers(baseMap, overlayMaps).addTo(map3);	
+            
            </script>
 
       </body>
 </html>
+
