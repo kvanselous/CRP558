@@ -364,10 +364,10 @@
                 .addTo(map2);
             
             function getColor2(d) {
-		      return d  > 900  ? '#FF0000' :
-                d     > 800  ? '#DC143C' :
-				d > 700  ? '#CD5C5C' :
-				d > 600   ? '#F08080' :
+		      return d  > 1500  ? '#FF0000' :
+                d     > 1250  ? '#DC143C' :
+				d > 1000  ? '#CD5C5C' :
+				d > 750   ? '#F08080' :
 				d > 500   ? '#E9967A' :
 				d > 0   ? '#FFA07A' :
                "#FFFFFF"; 
@@ -390,7 +390,7 @@
 
             legend2.onAdd = function(map) {
                 var div = L.DomUtil.create('div', 'info legend'),
-                IMort = [0, 500, 600, 700, 800, 900],
+                IMort = [0, 500, 750, 1000, 1250, 1500],
                 labels = [];
                 for (var i = 0; i < IMort.length; i++) {
                     div.innerHTML +=
@@ -436,10 +436,13 @@
                     };
                     },
                 onEachFeature: function (feature, layer) {
-                    popupOptions = {maxWidth: 200};
-                    layer.bindPopup("<b>Site name: </b>" + feature.properties.Name +
-                    "<br><b>Link:</b>" + feature.properties.URL
-                    ,popupOptions);
+                    popupOptions = {maxWidth: 200}; 
+                    if (feature.properties.URL == "NA"){ 
+                    layer.bindPopup("<b>Site name: </b>" + feature.properties.Name +  
+                                    "<br><b>Link:</b> No URL available",popupOptions);}
+                    else{layer.bindPopup("<b>Site name: </b>" + feature.properties.Name + 
+                                         "<br><b>Link: </b>" + '<a href="'+feature.properties.URL+'">'+feature.properties.URL+'</a>'                   
+                    ,popupOptions);   }
                     }
                     })         
                     .addTo(map3);
