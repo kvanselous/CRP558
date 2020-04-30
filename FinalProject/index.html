@@ -35,8 +35,8 @@
             <script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster-src.js"></script>        
             
             <!--KVS geoJSON-->    
-            <script src="IRP200428.geojson"></script>
-            <script src="IRP200428copy.geojson"></script>
+            <script src="IRP200430.geojson"></script>
+            <script src="IRP200430copy.geojson"></script>
             <script src="TXFound200430.geojson"></script>
             <script src="substanceinducedmortality.geojson"></script>
             <script src="Iowasubstanceinducedmortality.geojson"></script>
@@ -104,8 +104,9 @@
             #map3container {position:absolute; background-color:#F0F0F0; color:black; text-align:left; margin-right: 0px; margin-left:0px; width:600px; height:400px;padding 0; }
             #map3 {position: relative;  height: 400px; margin-left:600px;border-left:2px; padding 0; overflow:hidden;}
        
-            #map4container {position:absolute; background-color:#D3D3D3; color:black; text-align:left; margin-right: 0px; margin-left:0px; width:98.9%; height:400px;padding 0; }
-
+            #map4container {position:absolute; background-color:#F0F0F0; color:black; text-align:left; margin-right: 0px; margin-left:0px; width:600px; height:400px;padding 0; }
+            #map4 {position: relative;  height: 400px; margin-left:600px;border-left:2px; padding 0; overflow:hidden;}
+       
             /*legends*/
             .legend {
                 line-height: 18px;
@@ -266,14 +267,21 @@
         <div id='map3container'>
             <h2>Providers Located in High COVID Counties</h2>
             <p>[hold for text regarding impact of COVID on substance use triggers-social isolation/economic vulnerability and provider location]</p>
-            <p>[May add buttons here to sort layers]</p>
-                <br><button class="button">Button</button>
-                <br><input type="button" class="button" value="Input Button">
             </div>
             <div id="map3"></div>
         
-        <div id='map4container'>        
+         <div id='map4container'>
+            <h2>Locate a Provider</h2>
+             <div class="btn-group">
+                 <button type="button" id="women" class="btn btn-success">Women </button>
+                <button type="button" id="golf" class="btn btn-success">Golf</button>
+                <button type="button" id="soccer" class="btn btn-success">Soccer</button>
+		      <button type="button" id="softball" class="btn btn-success">Softball</button>
+    </div>
             </div>
+            <div id="map4"></div>
+            
+       
 
         <script>
                 
@@ -614,6 +622,162 @@
          
            L.control.layers(baseMap, overlayMaps).addTo(map3);	
             
+              //Map4   
+            var OSM4 = L.tileLayer('https://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="https://osm.org/copyright">OpenStreetMap</a> contributors',
+                maxZoom: 18
+                });	
+            var map4 = L.map('map4', {
+                center: [42,-93],
+                zoom: 7,
+                layers: [OSM4]
+		          });
+            
+            
+            
+            var buttons = $.getJSON("IRP200430copy.geojson");
+promise.then(function(data) {
+             var housing = L.geoJSON(SIRP, {
+                filter: function(feature, layer) {
+                    if (feature.properties.ServiceTyp == 'RecoveryHousing') {
+                    return true;
+                    }
+                    },
+                pointToLayer: function(feature, latlng) {
+                    return L.circleMarker(latlng, circle);
+                    }           
+                });
+            
+            var treatment = L.geoJSON(SIRP, {
+                filter: function(feature, layer) {
+                    if (feature.properties.ServiceTyp == 'SubstanceUseTreatment') {
+                    return true;
+                    }
+                    },
+                pointToLayer: function(feature, latlng) {
+                    return L.circleMarker(latlng, circle);
+                    }           
+                });
+            
+             var twelve = L.geoJSON(SIRP, {
+                filter: function(feature, layer) {
+                    if (feature.properties.twelve_Step == 'Yes') {
+                    return true;
+                    }
+                    },
+                pointToLayer: function(feature, latlng) {
+                    return L.circleMarker(latlng, circle);
+                    }           
+                });
+            
+                var Out = L.geoJSON(SIRP, {
+                filter: function(feature, layer) {
+                    if (feature.properties.Outpatient == 'Yes') {
+                    return true;
+                    }
+                    },
+                pointToLayer: function(feature, latlng) {
+                    return L.circleMarker(latlng, circle);
+                    }           
+                });
+            
+                var Religion = L.geoJSON(SIRP, {
+                filter: function(feature, layer) {
+                    if (feature.properties.ReligiousB == 'Yes') {
+                    return true;
+                    }
+                    },
+                pointToLayer: function(feature, latlng) {
+                    return L.circleMarker(latlng, circle);
+                    }           
+                });
+            
+                var women = L.geoJSON(SIRP, {
+                filter: function(feature, layer) {
+                    if (feature.properties.Gender == 'Women') {
+                    return true;
+                    }
+                    },
+                pointToLayer: function(feature, latlng) {
+                    return L.circleMarker(latlng, circle);
+                    }           
+                });
+            
+                var men = L.geoJSON(SIRP, {
+                filter: function(feature, layer) {
+                    if (feature.properties.Gender == 'Men') {
+                    return true;
+                    }
+                    },
+                pointToLayer: function(feature, latlng) {
+                    return L.circleMarker(latlng, circle);
+                    }           
+                });
+                
+                var family = L.geoJSON(SIRP, {
+                filter: function(feature, layer) {
+                    if (feature.properties.Gender == 'Family') {
+                    return true;
+                    }
+                    },
+                pointToLayer: function(feature, latlng) {
+                    return L.circleMarker(latlng, circle);
+                    }           
+                });
+                
+                var veteran = L.geoJSON(SIRP, {
+                filter: function(feature, layer) {
+                    if (feature.properties.Gender == 'Veterans') {
+                    return true;
+                    }
+                    },
+                pointToLayer: function(feature, latlng) {
+                    return L.circleMarker(latlng, circle);
+                    }           
+                });
+            
+            
+              women.addTo(map);
+  men.addTo(map);
+  veterans.addTo(map);
+        family.addTo(map);
+  housing.addTo(map);
+  treatment.addTo(map); 
+            twelve.addTo(map);
+  Out.addTo(map);
+  Religion.addTo(map);
+            
+                    // The JavaScript below is new
+        $("#women").click(function() {
+            map.addLayer(women)
+            map.removeLayer(men)
+            map.removeLayer(family)
+            map.removeLayer(veterans)
+            map.removeLayer(housing)
+            map.removeLayer(treatment)
+            map.removeLayer(twelve)
+            map.removeLayer(Out)
+            map.removeLayer(Religion)
+        });
+});
+
+//            //Map4 Layer Control
+//		    var baseMap = {
+//		      "OpenStreetMap": OSM4
+  //              };
+    //   		
+	//	   var overlayMaps = {
+	//	      "Iowa Recovery Providers-Housing": housing,
+      //        "Iowa Recovery Providers-Treatment": treatment,
+        //      "Iowa Recovery Providers-12-Step": twelve,
+          //    "Iowa Recovery Providers-Outpatient": Out,
+            //  "Iowa Recovery Providers-Religious Based": Religion,
+//              "Iowa Recovery Providers-Women": women,
+  //            "Iowa Recovery Providers-Men": men,
+    //          "Iowa Recovery Providers-Veterans": veteran
+	//	      };			
+         
+      //     L.control.layers(baseMap, overlayMaps).addTo(map4);	
            </script>
 
       </body>
