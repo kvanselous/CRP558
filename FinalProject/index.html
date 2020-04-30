@@ -32,13 +32,12 @@
             <!--Marker Cluster-->
             <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.css" />
             <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css" />
-            <script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster-src.js"></script>
-        
-</head> 
-        
-        
+            <script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster-src.js"></script>        
+            
             <!--KVS geoJSON-->    
             <script src="IRP200428.geojson"></script>
+            <script src="IRP200428copy.geojson"></script>
+            <script src="TXFound200430.geojson"></script>
             <script src="substanceinducedmortality.geojson"></script>
             <script src="Iowasubstanceinducedmortality.geojson"></script>
         
@@ -197,6 +196,21 @@
             h1 {text-align: center}
             h4 {text-align: center}
             
+            /*button styles*/
+            .button {
+                background-color: #4CAF50;
+                border: none;
+                color: white;
+                padding: 15px 32px;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                font-size: 16px;
+                margin: 4px 2px;
+                cursor: pointer;
+                border-radius: 12px;
+                width: 400px;
+                }
         </style>
     </head>
     <body>  
@@ -253,22 +267,12 @@
             <h2>Providers Located in High COVID Counties</h2>
             <p>[hold for text regarding impact of COVID on substance use triggers-social isolation/economic vulnerability and provider location]</p>
             <p>[May add buttons here to sort layers]</p>
-            <p>[working with Chris/Bailey to change covid to heat map]</p>
+                <br><button class="button">Button</button>
+                <br><input type="button" class="button" value="Input Button">
             </div>
             <div id="map3"></div>
         
         <div id='map4container'>        
-            <h2>Testing</h2>   
-            <p>[hold for search tool]</p>
-            <input type="radio" >
-            <br><input type="radio" id= "mental health" name="Services" value="mental health">
-            <label for "mental health">Mental health</label><br>
-            <br><input type="radio" >
-            <br><input type="radio" >
-            <br><input type="radio" >
-            <br><input type="radio" >
-            <br>
-            <button onlick="document.getElemntbyID">See Providers</button>
             </div>
 
         <script>
@@ -490,10 +494,47 @@
                     ,popupOptions);   }
                     }
                     })      
-            markers.addLayer(IRP);
-            map3.addLayer(markers);
-            map3.fitBounds(markers.getBounds());
-   
+                markers.addLayer(IRP);
+                map3.addLayer(markers);
+                map3.fitBounds(markers.getBounds());  
+            
+        var SingleIRP =L.geoJSON(SIRP, {
+                style: function (feature) {
+                return {
+                    stroke: false,
+                    fillColor: 'FFFFFF',
+                    fillOpacity: 0
+                    };
+                    },
+                onEachFeature: function (feature, layer) {
+                    popupOptions = {maxWidth: 200}; 
+                    if (feature.properties.URL == "NA"){ 
+                    layer.bindPopup("<b>Site name: </b>" + feature.properties.Name +  
+                                    "<br><b>Link:</b> No URL available",popupOptions);}
+                    else{layer.bindPopup("<b>Site name: </b>" + feature.properties.Name + 
+                                         "<br><b>Link: </b>" + '<a href="'+feature.properties.URL+'">'+feature.properties.URL+'</a>'                   
+                    ,popupOptions);   }
+                    }
+                    })  
+        
+              var TX =L.geoJSON(TX, {
+                style: function (feature) {
+                return {
+                    stroke: false,
+                    fillColor: 'FFFFFF',
+                    fillOpacity: 0
+                    };
+                    },
+                onEachFeature: function (feature, layer) {
+                    popupOptions = {maxWidth: 200}; 
+                    if (feature.properties.URL == "NA"){ 
+                    layer.bindPopup("<b>Site name: </b>" + feature.properties.Name +  
+                                    "<br><b>Link:</b> No URL available",popupOptions);}
+                    else{layer.bindPopup("<b>Site name: </b>" + feature.properties.Name + 
+                                         "<br><b>Link: </b>" + '<a href="'+feature.properties.URL+'">'+feature.properties.URL+'</a>'                   
+                    ,popupOptions);   }
+                    }
+                    })  
 
             function getColor3(d) {
 		      return d  > 1000  ? '#FF0000' :
@@ -550,12 +591,14 @@
 		      "OpenStreetMap": OSM3
                 };
        		
-		    var overlayMaps = {
-		      "Iowa Recovery Providers": markers,
+		   var overlayMaps = {
+		      "Iowa Recovery Providers Cluster Layer": markers,
+              "Iowa Recovery Providers Single Layer": SingleIRP, 
+              "Iowa Substance Use Treatment Providers Single Layer": TX,
               "COVID": COVID
 		      };			
-
-            L.control.layers(baseMap, overlayMaps).addTo(map3);	
+         
+           L.control.layers(baseMap, overlayMaps).addTo(map3);	
             
            </script>
 
