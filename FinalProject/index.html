@@ -33,9 +33,10 @@
             <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.css" />
             <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css" />
             <script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster-src.js"></script>        
+            
             <!--Boot Strap-->
-            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
-            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+            <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">-->
+            <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">-->
         
             <!--J Query-->
             <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
@@ -204,19 +205,19 @@
             
             /*button styles*/
             .button {
-                background-color: #4CAF50;
-                border: none;
-                color: white;
-                padding: 15px 32px;
-                text-align: center;
-                text-decoration: none;
-                display: inline-block;
-                font-size: 16px;
-                margin: 4px 2px;
-                cursor: pointer;
-                border-radius: 12px;
-                width: 400px;
-                }
+            background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 5px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  width: 200px;
+  height: 60px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
         </style>
     </head>
     <body>  
@@ -276,12 +277,18 @@
             <div id="map3"></div>
         
          <div id='map4container'>
-            <h2>Locate a Provider</h2>
+            <h2>Interested in locating a specific recovery provider?r</h2>
+            <p>Click on the buttons below to explore options of Iowa Substance Use Recovery Providers:</p>
              <div class="btn-group">
-                 <button type="button" id="women" class="btn btn-success">Women </button>
-                <button type="button" id="men" class="btn btn-success">Men</button>
-                <button type="button" id="family" class="btn btn-success">Family</button>
-		      <button type="button" id="veterans" class="btn btn-success">veterans</button>
+                <button type="button" id="women" class="button">Female Only</button>
+                 <button type="button" id="men" class="button">Male Only </button>
+                 <br><button type="button" id="family" class="button">Families</button>
+		         <button type="button" id="veteran" class="button">Veterans</button>
+                 <br><button type="button" id="housing" class="button">Housing </button>
+                 <button type="button" id="Religion" class="button">Religious and Faith Based</button>
+                 <br><button type="twelve" id="twelve" class="button">12-Step Programs</button>
+                 <button type="button" id="Out" class="button">Outpatient Services</button>
+  
     </div>
             </div>
             <div id="map4"></div>
@@ -747,16 +754,7 @@
                     }           
                 });
             
-                         women.addTo(map4);
-  men.addTo(map4);
-  veteran.addTo(map4);
-        family.addTo(map4);
-  housing.addTo(map4);
-  treatment.addTo(map4); 
-            twelve.addTo(map4);
-  Out.addTo(map4);
-  Religion.addTo(map4);
-          
+
    
                     // The JavaScript below is new
         $("#women").click(function() {
@@ -764,9 +762,8 @@
             map4.removeLayer(all);
             map4.removeLayer(men);
             map4.removeLayer(family);
-            map4.removeLayer(veterans);
+            map4.removeLayer(veteran);
             map4.removeLayer(housing);
-            map4.removeLayer(treatment);
             map4.removeLayer(twelve);
             map4.removeLayer(Out);
             map4.removeLayer(Religion);
@@ -777,31 +774,85 @@
             map4.removeLayer(all);
             map4.removeLayer(women);
             map4.removeLayer(family);
-            map4.removeLayer(veterans);
+            map4.removeLayer(veteran);
             map4.removeLayer(housing);
-            map4.removeLayer(treatment);
             map4.removeLayer(twelve);
             map4.removeLayer(Out);
             map4.removeLayer(Religion);
         });
 
-//            //Map4 Layer Control
-//		    var baseMap = {
-//		      "OpenStreetMap": OSM4
-  //              };
-    //   		
-	//	   var overlayMaps = {
-	//	      "Iowa Recovery Providers-Housing": housing,
-      //        "Iowa Recovery Providers-Treatment": treatment,
-        //      "Iowa Recovery Providers-12-Step": twelve,
-          //    "Iowa Recovery Providers-Outpatient": Out,
-            //  "Iowa Recovery Providers-Religious Based": Religion,
-//              "Iowa Recovery Providers-Women": women,
-  //            "Iowa Recovery Providers-Men": men,
-    //          "Iowa Recovery Providers-Veterans": veteran
-	//	      };			
-         
-      //     L.control.layers(baseMap, overlayMaps).addTo(map4);	
+          $("#family").click(function() {
+            map4.addLayer(family);
+            map4.removeLayer(all);
+            map4.removeLayer(women);
+            map4.removeLayer(men);
+            map4.removeLayer(veteran);
+            map4.removeLayer(housing);
+            map4.removeLayer(twelve);
+            map4.removeLayer(Out);
+            map4.removeLayer(Religion);
+        });
+
+        $("#veteran").click(function() {
+            map4.addLayer(veteran);
+            map4.removeLayer(all);
+            map4.removeLayer(women);
+            map4.removeLayer(family);
+            map4.removeLayer(men);
+            map4.removeLayer(housing);
+            map4.removeLayer(twelve);
+            map4.removeLayer(Out);
+            map4.removeLayer(Religion);
+        });
+            
+            $("#housing").click(function() {
+            map4.addLayer(housing);
+            map4.removeLayer(all);
+            map4.removeLayer(women);
+            map4.removeLayer(family);
+            map4.removeLayer(veteran);
+            map4.removeLayer(men);
+            map4.removeLayer(twelve);
+            map4.removeLayer(Out);
+            map4.removeLayer(Religion);
+        });
+            
+            $("#twelve").click(function() {
+            map4.addLayer(twelve);
+            map4.removeLayer(all);
+            map4.removeLayer(women);
+            map4.removeLayer(family);
+            map4.removeLayer(veteran);
+            map4.removeLayer(housing);
+            map4.removeLayer(men);
+            map4.removeLayer(Out);
+            map4.removeLayer(Religion);
+        });
+            
+               $("#Out").click(function() {
+            map4.addLayer(Out);
+            map4.removeLayer(all);
+            map4.removeLayer(women);
+            map4.removeLayer(family);
+            map4.removeLayer(veteran);
+            map4.removeLayer(housing);
+            map4.removeLayer(men);
+            map4.removeLayer(twelve);
+            map4.removeLayer(Religion);
+        });
+            
+               $("#Religion").click(function() {
+            map4.addLayer(Religion);
+            map4.removeLayer(all);
+            map4.removeLayer(women);
+            map4.removeLayer(family);
+            map4.removeLayer(veteran);
+            map4.removeLayer(housing);
+            map4.removeLayer(men);
+            map4.removeLayer(Out);
+            map4.removeLayer(twelve);
+        });
+        
            </script>
 
       </body>
