@@ -35,9 +35,8 @@
             <script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster-src.js"></script>        
             
             <!--Boot Strap-->
-            <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">-->
-            <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">-->
-        
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+
             <!--J Query-->
             <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
         
@@ -650,12 +649,32 @@
       var all = L.geoJSON(SIRP, {
                 pointToLayer: function(feature, latlng) {
                     return L.circleMarker(latlng, circle);
-                    }           
-                })       
+                    },
+                onEachFeature: function (feature, layer) {
+                    popupOptions = {maxWidth: 200}; 
+                    if (feature.properties.URL == "NA"){ 
+                    layer.bindPopup("<b>Site name: </b>" + feature.properties.Name +  
+                                    "<br><b>Link:</b> No URL available",popupOptions);}
+                    else{layer.bindPopup("<b>Site name: </b>" + feature.properties.Name + 
+                                         "<br><b>Link: </b>" + '<a href="'+feature.properties.URL+'">'+feature.properties.URL+'</a>'                   
+                    ,popupOptions);   }
+                }
+      })
             .addTo(map4);
+            
+    function popupProvider(feature, layer) {
+                    popupOptions = {maxWidth: 200}; 
+                    if (feature.properties.URL == "NA"){ 
+                    layer.bindPopup("<b>Site name: </b>" + feature.properties.Name +  
+                                    "<br><b>Link:</b> No URL available",popupOptions);}
+                    else{layer.bindPopup("<b>Site name: </b>" + feature.properties.Name + 
+                                         "<br><b>Link: </b>" + '<a href="'+feature.properties.URL+'">'+feature.properties.URL+'</a>'                   
+                    ,popupOptions);   }
+                }
 
             
     var housing = L.geoJSON(SIRP, {
+                onEachFeature: popupProvider,
                 filter: function(feature, layer) {
                     if (feature.properties.ServiceTyp == 'RecoveryHousing') {
                     return true;
@@ -663,10 +682,11 @@
                     },
                 pointToLayer: function(feature, latlng) {
                     return L.circleMarker(latlng, circle);
-                    }           
-                });
+                    },
+                })
             
             var treatment = L.geoJSON(SIRP, {
+                onEachFeature: popupProvider,
                 filter: function(feature, layer) {
                     if (feature.properties.ServiceTyp == 'SubstanceUseTreatment') {
                     return true;
@@ -678,6 +698,7 @@
                 });
             
              var twelve = L.geoJSON(SIRP, {
+                 onEachFeature: popupProvider,
                 filter: function(feature, layer) {
                     if (feature.properties.twelve_Step == 'Yes') {
                     return true;
@@ -689,6 +710,7 @@
                 });
             
                 var Out = L.geoJSON(SIRP, {
+                    onEachFeature: popupProvider,
                 filter: function(feature, layer) {
                     if (feature.properties.Outpatient == 'Yes') {
                     return true;
@@ -700,6 +722,7 @@
                 });
             
                 var Religion = L.geoJSON(SIRP, {
+                    onEachFeature: popupProvider,
                 filter: function(feature, layer) {
                     if (feature.properties.ReligiousB == 'Yes') {
                     return true;
@@ -711,6 +734,7 @@
                 });
             
                 var women = L.geoJSON(SIRP, {
+                    onEachFeature: popupProvider,
                 filter: function(feature, layer) {
                     if (feature.properties.Gender == 'Women') {
                     return true;
@@ -722,6 +746,7 @@
                 });
             
                 var men = L.geoJSON(SIRP, {
+                    onEachFeature: popupProvider,
                 filter: function(feature, layer) {
                     if (feature.properties.Gender == 'Men') {
                     return true;
@@ -733,6 +758,7 @@
                 });
                 
                 var family = L.geoJSON(SIRP, {
+                    onEachFeature: popupProvider,
                 filter: function(feature, layer) {
                     if (feature.properties.Gender == 'Family') {
                     return true;
@@ -744,6 +770,7 @@
                 });
                 
                 var veteran = L.geoJSON(SIRP, {
+                    onEachFeature: popupProvider,
                 filter: function(feature, layer) {
                     if (feature.properties.Gender == 'Veterans') {
                     return true;
