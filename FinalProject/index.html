@@ -36,16 +36,17 @@
             <!--Boot Strap-->
             <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
             <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-            
+        
+            <!--J Query-->
+            <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
+        
             <!--KVS geoJSON-->    
             <script src="IRP200430.geojson"></script>
             <script src="IRP200430copy.geojson"></script>
             <script src="TXFound200430.geojson"></script>
             <script src="substanceinducedmortality.geojson"></script>
             <script src="Iowasubstanceinducedmortality.geojson"></script>
-        <script src="IRP200430.json"></script>
-        
-        <style>    
+     <style>    
             /*Drop Down Menu*/
             ul {
                 list-style-type: none;
@@ -639,11 +640,15 @@
 		          });
             
             
+      var all = L.geoJSON(SIRP, {
+                pointToLayer: function(feature, latlng) {
+                    return L.circleMarker(latlng, circle);
+                    }           
+                })       
+            .addTo(map4);
+
             
-            var promise = $.getJSON("IRP200430.json");
-promise.then(function(data) {
-            
-    var housing = L.geoJSON(data, {
+    var housing = L.geoJSON(SIRP, {
                 filter: function(feature, layer) {
                     if (feature.properties.ServiceTyp == 'RecoveryHousing') {
                     return true;
@@ -654,7 +659,7 @@ promise.then(function(data) {
                     }           
                 });
             
-            var treatment = L.geoJSON(data, {
+            var treatment = L.geoJSON(SIRP, {
                 filter: function(feature, layer) {
                     if (feature.properties.ServiceTyp == 'SubstanceUseTreatment') {
                     return true;
@@ -665,7 +670,7 @@ promise.then(function(data) {
                     }           
                 });
             
-             var twelve = L.geoJSON(data, {
+             var twelve = L.geoJSON(SIRP, {
                 filter: function(feature, layer) {
                     if (feature.properties.twelve_Step == 'Yes') {
                     return true;
@@ -676,7 +681,7 @@ promise.then(function(data) {
                     }           
                 });
             
-                var Out = L.geoJSON(data, {
+                var Out = L.geoJSON(SIRP, {
                 filter: function(feature, layer) {
                     if (feature.properties.Outpatient == 'Yes') {
                     return true;
@@ -687,7 +692,7 @@ promise.then(function(data) {
                     }           
                 });
             
-                var Religion = L.geoJSON(data, {
+                var Religion = L.geoJSON(SIRP, {
                 filter: function(feature, layer) {
                     if (feature.properties.ReligiousB == 'Yes') {
                     return true;
@@ -698,7 +703,7 @@ promise.then(function(data) {
                     }           
                 });
             
-                var women = L.geoJSON(data, {
+                var women = L.geoJSON(SIRP, {
                 filter: function(feature, layer) {
                     if (feature.properties.Gender == 'Women') {
                     return true;
@@ -709,7 +714,7 @@ promise.then(function(data) {
                     }           
                 });
             
-                var men = L.geoJSON(data, {
+                var men = L.geoJSON(SIRP, {
                 filter: function(feature, layer) {
                     if (feature.properties.Gender == 'Men') {
                     return true;
@@ -720,7 +725,7 @@ promise.then(function(data) {
                     }           
                 });
                 
-                var family = L.geoJSON(data, {
+                var family = L.geoJSON(SIRP, {
                 filter: function(feature, layer) {
                     if (feature.properties.Gender == 'Family') {
                     return true;
@@ -731,7 +736,7 @@ promise.then(function(data) {
                     }           
                 });
                 
-                var veteran = L.geoJSON(data, {
+                var veteran = L.geoJSON(SIRP, {
                 filter: function(feature, layer) {
                     if (feature.properties.Gender == 'Veterans') {
                     return true;
@@ -742,31 +747,43 @@ promise.then(function(data) {
                     }           
                 });
             
-            
-              women.addTo(map4);
+                         women.addTo(map4);
   men.addTo(map4);
-  veterans.addTo(map4);
+  veteran.addTo(map4);
         family.addTo(map4);
   housing.addTo(map4);
   treatment.addTo(map4); 
             twelve.addTo(map4);
   Out.addTo(map4);
   Religion.addTo(map4);
-            
+          
+   
                     // The JavaScript below is new
         $("#women").click(function() {
-            map.addLayer(women)
-            map.removeLayer(men)
-            map.removeLayer(family)
-            map.removeLayer(veterans)
-            map.removeLayer(housing)
-            map.removeLayer(treatment)
-            map.removeLayer(twelve)
-            map.removeLayer(Out)
-            map.removeLayer(Religion)
+            map4.addLayer(women);
+            map4.removeLayer(all);
+            map4.removeLayer(men);
+            map4.removeLayer(family);
+            map4.removeLayer(veterans);
+            map4.removeLayer(housing);
+            map4.removeLayer(treatment);
+            map4.removeLayer(twelve);
+            map4.removeLayer(Out);
+            map4.removeLayer(Religion);
         });
-});
-            
+
+                    $("#men").click(function() {
+            map4.addLayer(men);
+            map4.removeLayer(all);
+            map4.removeLayer(women);
+            map4.removeLayer(family);
+            map4.removeLayer(veterans);
+            map4.removeLayer(housing);
+            map4.removeLayer(treatment);
+            map4.removeLayer(twelve);
+            map4.removeLayer(Out);
+            map4.removeLayer(Religion);
+        });
 
 //            //Map4 Layer Control
 //		    var baseMap = {
