@@ -33,6 +33,9 @@
             <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.css" />
             <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css" />
             <script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster-src.js"></script>        
+            <!--Boot Strap-->
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
             
             <!--KVS geoJSON-->    
             <script src="IRP200430.geojson"></script>
@@ -40,6 +43,7 @@
             <script src="TXFound200430.geojson"></script>
             <script src="substanceinducedmortality.geojson"></script>
             <script src="Iowasubstanceinducedmortality.geojson"></script>
+        <script src="IRP200430.json"></script>
         
         <style>    
             /*Drop Down Menu*/
@@ -274,9 +278,9 @@
             <h2>Locate a Provider</h2>
              <div class="btn-group">
                  <button type="button" id="women" class="btn btn-success">Women </button>
-                <button type="button" id="golf" class="btn btn-success">Golf</button>
-                <button type="button" id="soccer" class="btn btn-success">Soccer</button>
-		      <button type="button" id="softball" class="btn btn-success">Softball</button>
+                <button type="button" id="men" class="btn btn-success">Men</button>
+                <button type="button" id="family" class="btn btn-success">Family</button>
+		      <button type="button" id="veterans" class="btn btn-success">veterans</button>
     </div>
             </div>
             <div id="map4"></div>
@@ -622,7 +626,8 @@
          
            L.control.layers(baseMap, overlayMaps).addTo(map3);	
             
-              //Map4   
+              //Map4
+            
             var OSM4 = L.tileLayer('https://{s}.tile.osm.org/{z}/{x}/{y}.png', {
                 attribution: '&copy; <a href="https://osm.org/copyright">OpenStreetMap</a> contributors',
                 maxZoom: 18
@@ -635,9 +640,10 @@
             
             
             
-            var buttons = $.getJSON("IRP200430copy.geojson");
+            var promise = $.getJSON("IRP200430.json");
 promise.then(function(data) {
-             var housing = L.geoJSON(SIRP, {
+            
+    var housing = L.geoJSON(data, {
                 filter: function(feature, layer) {
                     if (feature.properties.ServiceTyp == 'RecoveryHousing') {
                     return true;
@@ -648,7 +654,7 @@ promise.then(function(data) {
                     }           
                 });
             
-            var treatment = L.geoJSON(SIRP, {
+            var treatment = L.geoJSON(data, {
                 filter: function(feature, layer) {
                     if (feature.properties.ServiceTyp == 'SubstanceUseTreatment') {
                     return true;
@@ -659,7 +665,7 @@ promise.then(function(data) {
                     }           
                 });
             
-             var twelve = L.geoJSON(SIRP, {
+             var twelve = L.geoJSON(data, {
                 filter: function(feature, layer) {
                     if (feature.properties.twelve_Step == 'Yes') {
                     return true;
@@ -670,7 +676,7 @@ promise.then(function(data) {
                     }           
                 });
             
-                var Out = L.geoJSON(SIRP, {
+                var Out = L.geoJSON(data, {
                 filter: function(feature, layer) {
                     if (feature.properties.Outpatient == 'Yes') {
                     return true;
@@ -681,7 +687,7 @@ promise.then(function(data) {
                     }           
                 });
             
-                var Religion = L.geoJSON(SIRP, {
+                var Religion = L.geoJSON(data, {
                 filter: function(feature, layer) {
                     if (feature.properties.ReligiousB == 'Yes') {
                     return true;
@@ -692,7 +698,7 @@ promise.then(function(data) {
                     }           
                 });
             
-                var women = L.geoJSON(SIRP, {
+                var women = L.geoJSON(data, {
                 filter: function(feature, layer) {
                     if (feature.properties.Gender == 'Women') {
                     return true;
@@ -703,7 +709,7 @@ promise.then(function(data) {
                     }           
                 });
             
-                var men = L.geoJSON(SIRP, {
+                var men = L.geoJSON(data, {
                 filter: function(feature, layer) {
                     if (feature.properties.Gender == 'Men') {
                     return true;
@@ -714,7 +720,7 @@ promise.then(function(data) {
                     }           
                 });
                 
-                var family = L.geoJSON(SIRP, {
+                var family = L.geoJSON(data, {
                 filter: function(feature, layer) {
                     if (feature.properties.Gender == 'Family') {
                     return true;
@@ -725,7 +731,7 @@ promise.then(function(data) {
                     }           
                 });
                 
-                var veteran = L.geoJSON(SIRP, {
+                var veteran = L.geoJSON(data, {
                 filter: function(feature, layer) {
                     if (feature.properties.Gender == 'Veterans') {
                     return true;
@@ -737,15 +743,15 @@ promise.then(function(data) {
                 });
             
             
-              women.addTo(map);
-  men.addTo(map);
-  veterans.addTo(map);
-        family.addTo(map);
-  housing.addTo(map);
-  treatment.addTo(map); 
-            twelve.addTo(map);
-  Out.addTo(map);
-  Religion.addTo(map);
+              women.addTo(map4);
+  men.addTo(map4);
+  veterans.addTo(map4);
+        family.addTo(map4);
+  housing.addTo(map4);
+  treatment.addTo(map4); 
+            twelve.addTo(map4);
+  Out.addTo(map4);
+  Religion.addTo(map4);
             
                     // The JavaScript below is new
         $("#women").click(function() {
@@ -760,6 +766,7 @@ promise.then(function(data) {
             map.removeLayer(Religion)
         });
 });
+            
 
 //            //Map4 Layer Control
 //		    var baseMap = {
