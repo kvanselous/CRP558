@@ -116,9 +116,11 @@
             #map3container {position:absolute; background-color:#F0F0F0; color:black; text-align:left; margin-right: 0px; margin-left:0px; width:600px; height:400px;padding 0; }
             #map3 {position: relative;  height: 400px; margin-left:600px;border-left:2px; padding 0; overflow:hidden;}
        
-            #map4container {position:absolute; background-color:#F0F0F0; color:black; text-align:left; margin-right: 0px; margin-left:0px; width:600px; height:400px;padding 0; }
+            #map4container {position:absolute; background-color:#D3D3D3; color:black; text-align:center; margin-right: 0px; margin-left:0px; width:600px; height:400px;padding 0; }
             #map4 {position: relative;  height: 400px; margin-left:600px;border-left:2px; padding 0; overflow:hidden;}
        
+            #map5container {position:absolute; background-color:#F0F0F0; color:black; text-align:center; margin-right: 0px; margin-left:0px; width:99.9%; height:400px;padding 0; }
+
             /*legends*/
             .legend {
                 line-height: 18px;
@@ -269,6 +271,7 @@
         
         <div id='map2container'>
             <h2>Substance Use In Iowa </h2>
+            <p>[hold for text about substance use in Iowa-suggested stats below]</p>
             <br>The rate of alcohol and binge alcohol use are higher.
             <br>Residents report lower risk associated with substance use. 
             <br>Decreased economic resources and increased social isolation related to the reductions in family farms has led to increased alcohol consumption and mortalities across the state. 
@@ -285,7 +288,7 @@
  
         
          <div id='map4container'>
-            <h2>Interested in locating a specific recovery provider?r</h2>
+            <h2>Interested in locating a specific recovery provider?</h2>
             <p>Click on the buttons below to explore options of Iowa Substance Use Recovery Providers:</p>
              <div class="btn-group">
                 <button type="button" id="women" class="button">Female Only</button>
@@ -300,7 +303,20 @@
     </div>
             </div>
             <div id="map4"></div>
-            
+        
+             <div id='map5container'>
+            <h2>To Do:</h2>
+            update color schemes of cholorpleth maps
+            <br>add legends 
+            <br>add phone numbers to map 4
+            <br>update text
+            <br>attach report
+            <br>update markers for consistency
+            <br>add titles
+            <br>explore best breakdowns for cholorpleth map segments
+
+
+            </div>
        
 
         <script>
@@ -414,6 +430,7 @@
 				d > 0   ? '#FFA07A' :
                "#FFFFFF"; 
 	           }
+
             
             function style2(feature) {
                 return {
@@ -475,9 +492,7 @@
                         }
                 return div;
                 };
-     
-            
-            legend2.addTo(map2);
+                legend2.addTo(map2);
             
             //Map2 Layer Control
 		    var baseMap = {
@@ -578,13 +593,13 @@
                     })  
 
             function getColor3(d) {
-		      return d  > 1000  ? '#FF0000' :
-                d     > 500  ? '#DC143C' :
-				d > 100  ? '#CD5C5C' :
-				d > 50   ? '#F08080' :
-				d > 10   ? '#E9967A' :
-				d > 0   ? '#FFA07A' :
-               "#FFFFFF"; 
+		      return d  > 1000  ? '#873600' :
+                d     > 500  ? '#A04000' :
+				d > 100  ? '#BA4A00' :
+				d > 50   ? '#D35400' :
+				d > 10   ? '#DC7633' :
+				d > 0   ? '#E59866' :
+               "#E59866"; 
 	           }
             
             function style3(feature) {
@@ -671,8 +686,10 @@
                     popupOptions = {maxWidth: 200}; 
                     if (feature.properties.URL == "NA"){ 
                     layer.bindPopup("<b>Site name: </b>" + feature.properties.Name +  
+                                    "<br><b>Phone Number: </b>" + feature.properties.Phone +                  
                                     "<br><b>Link:</b> No URL available",popupOptions);}
                     else{layer.bindPopup("<b>Site name: </b>" + feature.properties.Name + 
+                                         "<br><b>Phone Number: </b>" + feature.properties.Phone +                  
                                          "<br><b>Link: </b>" + '<a href="'+feature.properties.URL+'">'+feature.properties.URL+'</a>'                   
                     ,popupOptions);   }
                 }}
@@ -684,8 +701,10 @@
                     popupOptions = {maxWidth: 200}; 
                     if (feature.properties.URL == "NA"){ 
                     layer.bindPopup("<b>Site name: </b>" + feature.properties.Name +  
+                                    "<br><b>Phone Number: </b>" + feature.properties.Phone +                  
                                     "<br><b>Link:</b> No URL available",popupOptions);}
                     else{layer.bindPopup("<b>Site name: </b>" + feature.properties.Name + 
+                                         "<br><b>Phone Number: </b>" + feature.properties.Phone +                  
                                          "<br><b>Link: </b>" + '<a href="'+feature.properties.URL+'">'+feature.properties.URL+'</a>'                   
                     ,popupOptions);   }
                 }
@@ -703,18 +722,6 @@
                     },
                 })
             
-            var treatment = L.geoJSON(SIRP, {
-                onEachFeature: popupProvider,
-                filter: function(feature, layer) {
-                    if (feature.properties.ServiceTyp == 'SubstanceUseTreatment') {
-                    return true;
-                    }
-                    },
-                pointToLayer: function(feature, latlng) {
-                    return L.circleMarker(latlng, circle);
-                    }           
-                });
-            
              var twelve = L.geoJSON(SIRP, {
                  onEachFeature: popupProvider,
                 filter: function(feature, layer) {
@@ -722,10 +729,10 @@
                     return true;
                     }
                     },
-                pointToLayer: function(feature, latlng) {
-                    return L.circleMarker(latlng, circle);
-                    }           
-                });
+                 pointToLayer: function(feature, latlng) {
+                    return L.marker(latlng, {icon: redMarker});
+                    },
+                })
             
                 var Out = L.geoJSON(SIRP, {
                     onEachFeature: popupProvider,
@@ -734,10 +741,10 @@
                     return true;
                     }
                     },
-                pointToLayer: function(feature, latlng) {
-                    return L.circleMarker(latlng, circle);
-                    }           
-                });
+                 pointToLayer: function(feature, latlng) {
+                    return L.marker(latlng, {icon: redMarker});
+                    },
+                })
             
                 var Religion = L.geoJSON(SIRP, {
                     onEachFeature: popupProvider,
@@ -746,10 +753,10 @@
                     return true;
                     }
                     },
-                pointToLayer: function(feature, latlng) {
-                    return L.circleMarker(latlng, circle);
-                    }           
-                });
+                 pointToLayer: function(feature, latlng) {
+                    return L.marker(latlng, {icon: redMarker});
+                    },
+                })
             
                 var women = L.geoJSON(SIRP, {
                     onEachFeature: popupProvider,
@@ -758,10 +765,10 @@
                     return true;
                     }
                     },
-                pointToLayer: function(feature, latlng) {
-                    return L.circleMarker(latlng, circle);
-                    }           
-                });
+                 pointToLayer: function(feature, latlng) {
+                    return L.marker(latlng, {icon: redMarker});
+                    },
+                })
             
                 var men = L.geoJSON(SIRP, {
                     onEachFeature: popupProvider,
@@ -770,10 +777,10 @@
                     return true;
                     }
                     },
-                pointToLayer: function(feature, latlng) {
-                    return L.circleMarker(latlng, circle);
-                    }           
-                });
+                 pointToLayer: function(feature, latlng) {
+                    return L.marker(latlng, {icon: redMarker});
+                    },
+                })
                 
                 var family = L.geoJSON(SIRP, {
                     onEachFeature: popupProvider,
@@ -782,10 +789,10 @@
                     return true;
                     }
                     },
-                pointToLayer: function(feature, latlng) {
-                    return L.circleMarker(latlng, circle);
-                    }           
-                });
+                 pointToLayer: function(feature, latlng) {
+                    return L.marker(latlng, {icon: redMarker});
+                    },
+                })
                 
                 var veteran = L.geoJSON(SIRP, {
                     onEachFeature: popupProvider,
@@ -794,10 +801,10 @@
                     return true;
                     }
                     },
-                pointToLayer: function(feature, latlng) {
-                    return L.circleMarker(latlng, circle);
-                    }           
-                });
+                 pointToLayer: function(feature, latlng) {
+                    return L.marker(latlng, {icon: redMarker});
+                    },
+                })
             
 
    
