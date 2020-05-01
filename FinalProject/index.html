@@ -36,10 +36,17 @@
             
             <!--Boot Strap-->
             <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
 
             <!--J Query-->
             <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
         
+            <!--AwesomeMarker-->
+            <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.css" rel="stylesheet">
+	        <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/1.5.2/css/ionicons.min.css">
+            <link rel="stylesheet" href="PlugIn/awesomemarkers/dist/leaflet.awesome-markers.css" />
+            <script src="PlugIn/awesomemarkers/dist/leaflet.awesome-markers.js"></script>
+
             <!--KVS geoJSON-->    
             <script src="IRP200430.geojson"></script>
             <script src="IRP200430copy.geojson"></script>
@@ -274,6 +281,8 @@
             <p>[hold for text regarding impact of COVID on substance use triggers-social isolation/economic vulnerability and provider location]</p>
             </div>
             <div id="map3"></div>
+        
+ 
         
          <div id='map4container'>
             <h2>Interested in locating a specific recovery provider?r</h2>
@@ -515,7 +524,7 @@
                     })      
                 markers.addLayer(IRP);
                 map3.addLayer(markers);
-                //map3.fitBounds(markers.getBounds());  
+      
            
             
     var circle = {
@@ -644,11 +653,19 @@
                 zoom: 7,
                 layers: [OSM4]
 		          });
+   
+    var redMarker = L.AwesomeMarkers.icon({
+    icon : 'flag',
+    prefix: 'ion',
+    markerColor: 'blue'
+  });      
             
+
             
       var all = L.geoJSON(SIRP, {
                 pointToLayer: function(feature, latlng) {
-                    return L.circleMarker(latlng, circle);
+                    return L.marker(latlng, {
+                    icon: redMarker})
                     },
                 onEachFeature: function (feature, layer) {
                     popupOptions = {maxWidth: 200}; 
@@ -658,9 +675,10 @@
                     else{layer.bindPopup("<b>Site name: </b>" + feature.properties.Name + 
                                          "<br><b>Link: </b>" + '<a href="'+feature.properties.URL+'">'+feature.properties.URL+'</a>'                   
                     ,popupOptions);   }
-                }
-      })
-            .addTo(map4);
+                }}
+      )
+ 
+      .addTo(map4);
             
     function popupProvider(feature, layer) {
                     popupOptions = {maxWidth: 200}; 
