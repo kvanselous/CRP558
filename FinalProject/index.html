@@ -658,16 +658,18 @@
                 layers: [OSM4]
 		          });
    
-            var redMarker = L.AwesomeMarkers.icon({
+            //awesome marker for phone icon 
+            var phoneMarker = L.AwesomeMarkers.icon({
                 icon: 'phone',
                 prefix: 'fa',
                 markerColor: 'blue'
                 });      
-                 
+             
+            //map 4 data that starts on the data 
             var all = L.geoJSON(SIRP, {
                 pointToLayer: function(feature, latlng) {
                 return L.marker(latlng, {
-                icon: redMarker})
+                icon: phoneMarker})
                 },
                 onEachFeature: function (feature, layer) {
                     popupOptions = {maxWidth: 200}; 
@@ -683,6 +685,7 @@
                     )
                     .addTo(map4);
             
+            //map 4 pop up function
             function popupProvider(feature, layer) {
                 popupOptions = {maxWidth: 200}; 
                     if (feature.properties.URL == "NA"){ 
@@ -694,7 +697,8 @@
                                          "<br><b>Link: </b>" + '<a href="'+feature.properties.URL+'">'+feature.properties.URL+'</a>'                   
                     ,popupOptions);   }
                     }
-  
+            
+            //map 4 data for buttons 
             var housing = L.geoJSON(SIRP, {
                 onEachFeature: popupProvider,
                 filter: function(feature, layer) {
@@ -703,7 +707,7 @@
                     }
                     },
                 pointToLayer: function(feature, latlng) {
-                    return L.marker(latlng, {icon: redMarker});
+                    return L.marker(latlng, {icon: phoneMarker});
                     },
                     })
             
@@ -715,7 +719,7 @@
                     }
                     },
                 pointToLayer: function(feature, latlng) {
-                    return L.marker(latlng, {icon: redMarker});
+                    return L.marker(latlng, {icon: phoneMarker});
                     },
                     })
             
@@ -727,7 +731,7 @@
                     }
                     },
                 pointToLayer: function(feature, latlng) {
-                    return L.marker(latlng, {icon: redMarker});
+                    return L.marker(latlng, {icon: phoneMarker});
                     },
                     })
             
@@ -739,7 +743,7 @@
                     }
                     },
                 pointToLayer: function(feature, latlng) {
-                    return L.marker(latlng, {icon: redMarker});
+                    return L.marker(latlng, {icon: phoneMarker});
                     },
                     })
             
@@ -751,7 +755,7 @@
                     }
                     },
                 pointToLayer: function(feature, latlng) {
-                    return L.marker(latlng, {icon: redMarker});
+                    return L.marker(latlng, {icon: phoneMarker});
                     },
                     })
             
@@ -763,7 +767,7 @@
                     }
                     },
                 pointToLayer: function(feature, latlng) {
-                    return L.marker(latlng, {icon: redMarker});
+                    return L.marker(latlng, {icon: phoneMarker});
                     },
                     })
                 
@@ -775,7 +779,7 @@
                     }
                     },
                  pointToLayer: function(feature, latlng) {
-                    return L.marker(latlng, {icon: redMarker});
+                    return L.marker(latlng, {icon: phoneMarker});
                     },
                     })
                 
@@ -787,11 +791,11 @@
                     }
                     },
                  pointToLayer: function(feature, latlng) {
-                    return L.marker(latlng, {icon: redMarker});
+                    return L.marker(latlng, {icon: phoneMarker});
                     },
                     })
             
-            //Filtering
+            //map 4 filtering
             $("#women").click(function() {
                 map4.addLayer(women);
                 map4.removeLayer(all);
