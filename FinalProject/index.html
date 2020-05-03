@@ -12,7 +12,7 @@
       <!--Example of project final posted to CRP 558: https://rahasan17.github.io/LA458-558/FinalProject/index.html-->
       <!--Leaflet materials from: https://leafletjs.com/-->
       <!--HTML, CSS, & JavaScript materials from: https://www.w3schools.com/default.asp-->
-      <!--Collaboration with Dr. Shawn Dorius, Dr. Cass Dorius, Dr. Chris Seeger, & Professor Bailey Hanson-->
+      <!--Collaboration with Professor Baily Hanson, Dr. Shawn Dorius, Dr. Cass Dorius, & Dr. Chris Seeger.-->
       <meta charset="utf-8">
       <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
       <title>Final Project</title>   
@@ -53,215 +53,216 @@
             <script src="TXFound200430.geojson"></script>
             <script src="substanceinducedmortality.geojson"></script>
             <script src="Iowasubstanceinducedmortality.geojson"></script>
-     <style>    
-            /*Drop Down Menu*/
-            ul {
-                list-style-type: none;
-                margin: 0;
-                padding: 0;
-                overflow: hidden;
-                background-color: #333;
-                }
+                <style>    
+                    /*Drop Down Menu*/
+                    ul {
+                        list-style-type: none;
+                        margin: 0;
+                        padding: 0;
+                        overflow: hidden;
+                        background-color: #333;
+                        }
 
-            li {
-                float: left;
-                }
+                    li {
+                        float: left;
+                        }
 
-            li a, .dropbtn {
-                display: inline-block;
-                color: white;
-                text-align: center;
-                padding: 14px 16px;
-                text-decoration: none;
-                }
+                    li a, .dropbtn {
+                        display: inline-block;
+                        color: white;
+                        text-align: center;
+                        padding: 14px 16px;
+                        text-decoration: none;
+                        }
 
-            li a:hover, .dropdown:hover .dropbtn {
-                background-color: red;
-                }
+                    li a:hover, .dropdown:hover .dropbtn {
+                        background-color: red;
+                        }
 
-            li.dropdown {
-                display: inline-block;
-                }
+                    li.dropdown {
+                        display: inline-block;
+                        }
 
-            .dropdown-content {
-                display: none;
-                position: absolute;
-                background-color: #f9f9f9;
-                min-width: 160px;
-                box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-                z-index: 1;
-                }
-
-            .dropdown-content a {
-                color: black;
-                padding: 12px 16px;
-                text-decoration: none;
-                display: block;
-                text-align: left;
-                }
-
-            .dropdown-content a:hover {background-color: #f1f1f1;}
-
-            .dropdown:hover .dropdown-content {
-                display: block;
-                }
-            
-            /*map and containers*/
-            #map1container {position:absolute; background-color:#F0F0F0; color:black; text-align:left; margin-right: 0px; margin-left:0px; width:600px; height:400px;padding 0; }
-            #map1 {position: relative; height: 400px; margin-left:600px;border-left:2px; padding 0; overflow:hidden;}
-    
-            #map2container {position:absolute; background-color:#D3D3D3; color:black; text-align:left; margin-right: 0px; margin-left:0px; width:600px; height:400px;padding 0; }
-            #map2 {position: relative;  height: 400px; margin-left:600px;border-left:2px; padding 0; overflow:hidden;}
-       
-            #map3container {position:absolute; background-color:#F0F0F0; color:black; text-align:left; margin-right: 0px; margin-left:0px; width:600px; height:400px;padding 0; }
-            #map3 {position: relative;  height: 400px; margin-left:600px;border-left:2px; padding 0; overflow:hidden;}
-       
-            #map4container {position:absolute; background-color:#D3D3D3; color:black; text-align:center; margin-right: 0px; margin-left:0px; width:600px; height:400px;padding 0; }
-            #map4 {position: relative;  height: 400px; margin-left:600px;border-left:2px; padding 0; overflow:hidden;}
-       
-            #map5container {position:absolute; background-color:#F0F0F0; color:black; text-align:center; margin-right: 0px; margin-left:0px; width:99.9%; height:400px;padding 0; }
-
-            /*legends*/
-            .legend {
-                line-height: 18px;
-                color: #555;
-                background color:cornsilk
-                }
-            
-            .legend i {
-                width: 10px;
-                height: 10px;
-                float: left;
-                margin-right: 8px;
-                opacity: 0.7;
-                }
-            
-            .info {
-                padding: 6px 8px;
-                font: 10px/10px Arial, Helvetica, sans-serif;
-                background: white;
-                background: rgba(255,255,255,0.8);
-                box-shadow: 0 0 15px rgba(0,0,0,0.2);
-                border-radius: 5px;
-                }
-            
-            .info h4 {
-                margin: 0 0 5px;
-                color: #777;
-                }
-            
-            .legend2 {
-                line-height: 18px;
-                color: #555;
-                background color:cornsilk
-                }
-            
-            .legend2 i {
-                width: 10px;
-                height: 10px;
-                float: left;
-                margin-right: 8px;
-                opacity: 0.7;
-                }
-            
-            .info2 {
-                padding: 6px 8px;
-                font: 10px/10px Arial, Helvetica, sans-serif;
-                background: white;
-                background: rgba(255,255,255,0.8);
-                box-shadow: 0 0 15px rgba(0,0,0,0.2);
-                border-radius: 5px;
-                }
-            
-            .info2 h4 {
-                margin: 0 0 5px;
-                color: #777;
-                }
-            
-            
-            .legend3 {
-                line-height: 18px;
-                color: #555;
-                background color:cornsilk
-                }
-            
-            .legend3 i {
-                width: 10px;
-                height: 10px;
-                float: left;
-                margin-right: 8px;
-                opacity: 0.7;
-                }
-            
-            .info3 {
-                padding: 6px 8px;
-                font: 10px/10px Arial, Helvetica, sans-serif;
-                background: white;
-                background: rgba(255,255,255,0.8);
-                box-shadow: 0 0 15px rgba(0,0,0,0.2);
-                border-radius: 5px;
-                }
-            
-            .info3 h4 {
-                margin: 0 0 5px;
-                color: #777;
-                }
+                    .dropdown-content {
+                        display: none;
+                        position: absolute;
+                        background-color: #f9f9f9;
+                        min-width: 160px;
+                        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+                        z-index: 1;
+                        }
                     
-            /*Text Formatingg*/
-            h1 {text-align: center}
-            h4 {text-align: center}
+                    .dropdown-content a {
+                        color: black;
+                        padding: 12px 16px;
+                        text-decoration: none;
+                        display: block;
+                        text-align: left;
+                        }
+
+                     .dropdown-content a:hover {background-color: #f1f1f1;}
+
+                     .dropdown:hover .dropdown-content {
+                        display: block;
+                        }
             
-            /*button styles*/
-            .button {
-            background-color: #4CAF50;
-  border: none;
-  color: white;
-  padding: 5px 10px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 14px;
-  width: 200px;
-  height: 60px;
-  margin: 4px 2px;
-  cursor: pointer;
-}
-        </style>
-    </head>
+                     /*map and containers*/
+                     #map1container {position:absolute; background-color:#F0F0F0; color:black; text-align:left; margin-right: 0px; margin-left:0px; width:600px; height:400px;padding 0; }
+                     #map1 {position: relative; height: 400px; margin-left:600px;border-left:2px; padding 0; overflow:hidden;}
+    
+                     #map2container {position:absolute; background-color:#D3D3D3; color:black; text-align:left; margin-right: 0px; margin-left:0px; width:600px; height:400px;padding 0; }
+                     #map2 {position: relative;  height: 400px; margin-left:600px;border-left:2px; padding 0; overflow:hidden;}
+        
+                     #map3container {position:absolute; background-color:#F0F0F0; color:black; text-align:left; margin-right: 0px; margin-left:0px; width:600px; height:400px;padding 0; }
+                     #map3 {position: relative;  height: 400px; margin-left:600px;border-left:2px; padding 0; overflow:hidden;}
+       
+                     #map4container {position:absolute; background-color:#D3D3D3; color:black; text-align:center; margin-right: 0px; margin-left:0px; width:600px; height:400px;padding 0; }
+                     #map4 {position: relative;  height: 400px; margin-left:600px;border-left:2px; padding 0; overflow:hidden;}
+       
+                     #map5container {position:absolute; background-color:#F0F0F0; color:black; text-align:center; margin-right: 0px; margin-left:0px; width:99.9%; height:400px;padding 0; }
+
+                     /*legends*/
+                     .legend {
+                        line-height: 18px;
+                        color: #555;
+                        background color:cornsilk
+                        }
+            
+                     .legend i {
+                         width: 10px;
+                         height: 10px;
+                         float: left;
+                         margin-right: 8px;
+                         opacity: 0.7;
+                         }
+                
+                     .info {
+                         padding: 6px 8px;
+                         font: 10px/10px Arial, Helvetica, sans-serif;
+                         background: white;
+                         background: rgba(255,255,255,0.8);
+                         box-shadow: 0 0 15px rgba(0,0,0,0.2);
+                         border-radius: 5px;
+                         }
+            
+                     .info h4 {
+                         margin: 0 0 5px;
+                         color: #777;
+                         }
+            
+                     .legend2 {
+                         line-height: 18px;
+                         color: #555;
+                         background color:cornsilk
+                         }
+            
+                     .legend2 i {
+                         width: 10px;
+                         height: 10px;
+                         float: left;
+                         margin-right: 8px;
+                         opacity: 0.7;
+                         }
+            
+                     .info2 {
+                         padding: 6px 8px;
+                         font: 10px/10px Arial, Helvetica, sans-serif;
+                         background: white;
+                         background: rgba(255,255,255,0.8);
+                         box-shadow: 0 0 15px rgba(0,0,0,0.2);
+                         border-radius: 5px;
+                         }
+            
+                     .info2 h4 {
+                         margin: 0 0 5px;
+                         color: #777;
+                         }
+             
+                     .legend3 {
+                         line-height: 18px;
+                         color: #555;
+                         background color:cornsilk
+                         }
+            
+                     .legend3 i {
+                         width: 10px;
+                         height: 10px;
+                         float: left;
+                         margin-right: 8px;
+                         opacity: 0.7;
+                         }
+            
+                     .info3 {
+                         padding: 6px 8px;
+                         font: 10px/10px Arial, Helvetica, sans-serif;
+                         background: white;
+                         background: rgba(255,255,255,0.8);
+                         box-shadow: 0 0 15px rgba(0,0,0,0.2);
+                         border-radius: 5px;
+                         }
+            
+                     .info3 h4 {
+                         margin: 0 0 5px;
+                         color: #777;
+                         }
+                    
+                     /*Text Formatingg*/
+                     h1 {text-align: center}
+                     h4 {text-align: center}
+            
+                     /*button styles*/
+                     .button {
+                         background-color: #4CAF50;
+                         border: none;
+                         color: white;
+                         padding: 5px 10px;
+                         text-align: center;
+                         text-decoration: none;
+                         display: inline-block;
+                         font-size: 14px;
+                         width: 200px;
+                         height: 60px;
+                         margin: 4px 2px;
+                         cursor: pointer;
+                         }
+                    </style>
+            </head>
     <body>  
       <!--drop down menu list-->
-      <ul>
-        <li><a href="https://kvanselous.github.io/CRP558/">Home</a></li>
-        <li class="dropdown">
+        <ul>
+            <li><a href="https://kvanselous.github.io/CRP558/">Home</a></li>
+            <li class="dropdown">
                 <a href="javascript:void(0)" class="dropbtn">Assignments</a>
             <div class="dropdown-content"> 
-        <a href="https://kvanselous.github.io/CRP558/Assignment1/">Assignment 1</a>
-        <a href="https://kvanselous.github.io/CRP558/Assignment2/">Assignment 2</a>
-          </div>
-        <li class="dropdown">
-             <a href="javascript:void(0)" class="dropbtn">Exercises</a>
-          <div class="dropdown-content"> 
-        <a href="https://kvanselous.github.io/CRP558/exercise1/">Exercise 1</a>           
-        <a href="https://kvanselous.github.io/CRP558/exercise2/">Exercise 2</a>
-        <a href="https://kvanselous.github.io/CRP558/exercise3/">Exercise 3</a>
-        <a href="https://kvanselous.github.io/CRP558/exercise4/">Exercise 4</a>
-        <a href="https://kvanselous.github.io/CRP558/exercise5/">Exercise 5</a>   
-        <a href="https://kvanselous.github.io/CRP558/exercise6/">Exercise 6</a>  
-        <a href="https://kvanselous.github.io/CRP558/exercise7/">Exercise 7</a>  
-        <a href="https://kvanselous.github.io/CRP558/exercise8/">Exercise 8</a>  
-        <a href="https://kvanselous.github.io/CRP558/exercise9/">Exercise 9</a>  
-        <a href="https://kvanselous.github.io/CRP558/exercise10/">Exercise 10</a>  
-        <a href="https://kvanselous.github.io/CRP558/exercise11/">Exercise 11</a>  
-        <a href="https://kvanselous.github.io/CRP558/exercise12/">Exercise 12</a>           
-        </div>        
-        <li><a href="https://kvanselous.github.io/CRP558/TechReport/">Tech Report</a></li>
-      <li><a href="https://kvanselous.github.io/CRP558/ProjectProposal/">Project Proposal</a></li>
-      <li><a href="https://kvanselous.github.io/CRP558/FinalProject/">Final Project</a></li>
-      </ul>  
+                <a href="https://kvanselous.github.io/CRP558/Assignment1/">Assignment 1</a>
+                <a href="https://kvanselous.github.io/CRP558/Assignment2/">Assignment 2</a>
+                </div>
+            <li class="dropdown">
+                <a href="javascript:void(0)" class="dropbtn">Exercises</a>
+                <div class="dropdown-content"> 
+                    <a href="https://kvanselous.github.io/CRP558/exercise1/">Exercise 1</a>           
+                    <a href="https://kvanselous.github.io/CRP558/exercise2/">Exercise 2</a>
+                    <a href="https://kvanselous.github.io/CRP558/exercise3/">Exercise 3</a>
+                    <a href="https://kvanselous.github.io/CRP558/exercise4/">Exercise 4</a>
+                    <a href="https://kvanselous.github.io/CRP558/exercise5/">Exercise 5</a>   
+                    <a href="https://kvanselous.github.io/CRP558/exercise6/">Exercise 6</a>  
+                    <a href="https://kvanselous.github.io/CRP558/exercise7/">Exercise 7</a>  
+                    <a href="https://kvanselous.github.io/CRP558/exercise8/">Exercise 8</a>  
+                    <a href="https://kvanselous.github.io/CRP558/exercise9/">Exercise 9</a>  
+                    <a href="https://kvanselous.github.io/CRP558/exercise10/">Exercise 10</a>  
+                    <a href="https://kvanselous.github.io/CRP558/exercise11/">Exercise 11</a>  
+                    <a href="https://kvanselous.github.io/CRP558/exercise12/">Exercise 12</a>           
+                    </div>        
+            <li><a href="https://kvanselous.github.io/CRP558/TechReport/">Tech Report</a></li>
+            <li><a href="https://kvanselous.github.io/CRP558/ProjectProposal/">Project Proposal</a></li>
+            <li><a href="https://kvanselous.github.io/CRP558/FinalProject/">Final Project</a></li>
+            </ul>  
+    
         <!--Title-->
         <h1>CRP 558 Final Project, Spring 2020 <em>(Drafting)</em></h1>
         <h4>Kelsey Van Selous MSW, LCSW
         <br> Human Development and Family Studies PhD Student</h4>
+      
         <!--Maps and Containers-->
         <div id='map1container'>
             <h2>Substance Use in the United States</h2>
@@ -284,14 +285,12 @@
             <p>[hold for text regarding impact of COVID on substance use triggers-social isolation/economic vulnerability and provider location]</p>
             </div>
             <div id="map3"></div>
-        
- 
-        
+             
          <div id='map4container'>
             <h2>Interested in locating a specific recovery provider?</h2>
             <p>Click on the buttons below to explore options of Iowa Substance Use Recovery Providers:</p>
              <div class="btn-group">
-                <button type="button" id="women" class="button">Female Only</button>
+                 <button type="button" id="women" class="button">Female Only</button>
                  <button type="button" id="men" class="button">Male Only </button>
                  <br><button type="button" id="family" class="button">Families</button>
 		         <button type="button" id="veteran" class="button">Veterans</button>
@@ -299,12 +298,11 @@
                  <button type="button" id="Religion" class="button">Religious and Faith Based</button>
                  <br><button type="twelve" id="twelve" class="button">12-Step Programs</button>
                  <button type="button" id="Out" class="button">Outpatient Services</button>
-  
-    </div>
-            </div>
+                 </div>
+                 </div>
             <div id="map4"></div>
         
-             <div id='map5container'>
+         <div id='map5container'>
             <h2>To Do:</h2>
             update color schemes of cholorpleth maps
             <br>add legends 
@@ -312,11 +310,8 @@
             <br>attach report
             <br>add titles
             <br>explore best breakdowns for cholorpleth map segments
-
-
             </div>
        
-
         <script>
                 
             //map 1
@@ -331,7 +326,7 @@
                 layers: [OSM1]
 		          });
             
-            //map 1 mstyling function    
+            //map 1 styling function    
             function getColorMort(d) {
 		          return d  > 1000  ? '#FF0000' :
 				    d     > 900  ? '#DC143C' :
@@ -342,17 +337,17 @@
                     "#FFFFFF"; 
                     }
             
-	       function style1(feature) {
-               return {
+	        function style1(feature) {
+                return {
 			     weight: 1,
 			     opacity: 1,
 			     color: 'white',
 			     fillOpacity: 0.7,
 			     fillColor: getColorMort(feature.properties.SubstanceInducedMortality_CrudeRate)
-		          };
-                  }
+		         };
+                 }
             
-            //Map 1 highlighting/pop up functions
+            //map 1 highlighting & pop up functions
             function highlightFeature(e) {
                 var layer = e.target;
                 layer.setStyle({
@@ -375,23 +370,22 @@
                 mouseover: highlightFeature,
                 mouseout: resetHighlight
                 });
-            if (feature.properties) {
-                layer.bindPopup("<b>State: </b>" + feature.properties.NAME + "<br><b>Substance Induced Crude Death Rate per 100,000: </b>" + feature.properties.SubstanceInducedMortality_CrudeRate);
-            }
-            }
+                if (feature.properties) {
+                    layer.bindPopup("<b>State: </b>" + feature.properties.NAME + "<br><b>Substance Induced Crude Death Rate per 100,000: </b>" + feature.properties.SubstanceInducedMortality_CrudeRate);
+                    }
+                    }
             
             //map 1 data          
             var mort = L.geoJson(mort, {
                 style: style1,
                 onEachFeature: onEachFeature
-            }).addTo(map1);
+                }).addTo(map1);
             
-            //Map1 Legend
+            //map 1 legend
             var legend = L.control({
                 position: 'bottomright'
                 });
-
-            legend.onAdd = function(map1) {
+                legend.onAdd = function(map1) {
 
             var div = L.DomUtil.create('div', 'info legend'),
                 Mort = [0, 600, 700, 800, 900,1000],
@@ -403,10 +397,9 @@
                     }
                 return div;
                 };
-
                 legend.addTo(map1);
             
-            //Map2   
+            //map  2   
             var OSM2 = L.tileLayer('https://{s}.tile.osm.org/{z}/{x}/{y}.png', {
                 attribution: '&copy; <a href="https://osm.org/copyright">OpenStreetMap</a> contributors',
                 maxZoom: 18
@@ -418,18 +411,17 @@
 		          });
             
        
-            //Map 2 coloring and style functions 
+            //map 2 coloring & style functions 
             function getColor2(d) {
 		      return d  > 1000  ? '#FF0000' :
-                d     > 900  ? '#DC143C' :
-				d > 800  ? '#CD5C5C' :
-				d > 700   ? '#F08080' :
-				d > 600   ? '#E9967A' :
-				d > 0   ? '#FFA07A' :
-               "#FFFFFF"; 
-	           }
-
-            
+                     d  > 900  ? '#DC143C' :
+				     d  > 800  ? '#CD5C5C' :
+				     d  > 700   ? '#F08080' :
+				     d  > 600   ? '#E9967A' :
+				     d  > 0   ? '#FFA07A' :
+                     "#FFFFFF"; 
+                     }
+             
             function style2(feature) {
                 return {
                     weight: 1,
@@ -438,8 +430,9 @@
                     fillOpacity: 0.7,
 			        fillColor: getColor2(feature.properties.IowaSubstanceInducedMortalityData_CrudeRate)
 		            };
-	               }                 
-            //Map 2 highlighting/pop up functions
+	               }    
+            
+            //map 2 highlighting & pop up functions
             function highlightFeature2(e) {
                 var layer = e.target;
                 layer.setStyle({
@@ -448,10 +441,10 @@
                     dashArray: '',
                     fillOpacity: 0.7
                     });
-                if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
-                    layer.bringToFront();
-                    }
-                    }
+                    if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
+                        layer.bringToFront();
+                        }
+                        }
 
             function resetHighlight2(e) {
                 IMort.resetStyle(e.target);
@@ -464,17 +457,16 @@
                 });
             if (feature.properties) {
                 layer.bindPopup("<b>County: </b>" + feature.properties.COUNTY + "<br><b>Substance Induced Crude Death Rate per 100,000: </b>" + feature.properties.IowaSubstanceInducedMortalityData_CrudeRate);
-            }
-            }
+                }
+                }
             
             //map 2 data          
             var IMort = L.geoJson(IMort, {
                 style: style2,
                 onEachFeature: onEachFeature2
-            }).addTo(map2);
+                }).addTo(map2);  
             
-            
-            //Map 2 legend
+            //map 2 legend
             var legend2 = L.control({
                 position: 'bottomright'
                 });
@@ -492,7 +484,7 @@
                 };
                 legend2.addTo(map2);
             
-            //Map2 Layer Control
+            //map 2 layer control
 		    var baseMap = {
 		      "OpenStreetMap": OSM2
                 };
@@ -504,19 +496,21 @@
             L.control.layers(baseMap, overlayMaps).addTo(map2);	
               
                
-            //Map3   
+            //map 3   
             var OSM3 = L.tileLayer('https://{s}.tile.osm.org/{z}/{x}/{y}.png', {
                 attribution: '&copy; <a href="https://osm.org/copyright">OpenStreetMap</a> contributors',
                 maxZoom: 18
                 });	
+            
             var map3 = L.map('map3', {
                 center: [42,-93],
                 zoom: 6,
                 layers: [OSM3]
-		          });
+		        });
             
-            //Map3 provider data, style, and function
+            //map 3 provider data, style, and function
             var markers = L.markerClusterGroup();
+            
             var IRP =L.geoJSON(IRP, {
                 style: function (feature) {
                 return {
@@ -537,25 +531,20 @@
                     })      
                 markers.addLayer(IRP);
                 map3.addLayer(markers);
-      
-           
-            
-    var circle = {
-    radius: 4,
-    fillColor: "#ff7800",
-    color: "#000",
-    weight: 1,
-    opacity: 1,
-    fillOpacity: 0.8
-    };
-            
- 
-            
-            
-        var SingleIRP =L.geoJSON(SIRP, {
-                    pointToLayer: function (feature, latlng) {
+             
+            var circle = {
+                radius: 4,
+                fillColor: "#ff7800",
+                color: "#000",
+                weight: 1,
+                opacity: 1,
+                fillOpacity: 0.8
+                };
+             
+            var SingleIRP =L.geoJSON(SIRP, {
+                pointToLayer: function (feature, latlng) {
                 return L.circleMarker(latlng, circle);
-                        },
+                },
                 onEachFeature: function (feature, layer) {
                     popupOptions = {maxWidth: 200}; 
                     if (feature.properties.URL == "NA"){ 
@@ -565,21 +554,22 @@
                                          "<br><b>Link: </b>" + '<a href="'+feature.properties.URL+'">'+feature.properties.URL+'</a>'                   
                     ,popupOptions);   }
                     }
-                        })
-  var circle2 = {
-    radius: 4,
-    fillColor: "#green",
-    color: "#000",
-    weight: 1,
-    opacity: 1,
-    fillOpacity: 0.8
-    };
+                    })
+            
+             var circle2 = {
+                 radius: 4,
+                 fillColor: "#green",
+                 color: "#000",
+                 weight: 1,
+                 opacity: 1,
+                 fillOpacity: 0.8
+                 };
           
-              var TX =L.geoJSON(TX, {
-               pointToLayer: function (feature, latlng) {
-                return L.circleMarker(latlng, circle2);
-                        },
-                onEachFeature: function (feature, layer) {
+             var TX =L.geoJSON(TX, {
+                 pointToLayer: function (feature, latlng) {
+                 return L.circleMarker(latlng, circle2);
+                 },
+                 onEachFeature: function (feature, layer) {
                     popupOptions = {maxWidth: 200}; 
                     if (feature.properties.URL == "NA"){ 
                     layer.bindPopup("<b>Site name: </b>" + feature.properties.Name +  
@@ -590,15 +580,15 @@
                     }
                     })  
 
-            function getColor3(d) {
-		      return d  > 1000  ? '#873600' :
-                d     > 500  ? '#A04000' :
-				d > 100  ? '#BA4A00' :
-				d > 50   ? '#D35400' :
-				d > 10   ? '#DC7633' :
-				d > 0   ? '#E59866' :
-               "#E59866"; 
-	           }
+             function getColor3(d) {
+                 return d  > 1000  ? '#873600' :
+                        d  > 500  ? '#A04000' :
+				        d  > 100  ? '#BA4A00' :
+				        d  > 50   ? '#D35400' :
+				        d  > 10   ? '#DC7633' :
+				        d  > 0   ? '#E59866' :
+                        "#E59866"; 
+                        }
             
             function style3(feature) {
                 return {
@@ -608,8 +598,9 @@
                     fillOpacity: 0.7,
 			        fillColor: getColor3(feature.properties.Confirmed)
 		            };
-	               }       
-            //Map3 COVID data, style, and function
+	               }   
+            
+            //map 3 COVID data, style, and function
             var COVID =L.esri.featureLayer({     
                 url: 'https://services.arcgis.com/vPD5PVLI6sfkZ5E4/ArcGIS/rest/services/IA_COVID19_Cases/FeatureServer/0', style: style3, 
                 onEachFeature: function
@@ -621,7 +612,7 @@
                     }
                     })             
 
-            //Map 3 legend
+            //map 3 legend
             var legend3 = L.control({
                 position: 'bottomright'
                 });
@@ -640,12 +631,12 @@
 
             legend3.addTo(map3);
             
-            //Map3 Layer Control
+            //map 3 Layer Control
 		    var baseMap = {
 		      "OpenStreetMap": OSM3
                 };
        		
-		   var overlayMaps = {
+		    var overlayMaps = {
 		      "Iowa Recovery Providers Cluster Layer": markers,
               "Iowa Recovery Providers Single Layer": SingleIRP, 
               "Iowa Substance Use Treatment Providers Single Layer": TX,
@@ -653,33 +644,31 @@
               "COVID": COVID
 		      };			
          
-           L.control.layers(baseMap, overlayMaps).addTo(map3);	
+            L.control.layers(baseMap, overlayMaps).addTo(map3);	
             
-              //Map4
-            
+            //map 4  
             var OSM4 = L.tileLayer('https://{s}.tile.osm.org/{z}/{x}/{y}.png', {
                 attribution: '&copy; <a href="https://osm.org/copyright">OpenStreetMap</a> contributors',
                 maxZoom: 18
                 });	
+            
             var map4 = L.map('map4', {
                 center: [42,-93],
                 zoom: 7,
                 layers: [OSM4]
 		          });
    
-    var redMarker = L.AwesomeMarkers.icon({
-    icon: 'phone',
-    prefix: 'fa',
-    markerColor: 'blue'
-  });      
-            
-
-            
-      var all = L.geoJSON(SIRP, {
+            var redMarker = L.AwesomeMarkers.icon({
+                icon: 'phone',
+                prefix: 'fa',
+                markerColor: 'blue'
+                });      
+                 
+            var all = L.geoJSON(SIRP, {
                 pointToLayer: function(feature, latlng) {
-                    return L.marker(latlng, {
-                    icon: redMarker})
-                    },
+                return L.marker(latlng, {
+                icon: redMarker})
+                },
                 onEachFeature: function (feature, layer) {
                     popupOptions = {maxWidth: 200}; 
                     if (feature.properties.URL == "NA"){ 
@@ -690,13 +679,12 @@
                                          "<br><b>Phone Number: </b>" + feature.properties.Phone +                  
                                          "<br><b>Link: </b>" + '<a href="'+feature.properties.URL+'">'+feature.properties.URL+'</a>'                   
                     ,popupOptions);   }
-                }}
-      )
- 
-      .addTo(map4);
+                    }}
+                    )
+                    .addTo(map4);
             
-    function popupProvider(feature, layer) {
-                    popupOptions = {maxWidth: 200}; 
+            function popupProvider(feature, layer) {
+                popupOptions = {maxWidth: 200}; 
                     if (feature.properties.URL == "NA"){ 
                     layer.bindPopup("<b>Site name: </b>" + feature.properties.Name +  
                                     "<br><b>Phone Number: </b>" + feature.properties.Phone +                  
@@ -705,10 +693,9 @@
                                          "<br><b>Phone Number: </b>" + feature.properties.Phone +                  
                                          "<br><b>Link: </b>" + '<a href="'+feature.properties.URL+'">'+feature.properties.URL+'</a>'                   
                     ,popupOptions);   }
-                }
-
-            
-    var housing = L.geoJSON(SIRP, {
+                    }
+  
+            var housing = L.geoJSON(SIRP, {
                 onEachFeature: popupProvider,
                 filter: function(feature, layer) {
                     if (feature.properties.ServiceTyp == 'RecoveryHousing') {
@@ -718,70 +705,70 @@
                 pointToLayer: function(feature, latlng) {
                     return L.marker(latlng, {icon: redMarker});
                     },
-                })
+                    })
             
              var twelve = L.geoJSON(SIRP, {
-                 onEachFeature: popupProvider,
+                onEachFeature: popupProvider,
                 filter: function(feature, layer) {
                     if (feature.properties.twelve_Step == 'Yes') {
                     return true;
                     }
                     },
-                 pointToLayer: function(feature, latlng) {
+                pointToLayer: function(feature, latlng) {
                     return L.marker(latlng, {icon: redMarker});
                     },
-                })
+                    })
             
-                var Out = L.geoJSON(SIRP, {
-                    onEachFeature: popupProvider,
+            var Out = L.geoJSON(SIRP, {
+                onEachFeature: popupProvider,
                 filter: function(feature, layer) {
                     if (feature.properties.Outpatient == 'Yes') {
                     return true;
                     }
                     },
-                 pointToLayer: function(feature, latlng) {
+                pointToLayer: function(feature, latlng) {
                     return L.marker(latlng, {icon: redMarker});
                     },
-                })
+                    })
             
-                var Religion = L.geoJSON(SIRP, {
-                    onEachFeature: popupProvider,
+            var Religion = L.geoJSON(SIRP, {
+                onEachFeature: popupProvider,
                 filter: function(feature, layer) {
                     if (feature.properties.ReligiousB == 'Yes') {
                     return true;
                     }
                     },
-                 pointToLayer: function(feature, latlng) {
+                pointToLayer: function(feature, latlng) {
                     return L.marker(latlng, {icon: redMarker});
                     },
-                })
+                    })
             
-                var women = L.geoJSON(SIRP, {
-                    onEachFeature: popupProvider,
+            var women = L.geoJSON(SIRP, {
+                onEachFeature: popupProvider,
                 filter: function(feature, layer) {
                     if (feature.properties.Gender == 'Women') {
                     return true;
                     }
                     },
-                 pointToLayer: function(feature, latlng) {
+                pointToLayer: function(feature, latlng) {
                     return L.marker(latlng, {icon: redMarker});
                     },
-                })
+                    })
             
-                var men = L.geoJSON(SIRP, {
-                    onEachFeature: popupProvider,
+            var men = L.geoJSON(SIRP, {
+                onEachFeature: popupProvider,
                 filter: function(feature, layer) {
                     if (feature.properties.Gender == 'Men') {
                     return true;
                     }
                     },
-                 pointToLayer: function(feature, latlng) {
+                pointToLayer: function(feature, latlng) {
                     return L.marker(latlng, {icon: redMarker});
                     },
-                })
+                    })
                 
-                var family = L.geoJSON(SIRP, {
-                    onEachFeature: popupProvider,
+            var family = L.geoJSON(SIRP, {
+                onEachFeature: popupProvider,
                 filter: function(feature, layer) {
                     if (feature.properties.Gender == 'Family') {
                     return true;
@@ -790,10 +777,10 @@
                  pointToLayer: function(feature, latlng) {
                     return L.marker(latlng, {icon: redMarker});
                     },
-                })
+                    })
                 
-                var veteran = L.geoJSON(SIRP, {
-                    onEachFeature: popupProvider,
+            var veteran = L.geoJSON(SIRP, {
+                onEachFeature: popupProvider,
                 filter: function(feature, layer) {
                     if (feature.properties.Gender == 'Veterans') {
                     return true;
@@ -802,108 +789,105 @@
                  pointToLayer: function(feature, latlng) {
                     return L.marker(latlng, {icon: redMarker});
                     },
-                })
+                    })
             
+            //Filtering
+            $("#women").click(function() {
+                map4.addLayer(women);
+                map4.removeLayer(all);
+                map4.removeLayer(men);
+                map4.removeLayer(family);
+                map4.removeLayer(veteran);
+                map4.removeLayer(housing);
+                map4.removeLayer(twelve);
+                map4.removeLayer(Out);
+                map4.removeLayer(Religion);
+                });
 
-   
-                    // The JavaScript below is new
-        $("#women").click(function() {
-            map4.addLayer(women);
-            map4.removeLayer(all);
-            map4.removeLayer(men);
-            map4.removeLayer(family);
-            map4.removeLayer(veteran);
-            map4.removeLayer(housing);
-            map4.removeLayer(twelve);
-            map4.removeLayer(Out);
-            map4.removeLayer(Religion);
-        });
+            $("#men").click(function() {
+                map4.addLayer(men);
+                map4.removeLayer(all);
+                map4.removeLayer(women);
+                map4.removeLayer(family);
+                map4.removeLayer(veteran);
+                map4.removeLayer(housing);
+                map4.removeLayer(twelve);
+                map4.removeLayer(Out);
+                map4.removeLayer(Religion);
+                });
 
-                    $("#men").click(function() {
-            map4.addLayer(men);
-            map4.removeLayer(all);
-            map4.removeLayer(women);
-            map4.removeLayer(family);
-            map4.removeLayer(veteran);
-            map4.removeLayer(housing);
-            map4.removeLayer(twelve);
-            map4.removeLayer(Out);
-            map4.removeLayer(Religion);
-        });
-
-          $("#family").click(function() {
-            map4.addLayer(family);
-            map4.removeLayer(all);
-            map4.removeLayer(women);
-            map4.removeLayer(men);
-            map4.removeLayer(veteran);
-            map4.removeLayer(housing);
-            map4.removeLayer(twelve);
-            map4.removeLayer(Out);
-            map4.removeLayer(Religion);
-        });
-
-        $("#veteran").click(function() {
-            map4.addLayer(veteran);
-            map4.removeLayer(all);
-            map4.removeLayer(women);
-            map4.removeLayer(family);
-            map4.removeLayer(men);
-            map4.removeLayer(housing);
-            map4.removeLayer(twelve);
-            map4.removeLayer(Out);
-            map4.removeLayer(Religion);
-        });
+            $("#family").click(function() {
+                map4.addLayer(family);
+                map4.removeLayer(all);
+                map4.removeLayer(women);
+                map4.removeLayer(men);
+                map4.removeLayer(veteran);
+                map4.removeLayer(housing);
+                map4.removeLayer(twelve);
+                map4.removeLayer(Out);
+                map4.removeLayer(Religion);
+                });
+                
+            $("#veteran").click(function() {
+                map4.addLayer(veteran);
+                map4.removeLayer(all);
+                map4.removeLayer(women);
+                map4.removeLayer(family);
+                map4.removeLayer(men);
+                map4.removeLayer(housing);
+                map4.removeLayer(twelve);
+                map4.removeLayer(Out);
+                map4.removeLayer(Religion);
+                });
             
             $("#housing").click(function() {
-            map4.addLayer(housing);
-            map4.removeLayer(all);
-            map4.removeLayer(women);
-            map4.removeLayer(family);
-            map4.removeLayer(veteran);
-            map4.removeLayer(men);
-            map4.removeLayer(twelve);
-            map4.removeLayer(Out);
-            map4.removeLayer(Religion);
-        });
+                map4.addLayer(housing);
+                map4.removeLayer(all);
+                map4.removeLayer(women);
+                map4.removeLayer(family);
+                map4.removeLayer(veteran);
+                map4.removeLayer(men);
+                map4.removeLayer(twelve);
+                map4.removeLayer(Out);
+                map4.removeLayer(Religion);
+                });
             
             $("#twelve").click(function() {
-            map4.addLayer(twelve);
-            map4.removeLayer(all);
-            map4.removeLayer(women);
-            map4.removeLayer(family);
-            map4.removeLayer(veteran);
-            map4.removeLayer(housing);
-            map4.removeLayer(men);
-            map4.removeLayer(Out);
-            map4.removeLayer(Religion);
-        });
+                map4.addLayer(twelve);
+                map4.removeLayer(all);
+                map4.removeLayer(women);
+                map4.removeLayer(family);
+                map4.removeLayer(veteran);
+                map4.removeLayer(housing);
+                map4.removeLayer(men);
+                map4.removeLayer(Out);
+                map4.removeLayer(Religion);
+                });
             
-               $("#Out").click(function() {
-            map4.addLayer(Out);
-            map4.removeLayer(all);
-            map4.removeLayer(women);
-            map4.removeLayer(family);
-            map4.removeLayer(veteran);
-            map4.removeLayer(housing);
-            map4.removeLayer(men);
-            map4.removeLayer(twelve);
-            map4.removeLayer(Religion);
-        });
+            $("#Out").click(function() {
+                map4.addLayer(Out);
+                map4.removeLayer(all);
+                map4.removeLayer(women);
+                map4.removeLayer(family);
+                map4.removeLayer(veteran);
+                map4.removeLayer(housing);
+                map4.removeLayer(men);
+                map4.removeLayer(twelve);
+                map4.removeLayer(Religion);
+                });
             
-               $("#Religion").click(function() {
-            map4.addLayer(Religion);
-            map4.removeLayer(all);
-            map4.removeLayer(women);
-            map4.removeLayer(family);
-            map4.removeLayer(veteran);
-            map4.removeLayer(housing);
-            map4.removeLayer(men);
-            map4.removeLayer(Out);
-            map4.removeLayer(twelve);
-        });
-        
-           </script>
+            $("#Religion").click(function() {
+                map4.addLayer(Religion);
+                map4.removeLayer(all);
+                map4.removeLayer(women);
+                map4.removeLayer(family);
+                map4.removeLayer(veteran);
+                map4.removeLayer(housing);
+                map4.removeLayer(men);
+                map4.removeLayer(Out);
+                map4.removeLayer(twelve);
+                });
 
+           </script>
       </body>
 </html>
