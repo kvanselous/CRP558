@@ -338,7 +338,7 @@
 				    d > 800  ? '#CD5C5C' :
                     d > 700   ? '#F08080' :
 				    d > 600   ? '#E9967A' :
-				    d > 500   ? '#FFA07A' :
+				    d > 0   ? '#FFA07A' :
                     "#FFFFFF"; 
                     }
             
@@ -394,7 +394,7 @@
             legend.onAdd = function(map1) {
 
             var div = L.DomUtil.create('div', 'info legend'),
-                Mort = [500, 600, 700, 800, 900,1000],
+                Mort = [0, 600, 700, 800, 900,1000],
                 labels = [];
                 for (var i = 0; i < Mort.length; i++) {
                     div.innerHTML +=
@@ -420,11 +420,11 @@
        
             //Map 2 coloring and style functions 
             function getColor2(d) {
-		      return d  > 1500  ? '#FF0000' :
-                d     > 1250  ? '#DC143C' :
-				d > 1000  ? '#CD5C5C' :
-				d > 750   ? '#F08080' :
-				d > 500   ? '#E9967A' :
+		      return d  > 1000  ? '#FF0000' :
+                d     > 900  ? '#DC143C' :
+				d > 800  ? '#CD5C5C' :
+				d > 700   ? '#F08080' :
+				d > 600   ? '#E9967A' :
 				d > 0   ? '#FFA07A' :
                "#FFFFFF"; 
 	           }
@@ -481,7 +481,7 @@
 
             legend2.onAdd = function(map) {
                 var div = L.DomUtil.create('div', 'info legend'),
-                IMort = [0, 500, 750, 1000, 1250, 1500],
+                IMort = [0, 600, 700, 800, 900, 1000],
                 labels = [];
                 for (var i = 0; i < IMort.length; i++) {
                     div.innerHTML +=
