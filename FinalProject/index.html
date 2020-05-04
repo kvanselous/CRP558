@@ -2,13 +2,14 @@
   <html>
     <head>
       <!--Data References-->
-      <!--National substance induced mortality gejson created by joining 1999-2018 drug/alcohol induced causes of death and United States Tiger/Line Shapefiles from data.gov in QGIS.  Link for CDC: https://wonder.cdc.gov/.  Link for data.gov: https://catalog.data.gov/dataset/tiger-line-shapefile-2017-nation-u-s-current-state-and-equivalent-national--> 
-      <!--Iowa substance induced mortality gejson created by joining 1999-2018 drug/alcohol induced causes of death and IowaGEOData Shapefiles in QGIS.  Link for CDC: https://wonder.cdc.gov/.  Link for data.gov: https://geodata.iowa.gov/dataset/county-boundaries-iowa--> 
-      <!--Poverty: https://data.census.gov/cedsci/table?g=0400000US19.050000&tid=ACSST5Y2018.S1701&t=Income%20and%20Poverty&vintage=2018&hidePreview=true&layer=VT_2018_050_00_PY_D1&cid=S1701_C01_001E-->
-      <!--Need to add provider data, COVID data, Iowa data etc-->
-
+      <!--National substance induced mortality rate gejson created by joining 2013-2018 drug/alcohol induced causes of death and United States Tiger/Line Shapefiles from data.gov in QGIS.  Link for CDC: https://wonder.cdc.gov/.  Link for data.gov: https://catalog.data.gov/dataset/tiger-line-shapefile-2017-nation-u-s-current-state-and-equivalent-national--> 
+      <!--Iowa substance induced mortality gejson created by joining the number 1999-2018 drug/alcohol induced death and IowaGEOData Shapefiles in QGIS.  Link for CDC: https://wonder.cdc.gov/.  Link for data.gov: https://geodata.iowa.gov/dataset/county-boundaries-iowa--> 
+      <!--Iowa poverty geoJSON created by joining the Census Bureaus’ 5 year estimates of percent living below poverty in past 12 months and IowaGEOData Shapefiles in QGIS: Link for Census Bureau: https://data.census.gov/cedsci/table?g=0400000US19.050000&tid=ACSST5Y2018.S1701&t=Income%20and%20Poverty&vintage=2018&hidePreview=true&layer=VT_2018_050_00_PY_D1&cid=S1701_C01_001E.  Link for data.gov: https://geodata.iowa.gov/dataset/county-boundaries-iowa-->      <!--Need to add provider data, COVID data, Iowa data etc-->
+      <!--Iowa COVID-19 data added as REST layer from Esri from: https://services.arcgis.com/vPD5PVLI6sfkZ5E4/ArcGIS/rest/services/IA_COVID19_Cases/FeatureServer-->
+      <!--Iowa Substance Use Provider List added from Advancing Substance Use Recovery Project.  Please see report for more information regarding this dataset.  
+        
       <!--Resources to build this page-->
-      <!--Course materials from CRP 558-->
+      <!--Course materials from CRP 558.-->
       <!--Example of project final posted to CRP 558: https://rahasan17.github.io/LA458-558/FinalProject/index.html-->
       <!--Leaflet materials from: https://leafletjs.com/-->
       <!--HTML, CSS, & JavaScript materials from: https://www.w3schools.com/default.asp-->
@@ -751,7 +752,7 @@
             legend3d.onAdd = function(map3) {
                 var div = L.DomUtil.create('div', 'info legend'),
                 SinglrIRP = [],
-                labels = circle2;
+                labels = [circle2];
                 div.innerHTML += "<b>Iowa Substance Use Treatment Providers-Single Layer (orange circles)</b>"
                 return div;
                 };
@@ -979,10 +980,11 @@
                     },
                     })
             
+            //Map4 legends
                 var legend4a = L.control({
                 position: 'bottomleft'
                 });
-
+        
             legend4a.onAdd = function(map4) {
                 var div = L.DomUtil.create('div', 'info legend'),
                 all = [],
