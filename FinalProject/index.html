@@ -51,8 +51,9 @@
             <script src="IRP200430.geojson"></script>
             <script src="IRP200430copy.geojson"></script>
             <script src="TXFound200430.geojson"></script>
-            <script src="substanceinducedmortality.geojson"></script>
-            <script src="Iowasubstanceinducedmortality.geojson"></script>
+            <script src="GeoJSON/USData200503.geojson"></script>
+            <script src="GeoJSON/IowaData200503pov.geojson"></script>
+            <script src="GeoJSON/IowaData200503.geojson"></script>
                 <style>    
                     /*Drop Down Menu*/
                     ul {
@@ -150,13 +151,13 @@
                          color: #777;
                          }
             
-                     .legend2 {
+                     .legend2a {
                          line-height: 18px;
                          color: #555;
                          background color:cornsilk
                          }
             
-                     .legend2 i {
+                     .legend2a i {
                          width: 10px;
                          height: 10px;
                          float: left;
@@ -164,7 +165,7 @@
                          opacity: 0.7;
                          }
             
-                     .info2 {
+                     .info2a {
                          padding: 6px 8px;
                          font: 10px/10px Arial, Helvetica, sans-serif;
                          background: white;
@@ -173,11 +174,39 @@
                          border-radius: 5px;
                          }
             
-                     .info2 h4 {
+                     .info2a h4 {
                          margin: 0 0 5px;
                          color: #777;
                          }
              
+                     .legend2b {
+                         line-height: 18px;
+                         color: #555;
+                         background color:cornsilk
+                         }
+            
+                     .legend2b i {
+                         width: 10px;
+                         height: 10px;
+                         float: left;
+                         margin-right: 8px;
+                         opacity: 0.7;
+                         }
+            
+                     .info2b {
+                         padding: 6px 8px;
+                         font: 10px/10px Arial, Helvetica, sans-serif;
+                         background: white;
+                         background: rgba(255,255,255,0.8);
+                         box-shadow: 0 0 15px rgba(0,0,0,0.2);
+                         border-radius: 5px;
+                         }
+            
+                     .info2b h4 {
+                         margin: 0 0 5px;
+                         color: #777;
+                         }
+
                      .legend3 {
                          line-height: 18px;
                          color: #555;
@@ -269,15 +298,15 @@
         <div id='map1container'>
             <h2>Substance Use in the United States</h2>
             <p>Substance induced mortalities have been increasing over the past 20 years in the United States with an alarming trend related to opioid use and mortalities.  The increase in opioid related mortalities has resulted in the US Department of Health and Human Services declaring a public health emergency (Center for Disease Control, 2020; United States Department of Health and Human Services, 2019).  Nationally, this costs the United States over $740 billion annually in costs associated with the abuse of tobacco, alcohol and illicit drugs (National Institute on Drug Abuse, 2020).</p>  
-            <p>The map to the right displays the crude mortality rate per 100,000 of substance induced mortalities from 1999-2018.  This data was obtained from the Center for Disease Control WONDER database.  It was uploaded to QGIS and joined to a polygon shapefile of the boundaries of the United States before being exported as a geoJSON file.  </p>
-            <p> Hover over each state to observe the crude substance induced morality rate per 100,000.  As you hover, each state will highlight.  This map is a choropleth map, in which the bright red colors indicates the states with the highest substance induced mortality rates.  Notice how the highest concentration of mortalities range along the Appalachia region of the country</p>            
+            <p>The map to the right displays the crude mortality rate per 100,000 of substance induced mortalities from 2013-2018.  This data was obtained from the Center for Disease Control WONDER database.  It was uploaded to QGIS and joined to a polygon shapefile of the boundaries of the United States before being exported as a geoJSON file.  </p>
+            <p>Hover over each state to observe the crude substance induced morality rate per 100,000.  As you hover, each state will highlight.  This map is a choropleth map, in which the bright red colors indicates the states with the highest substance induced mortality rates.  Notice how several states with the highest concentration of mortalities range along the Appalachia region of the country</p>            
         </div>   
  
             <div id="map1"></div>
         
         <div id='map2container'>
             <h2>Substance Use In Iowa </h2>
-            <p>In the above map, you’ll notice that Iowa is among the second highest grouping of substance induced mortalities in the country, with a substance induced crude death rate of 962.2 per 100,000.   The map to the right breaks down this statistic by displaying the same substance induced crude mortality death rate from 1999-2018 from the Center for Disease Control for Iowa counties. </p>  
+            <p>In the above map, you’ll notice that Iowa has a substance induced mortaltity crude rate is 21.8 per 100,000.   The map to the right breaks down this statistic by displaying the number of substance induced mortalties from 1999-2018 from the Center for Disease Control for Iowa counties. </p>  
             <p>This map was also created by uploading the CDC data to QGIS, joining it to a polygon shapefile of Iowa county, and exporting it as a geoJSON file.  Hover over each county to observe the crude substance induced mortality rate per 100,000.  Notice this map includes the same choropleth coloring and groupings as the map above.  The counties that are bright red show the counties that are among the highest in substance induced mortalities.  Notice how they concentrate along the southern border. </p>            
             <p>Toggle the menu on the right to see how high mortality counites align with counties with the highest povery rates.</p>
             </div>    
@@ -285,9 +314,9 @@
 
         <div id='map3container'>
             <h2>Substance Use Recovery Providers</h2>
-            <p>Substance use in Iowa is unique as the rate of alcohol and binge alcohol use are higher than the national average and residents report lower risk associated with substance use than compared to the rest of the country ( ).  Additionally, decreased economic resources and increased social isolation related to the reductions in family farms has led to increased alcohol consumption and mortalities across the state ( ) . <p>
-            <p>These statistics raise additional alarm, as COVID-19 has led to increased social isolation and caused economic vulnerability for many of Americans.  This causes great concern that substance induced mortalities will increase in response to COVID-19 as economic vulnerability and social isolation have been found to be factors related to initial initiation and relapse for those struggling with substance use in the state of Iowa (Dorius et al, 2020).  </p>
-	        <p>The map on the right displays data from the Advancing Substance Use Recovery Project, which has been collecting data on agencies providing substance use recovery services in Iowa.  Click on the clusters to explore substance use providers focusing on recovery services.  Toggle the layer control to see this information in a single layer and to see substance use treatment providers.  The layer control also displays Iowa's substance induced mortality data, along with the daily number of confirmed COVID-19 cases in each county.</p> 
+            <p>Substance use in Iowa is unique as the rate of alcohol and binge alcohol use are higher than the national average and residents report lower risk associated with substance use than compared to the rest of the country (Governor’s Office of Drug Control Policy, 2019; Iowa Department of Public Health, 2018; Substance Abuse and Mental Health Services Administration, 2018 & 2019).  Additionally, decreased economic resources and increased social isolation related to the reductions in family farms has led to increased alcohol consumption and mortalities across the state (Iowa Department of Public Health State Epidemiological Workgroup ,2016) . <p>
+            <p>These statistics raise additional alarm, as COVID-19 has led to increased social isolation and caused economic vulnerability for many Americans.  This causes great concern that substance induced mortalities will increase in response to COVID-19 as economic vulnerability and social isolation have been found to be factors related to initial initiation and relapse for those struggling with substance use in the state of Iowa (Dorius et al, 2020).  </p>
+	        <p>The map on the right displays data from the Advancing Substance Use Recovery Project, which has been collecting data on agencies providing substance use recovery services in Iowa.  Click on the clusters to explore substance use providers focusing on recovery services.  Toggle the layer control to see this information in a single layer and to see substance use treatment providers.  The layer control also displays Iowa's substance induced mortality data, along with the daily number of confirmed COVID-19 cases in each county.</p>
             </div>
             <div id="map3"></div>
              
@@ -313,8 +342,14 @@
             <p>To review the code I used to create this page and meet the criteria for this project please check out my CRP 558 <a href="https://github.com/kvanselous/CRP558/blob/master/FinalProject/index.html">Github repository</a>.</p>
             <p>References:</p>
             <br>Center for Disease Control (2020, March.) <em>Understanding the epidemic</em> Retreived from: https://www.cdc.gov/drugoverdose/epidemic/index.html
+            <br>Dorius, C., Dorius, S., Rouse, H.L., Richey, E., Talbert, E., Van Selous, K., and Bahe, D. (2020, January). <em>Translating Research into Action: A Multi-method Approach for Informing Substance Use Policy and Practice.</em> Report prepared for the Iowa Department of Public Health.
+            <br>Governor’s Office of Drug Control Policy. (2019) <em>Iowa Drug Control Strategy.</em> Retrieved from https://odcp.iowa.gov/sites/default/files/documents/2018/11/2019strategyfinal.pdf
+            <br>Iowa Department of Public Health. (2018). <em>Iowa Substance Abuse Brief Increase in Methamphetamine Use by Iowans.</em> Retrieved from https://idph.iowa.gov/Portals/1/userfiles/133/IASubAbuseBriefNewsletterJune2018_Methamphetamine.pdf  
+            <br>Iowa Department of Public Health State Epidemiological Workgroup. (2016). <em>State of Iowa Substance Use Epidemiological Profile 2016.</em> Retrieved from https://idph.iowa.gov/Portals/1/userfiles/137/2016 Epi Profile.pdf
             <br>National Insitutue on Drug Abuse (2020, February). <em>Trends and Statistics</em>Retreived From: https://www.drugabuse.gov/related-topics/trends-statistics
-            <br>United States Department of Health and Human Services (2019, September 4th).  What is The 	U.S. Opioid Epidemic?  Retrieved from:  https://www.hhs.gov/opioids/about-the-epidemic/index.html
+            <br>Substance Abuse and Mental Health Services Administration. (2018). <em>2016-2017 National Survey on Drug Use and Health National Maps of Prevalence Estimates, by State.</em> Retrieved from https://www.samhsa.gov/data/sites/default/files/cbhsq-reports/NSDUHsaeMaps2017/NSDUHsaeMaps2017.pdf
+            <br>Substance Abuse and Mental Health Services Administration. (2019). <em>Behavioral Health 	Barometer: Iowa, Volume 5.</em> Retrieved from https://store.samhsa.gov/system/files/pdf-national-bh barometervolume5.pdf
+            <br>United States Department of Health and Human Services (2019, September 4th).  <em>What is The 	U.S. Opioid Epidemic?</em>  Retrieved from:  https://www.hhs.gov/opioids/about-the-epidemic/index.html
             
              
              <h2>To Do:</h2>
@@ -341,12 +376,11 @@
             
             //map 1 styling function    
             function getColorMort(d) {
-		          return d  > 1000  ? '#FF0000' :
-				    d     > 900  ? '#DC143C' :
-				    d > 800  ? '#CD5C5C' :
-                    d > 700   ? '#F08080' :
-				    d > 600   ? '#E9967A' :
-				    d > 0   ? '#FFA07A' :
+		          return d  > 40  ? '#FF0000' :
+				    d     > 30  ? '#DC143C' :
+				    d > 20  ? '#CD5C5C' :
+                    d > 10   ? '#F08080' :
+				    d > 0   ? '#E9967A' :
                     "#FFFFFF"; 
                     }
             
@@ -356,7 +390,7 @@
 			     opacity: 1,
 			     color: 'white',
 			     fillOpacity: 0.7,
-			     fillColor: getColorMort(feature.properties.SubstanceInducedMortality_CrudeRate)
+			     fillColor: getColorMort(feature.properties.USSubsstanceInducedMort2013_2018_CrudeRate)
 		         };
                  }
             
@@ -384,7 +418,7 @@
                 mouseout: resetHighlight
                 });
                 if (feature.properties) {
-                    layer.bindPopup("<b>State: </b>" + feature.properties.NAME + "<br><b>Substance Induced Crude Death Rate per 100,000: </b>" + feature.properties.SubstanceInducedMortality_CrudeRate);
+                    layer.bindPopup("<b>State: </b>" + feature.properties.NAME + "<br><b>Substance Induced Crude Death Rate per 100,000: </b>" + feature.properties.USSubsstanceInducedMort2013_2018_CrudeRate);
                     }
                     }
             
@@ -401,7 +435,7 @@
                 legend.onAdd = function(map1) {
 
             var div = L.DomUtil.create('div', 'info legend'),
-                Mort = [0, 600, 700, 800, 900,1000],
+                Mort = [0, 10, 20, 30, 40],
                 labels = [];
                 for (var i = 0; i < Mort.length; i++) {
                     div.innerHTML +=
@@ -412,41 +446,63 @@
                 };
                 legend.addTo(map1);
             
+            console.clear();
+
             //map  2   
             var OSM2 = L.tileLayer('https://{s}.tile.osm.org/{z}/{x}/{y}.png', {
                 attribution: '&copy; <a href="https://osm.org/copyright">OpenStreetMap</a> contributors',
                 maxZoom: 18
                 });	
+            
             var map2 = L.map('map2', {
                 center: [42,-93],
                 zoom: 7,
                 layers: [OSM2]
 		          });
             
-       
             //map 2 coloring & style functions 
-            function getColor2(d) {
-		      return d  > 1000  ? '#FF0000' :
-                     d  > 900  ? '#DC143C' :
-				     d  > 800  ? '#CD5C5C' :
-				     d  > 700   ? '#F08080' :
-				     d  > 600   ? '#E9967A' :
-				     d  > 0   ? '#FFA07A' :
-                     "#FFFFFF"; 
+            function getColor2a(d) {
+		      return d  > 200  ? '#4A235A' :
+                     d  > 150  ? '#6C3483' :
+				     d  > 100  ? '#7D3C98' :
+				     d  > 50   ? '#A569BD' :
+				     d  >25   ? '#BB8FCE' :
+                     d  >10   ? '#E8DAEF' :
+                     "#F9EBEA"; 
                      }
              
-            function style2(feature) {
+            function style2a(feature) {
                 return {
                     weight: 1,
                     opacity: 1,
                     color: 'white',
                     fillOpacity: 0.7,
-			        fillColor: getColor2(feature.properties.IowaSubstanceInducedMortalityData_CrudeRate)
+			        fillColor: getColor2a(feature.properties.IowaSubstanceInducedDeaths1999_2018_Deaths)
 		            };
 	               }    
             
+            function getColor2b(d) {
+		      return d  > 25  ? '#1B4F72' :
+                     d  > 20  ? '#2874A6' :
+				     d  > 15  ? '#2980B9' :
+				     d  > 10   ? '#7FB3D5' :
+				     d  >5   ? '#D4E6F1' :
+                     d  >0   ? '#EAF2F8' :
+                     "#F9EBEA"; 
+                     }
+             
+            function style2b(feature) {
+                return {
+                    weight: 1,
+                    opacity: 1,
+                    color: 'white',
+                    fillOpacity: 0.7,
+			        fillColor: getColor2b(feature.properties.IowaPercentBelowPoverty2013_2018_Percent_BelowPoverty)
+		            };
+	               }   
+            
             //map 2 highlighting & pop up functions
-            function highlightFeature2(e) {
+            function highlightFeature2a(e) {
                 var layer = e.target;
                 layer.setStyle({
                     weight: 4,
@@ -459,43 +515,109 @@
                         }
                         }
 
-            function resetHighlight2(e) {
+            function resetHighlight2a(e) {
                 IMort.resetStyle(e.target);
                 }
 
-            function onEachFeature2(feature, layer) {
+            function onEachFeature2a(feature, layer) {
                 layer.on({
-                mouseover: highlightFeature2,
-                mouseout: resetHighlight2
+                mouseover: highlightFeature2a,
+                mouseout: resetHighlight2a
                 });
             if (feature.properties) {
-                layer.bindPopup("<b>County: </b>" + feature.properties.COUNTY + "<br><b>Substance Induced Crude Death Rate per 100,000: </b>" + feature.properties.IowaSubstanceInducedMortalityData_CrudeRate);
+                layer.bindPopup("<b>County: </b>" + feature.properties.COUNTY + "<br><b>Number of Substance Induced Deaths: </b>" + feature.properties.IowaSubstanceInducedDeaths1999_2018_Deaths);
+                }
+                }
+            
+            function highlightFeature2b(e) {
+                var layer = e.target;
+                layer.setStyle({
+                    weight: 4,
+                    color: 'grey',
+                    dashArray: '',
+                    fillOpacity: 0.7
+                    });
+                    if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
+                        layer.bringToFront();
+                        }
+                        }
+            function resetHighlight2b(e) {
+                IPov.resetStyle(e.target);
+                }
+            
+            function onEachFeature2b(feature, layer) {
+                layer.on({
+                mouseover: highlightFeature2b,
+                mouseout: resetHighlight2b
+                });
+            if (feature.properties) {
+                layer.bindPopup("<b>County: </b>" + feature.properties.COUNTY + "<br><b>Percent Below Poverty: </b>" + feature.properties.IowaPercentBelowPoverty2013_2018_Percent_BelowPoverty);
                 }
                 }
             
             //map 2 data          
             var IMort = L.geoJson(IMort, {
-                style: style2,
-                onEachFeature: onEachFeature2
+                style: style2a,
+                onEachFeature: onEachFeature2a
                 }).addTo(map2);  
             
-            //map 2 legend
-            var legend2 = L.control({
+            var IPov = L.geoJson(IPov, {
+                style: style2b,
+                onEachFeature: onEachFeature2b
+                })  
+            
+            //map 2 legends
+            var legend2a = L.control({
                 position: 'bottomright'
                 });
 
-            legend2.onAdd = function(map) {
+            legend2a.onAdd = function(map2) {
                 var div = L.DomUtil.create('div', 'info legend'),
-                IMort = [0, 600, 700, 800, 900, 1000],
+                IMort = [10, 25, 50, 100, 150, 200],
                 labels = [];
                 for (var i = 0; i < IMort.length; i++) {
                     div.innerHTML +=
-                        '<i style="background:' + getColor2(IMort[i] + 1) + '"></i> ' +
+                        '<i style="background:' + getColor2a(IMort[i] + 1) + '"></i> ' +
                         IMort[i] + (IMort[i + 1] ? '&ndash;' + IMort[i + 1] + '<br>' : '+');
                         }
                 return div;
                 };
-                legend2.addTo(map2);
+                legend2a.addTo(map2);
+            
+            var legend2b = L.control({
+                position: 'bottomright'
+                });
+
+            legend2b.onAdd = function(map2) {
+                var div = L.DomUtil.create('div', 'info legend'),
+                IPov = [10, 25, 50, 100, 150, 200],
+                labels = [];
+                for (var i = 0; i < IPov.length; i++) {
+                    div.innerHTML +=
+                        '<i style="background:' + getColor2b(IPov[i] + 1) + '"></i> ' +
+                        IPov[i] + (IPov[i + 1] ? '&ndash;' + IPov[i + 1] + '<br>' : '+');
+                        }
+                return div;
+                };
+                legend2b.onAdd
+            
+            map2.on('overlayremove', function (eventLayer) {
+                map2console.log(eventLayer.name  + " off");
+                if (eventLayer.name == "Substance Induced Deaths from 1999-2018") {
+                this.removeControl(legend2b);
+                }else if (eventLayer.name == "Precent Living Below Poverty Rate"){
+                this.removeControl(legend2a);
+	            }
+                });
+
+            map2.on('overlayadd', function (eventLayer) {
+	          console.log(eventLayer.name + " on");
+	           if (eventLayer.name == "Substance Induced Deaths from 1999-2018") {
+               legend2a.addTo(this);
+               }else if (eventLayer.name == "Precent Living Below Poverty Rate"){
+		       legend2b.addTo(this);
+               }	
+               });
             
             //map 2 layer control
 		    var baseMap = {
@@ -503,7 +625,8 @@
                 };
        		
 		    var overlayMaps = {
-		      "Iowa Mortaltiy Rate": IMort
+		      "Substance Induced Deaths from 1999-2018": IMort,
+              "Precent Living Below Poverty Rate": IPov
 		      };			
 
             L.control.layers(baseMap, overlayMaps).addTo(map2);	
