@@ -10021,7 +10021,7 @@ var FRData = {
 			"type": "Feature",
 			"properties": {
 				"RCC Candidate": "",
-				"IDPH_Feedback": "IDPH_Identified_TX",
+				"IDPH_Feedb": "IDPH_Identified_TX",
 				"MapType": "Mapped",
 				"Name": "Behavioral Services LLC",
 				"Street": "105 North Main St",
@@ -10084,7 +10084,7 @@ var FRData = {
 			"type": "Feature",
 			"properties": {
 				"RCC Candidate": "",
-				"IDPH_Feedback": "IDPH_Identified_TX",
+				"IDPH_Feedb": "IDPH_Identified_TX",
 				"MapType": "Mapped",
 				"Name": "Manning Regional Healthcare Center",
 				"Street": "1550 6th St",
@@ -10147,7 +10147,7 @@ var FRData = {
 			"type": "Feature",
 			"properties": {
 				"RCC Candidate": "",
-				"IDPH_Feedback": "IDPH_Identified_TX",
+				"IDPH_Feedb": "IDPH_Identified_TX",
 				"MapType": "Mapped",
 				"Name": "Northeast Iowa Mental Care Center ",
 				"Street": "36 South Frederick Ave",
@@ -10210,7 +10210,7 @@ var FRData = {
 			"type": "Feature",
 			"properties": {
 				"RCC Candidate": "",
-				"IDPH_Feedback": "IDPH_Identified_TX",
+				"IDPH_Feedb": "IDPH_Identified_TX",
 				"MapType": "Mapped",
 				"Name": "Community and Family Resources",
 				"Street": "19 6th Street S",
@@ -10273,7 +10273,7 @@ var FRData = {
 			"type": "Feature",
 			"properties": {
 				"RCC Candidate": "",
-				"IDPH_Feedback": "IDPH_Identified_TX",
+				"IDPH_Feedb": "IDPH_Identified_TX",
 				"MapType": "Mapped",
 				"Name": "Prelude Behavioral Services",
 				"Street": "438 Southgate Ave",
@@ -10336,7 +10336,7 @@ var FRData = {
 			"type": "Feature",
 			"properties": {
 				"RCC Candidate": "",
-				"IDPH_Feedback": "IDPH_Poss_Recovery",
+				"IDPH_Feedb": "IDPH_Poss_Recovery",
 				"MapType": "Mapped",
 				"Name": "Still Waters Recovery Counseling",
 				"Street": "305 2nd Ave, Suite 200",
@@ -10399,7 +10399,7 @@ var FRData = {
 			"type": "Feature",
 			"properties": {
 				"RCC Candidate": "",
-				"IDPH_Feedback": "IDPH_Identified_TX",
+				"IDPH_Feedb": "IDPH_Identified_TX",
 				"MapType": "Mapped",
 				"Name": "Sieda Behavioral Health and Treatment",
 				"Street": "1801 South B St",
@@ -10462,7 +10462,7 @@ var FRData = {
 			"type": "Feature",
 			"properties": {
 				"RCC Candidate": "",
-				"IDPH_Feedback": "IDPH_Identified_TX",
+				"IDPH_Feedb": "IDPH_Identified_TX",
 				"MapType": "Mapped",
 				"Name": "Zion Recovery",
 				"Street": "1800 North 16th St",
@@ -10525,7 +10525,7 @@ var FRData = {
 			"type": "Feature",
 			"properties": {
 				"RCC Candidate": "",
-				"IDPH_Feedback": "IDPH_Poss_Recovery",
+				"IDPH_Feedb": "IDPH_Poss_Recovery",
 				"MapType": "Mapped",
 				"Name": "Door of Faith Transitional Housing Des Moines",
 				"Street": "6701 South West 9th St",
@@ -10588,7 +10588,7 @@ var FRData = {
 			"type": "Feature",
 			"properties": {
 				"RCC Candidate": "",
-				"IDPH_Feedback": "IDPH_Identified_TX",
+				"IDPH_Feedb": "IDPH_Identified_TX",
 				"MapType": "Mapped",
 				"Name": "Center for Behavioral Health Iowa Inc.",
 				"Street": "3811 North Harrison St",
@@ -10651,7 +10651,7 @@ var FRData = {
 			"type": "Feature",
 			"properties": {
 				"RCC Candidate": "",
-				"IDPH_Feedback": "IDPH_Identified_TX",
+				"IDPH_Feedb": "IDPH_Identified_TX",
 				"MapType": "Mapped",
 				"Name": "Prelude Behavioral Services",
 				"Street": "1201 Industrial Park Dr",
