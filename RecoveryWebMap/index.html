@@ -490,6 +490,19 @@
                });
               
                
+          //map 3 & 4 pop up function
+            function popupProvider(feature, layer) {
+                popupOptions = {maxWidth: 200}; 
+                    if (feature.properties.URL == "NA"){ 
+                    layer.bindPopup("<b>Site name: </b>" + feature.properties.Name +  
+                                    "<br><b>Phone Number: </b>" + feature.properties.Phone +                  
+                                    "<br><b>Link:</b> No URL available",popupOptions);}
+                    else{layer.bindPopup("<b>Site name: </b>" + feature.properties.Name + 
+                                         "<br><b>Phone Number: </b>" + feature.properties.Phone +                  
+                                         "<br><b>Link: </b>" + '<a href="'+feature.properties.URL+'">'+feature.properties.URL+'</a>'                   
+                    ,popupOptions);   }}
+            
+            
             //map 3   
             var OSM3 = L.tileLayer('https://{s}.tile.osm.org/{z}/{x}/{y}.png', {
                 attribution: '&copy; <a href="https://osm.org/copyright">OpenStreetMap</a> contributors',
@@ -527,9 +540,20 @@
                 map3.addLayer(markers);
              
             
-            var circle = {
+       
+                
+            var circle1 = {
                 radius: 4,
-                fillColor: "#46042B",
+                fillColor: "#FFA500",
+                color: "#000",
+                weight: 1,
+                opacity: 1,
+                fillOpacity: 0.8
+                };
+                
+            var circle2 = {
+                radius: 4,
+                fillColor: "#46042B", 
                 color: "#000",
                 weight: 1,
                 opacity: 1,
@@ -537,22 +561,31 @@
                 };
     
             
-             var SRData =L.geoJSON(SRData, {
-                    pointToLayer: function (feature, latlng) {
-                    return L.circleMarker(latlng, circle);
-                    },
-                onEachFeature: function (feature, layer) {
-                    popupOptions = {maxWidth: 200}; 
-                    if (feature.properties.URL == "NA"){ 
-                    layer.bindPopup("<b>Site name: </b>" + feature.properties.Name +  
-                                    "<br><b>Link:</b> No URL available",popupOptions);}
-                    else{layer.bindPopup("<b>Site name: </b>" + feature.properties.Name + 
-                                         "<br><b>Link: </b>" + '<a href="'+feature.properties.URL+'">'+feature.properties.URL+'</a>'                   
-                    ,popupOptions);   }
+             var RSRData =L.geoJSON(SRData, {
+                onEachFeature: popupProvider,
+                filter: function(feature, layer) {
+                    if (feature.properties.IDPH_Feedb == 'IDPH_Poss_Recovery') {
+                    return true;
                     }
-                    })  
-        
+                    },
+                pointToLayer: function(feature, latlng) {
+                    return L.circleMarker(latlng, circle1);
+                    },
+                    })
+                
 
+               var TXSRData =L.geoJSON(SRData, {
+               onEachFeature: popupProvider,
+                filter: function(feature, layer) {
+                    if (feature.properties.IDPH_Feedb == 'IDPH_Identified_TX') {
+                    return true;
+                    }
+                    },
+                pointToLayer: function(feature, latlng) {
+                    return L.circleMarker(latlng, circle2);
+                    },
+                    })  
+             
              function getColor3(d) {
                  return d  > 1000  ? '#873600' :
                         d  > 500  ? '#A04000' :
@@ -647,6 +680,31 @@
                 };
             
             
+             var legend3d = L.control({
+                position: 'bottomleft'
+                });
+
+            legend3d.onAdd = function(map3) {
+                var div = L.DomUtil.create('div', 'info legend'),
+                RSRData = [],
+                labels = [];
+                div.innerHTML += "<b>Iowa Substance Use Recovery Providers</b>Orange Circle<br>";
+                return div;
+                };
+            
+                   
+             var legend3e = L.control({
+                position: 'bottomleft'
+                });
+
+            legend3e.onAdd = function(map3) {
+                var div = L.DomUtil.create('div', 'info legend'),
+                TXSRData = [],
+                labels = [];
+                div.innerHTML += "<b>Iowa Substance Use Treatment Providers</b>Black Circle<br>";
+                return div;
+                };
+            
             var legend3f = L.control({
                 position: 'bottomleft'
                 });
@@ -654,11 +712,12 @@
             legend3f.onAdd = function(map3) {
                 var div = L.DomUtil.create('div', 'info legend'),
                 markers = [],
-                labels = markers;
-                div.innerHTML += "<b>Substance Use Recovery Providers<br>Cluster Layer</b><br>";
+                labels = [];
+                div.innerHTML += "<b>Iowa Recovery Providers Cluster Layer</b><br>";
                 return div;
-                };
-            legend3f.addTo(map3);
+                }
+                legend3f.addTo(map3);
+            
             
             //map 3 Layer Control
 		    var baseMap = {
@@ -667,7 +726,8 @@
        		
 		    var overlayMaps = {
 		      "Iowa Recovery Providers Cluster Layer": markers,
-              "Iowa Substance Use Treatment & Recovery Providers": SRData,
+              "Iowa Substance Use Recovery Providers": RSRData,
+              "Iowa Substance Use Treatment Providers": TXSRData,
               "Substance Deaths": imort,
               "Percent Poverty": ipov,
               "COVID": COVID
@@ -684,8 +744,12 @@
                 this.removeControl(legend3c);
 	            }else if (eventLayer.name == "Substance Deaths"){
                 this.removeControl(legend3b);
-                }else if (eventLayer.name == "Iowa Substance Use Treatment & Recovery Providers"){
+                }else if (eventLayer.name == "Iowa Recovery Providers Cluster Layer"){
                 this.removeControl(legend3f);
+                }else if (eventLayer.name == "Iowa Substance Use Treatment Providers"){
+                this.removeControl(legend3e);
+                }else if (eventLayer.name == "Iowa Substance Use Recovery Providers"){
+                this.removeControl(legend3d);
                 }});
 
             map3.on('overlayadd', function (eventLayer) {
@@ -696,8 +760,12 @@
 		       legend3c.addTo(this);
                }else if (eventLayer.name == "Substance Deaths"){
 		       legend3b.addTo(this);
-               }else if (eventLayer.name == "Iowa Substance Use Treatment & Recovery Providers"){
-               legend3ef.addTo(this);
+               }else if (eventLayer.name == "Iowa Recovery Providers Cluster Layer"){
+               legend3f.addTo(this);
+               }else if (eventLayer.name == "Iowa Substance Use Treatment Providers"){
+               legend3e.addTo(this);
+               }else if (eventLayer.name == "Iowa Substance Use Recovery Providers"){
+               legend3d.addTo(this);
                }});
               
             //map 4  
@@ -739,18 +807,8 @@
                     )
                     .addTo(map4);
             
-            //map 4 pop up function
-            function popupProvider(feature, layer) {
-                popupOptions = {maxWidth: 200}; 
-                    if (feature.properties.URL == "NA"){ 
-                    layer.bindPopup("<b>Site name: </b>" + feature.properties.Name +  
-                                    "<br><b>Phone Number: </b>" + feature.properties.Phone +                  
-                                    "<br><b>Link:</b> No URL available",popupOptions);}
-                    else{layer.bindPopup("<b>Site name: </b>" + feature.properties.Name + 
-                                         "<br><b>Phone Number: </b>" + feature.properties.Phone +                  
-                                         "<br><b>Link: </b>" + '<a href="'+feature.properties.URL+'">'+feature.properties.URL+'</a>'                   
-                    ,popupOptions);   }
-                    }
+
+                
             
             //map 4 data for buttons 
             var housing = L.geoJSON(FRData, {
