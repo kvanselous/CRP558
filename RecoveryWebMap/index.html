@@ -57,6 +57,7 @@
             <script src="GeoJSON/MappedIowaSubUseProviders_200723FRData.geojson"></script>
             <script src="GeoJSON/MappedIowaSubUseProviders_200723RData.geojson"></script>
             <script src="GeoJSON/MappedIowaSubUseProviders_200723SRData.geojson"></script>
+            <script src="GeoJSON/PeerSupport_200913.geojson"></script>
 
      
                 <style>    
@@ -124,7 +125,7 @@
                          text-align: center;
                          text-decoration: none;
                          display: inline-block;
-                         font-size: 14px;
+                         font-size: 10px;
                          width: 175px;
                          height: 40px;
                          margin: 4px 2px;
@@ -181,24 +182,20 @@
          <div id='map4container'>
             <h2>Provider Filters</h2>
              <div class="btn-group">
-                 <button type="button" id="all" class="button2">All Providers From Scan</button>
-                 <br><button type="button" id="IDPHFeedbackTX" class="button2">Providers Identfied as Treatment by IDPH</button>
-                 <br><button type="button" id="IDPHFeedbackRecovery" class="button2">Possible Recovery Only Providers</button>
-		         <br><button type="button" id="housing" class="button1">Housing</button>
-                 <button type="button" id="Residential" class="button1">Residential</button>
-                 <button type="button" id="Inpatient" class="button1">Inpatient</button>
-                 <br><button type="button" id="women" class="button1">Women</button>
-                 <button type="button" id="men" class="button1">Men</button>
-                 <button type="button" id="family" class="button1">Families</button>
-                 <br><button type="button" id="twelve" class="button1">12-Step</button>
-                 <button type="button" id="IntOut" class="button1">Intensive Outpatient</button>
-                 <button type="button" id="Out" class="button1">Outpatient/Counseling</button>
-                 <br><button type="button" id="CBT" class="button1">CBT</button>
-                 <button type="button" id="DBT" class="button1">DBT</button>
-                 <button type="button" id="REBT" class="button1">REBT</button>
-                 <br><button type="button" id="Med" class="button1">Medications</button>
-                 <button type="button" id="Trauma" class="button1">Trauma and PTSD</button>
-                 <button type="button" id="Religion" class="button1">Faith Based</button>
+                 <button type="button" id="ALL" class="button2">All Providers From Scan</button>
+		         <br><button type="button" id="SW" class="button1">Southwest Iowa <br>MHDS Region</button>
+                 <button type="button" id="SH" class="button1">Southern Hills Regional Mental Health</button>
+                 <button type="button" id="SC" class="button1">South Central Behavioral Health Region</button>
+                 <br><button type="button" id="SR" class="button1">Sioux Rivers Mental Health and Disabilities Services</button>
+                 <button type="button" id="RH" class="button1">Rolling Hills Community Services Region</button>
+                 <button type="button" id="PC" class="button1">Polk County <br>Health Services</button>
+                 <br><button type="button" id="NW" class="button1">Northwest Iowa <br>Care Connections</button>
+                 <button type="button" id="MH" class="button1">Mental Health/Disability Services of the East Central Region</button>
+                 <button type="button" id="H" class="button1">Heart of Iowa Community Services Region</button>
+                 <br><button type="button" id="EI" class="button1">Eastern Iowa <br>MHDS Region</button>
+                 <button type="button" id="CSS" class="button1">County Social <br>Services</button>
+                 <button type="button" id="CR" class="button1">County Rural Offices of Social Services</button>
+                 <br><button type="button" id="CI" class="button1">Central Iowa Community Services</button>
                  </div>
                  </div>
             <div id="map4"></div>
@@ -493,13 +490,13 @@
           //map 3 & 4 pop up function
             function popupProvider(feature, layer) {
                 popupOptions = {maxWidth: 200}; 
-                    if (feature.properties.URL == "NA"){ 
-                    layer.bindPopup("<b>Site name: </b>" + feature.properties.Name +  
-                                    "<br><b>Phone Number: </b>" + feature.properties.Phone +                  
-                                    "<br><b>Link:</b> No URL available",popupOptions);}
-                    else{layer.bindPopup("<b>Site name: </b>" + feature.properties.Name + 
-                                         "<br><b>Phone Number: </b>" + feature.properties.Phone +                  
-                                         "<br><b>Link: </b>" + '<a href="'+feature.properties.URL+'">'+feature.properties.URL+'</a>'                   
+                    if (feature.properties.Phone == "NA"){ 
+                    layer.bindPopup("<b>Program Child: </b>" + feature.properties.ProviderCh +  
+                                    "<br><b>Program Name: </b>" + feature.properties.Program +                  
+                                    "<br><b>Phone:</b> No Phone available",popupOptions);}
+                    else{layer.bindPopup("<b>Program Child: </b>" + feature.properties.ProviderCh + 
+                                         "<br><b>Program Name: </b>" + feature.properties.Program +                  
+                                         "<br><b>Phone: </b>" +  feature.properties.Phone                 
                     ,popupOptions);   }}
             
             
@@ -518,7 +515,29 @@
             //map 3 provider data, style, and function
             var markers = L.markerClusterGroup();
             
-            var RData =L.geoJSON(RData, {
+    //        var RData =L.geoJSON(RData, {
+      //          style: function (feature) {
+        //        return {
+          //          stroke: false,
+    //                fillColor: 'FFFFFF',
+      //              fillOpacity: 0
+        //            };
+          //          },
+            //    onEachFeature: function (feature, layer) {
+    //                popupOptions = {maxWidth: 200}; 
+      //              if (feature.properties.URL == "NA"){ 
+        //            layer.bindPopup("<b>Site name: </b>" + feature.properties.Name +  
+          //                          "<br><b>Link:</b> No URL available",popupOptions);}
+            //        else{layer.bindPopup("<b>Site name: </b>" + feature.properties.Name + 
+    //                                     "<br><b>Link: </b>" + '<a href="'+feature.properties.URL+'">'+feature.properties.URL+'</a>'                   
+      //              ,popupOptions);   }
+        //            }
+          //          })      
+    //            markers.addLayer(RData);
+      //          map3.addLayer(markers);
+             
+            
+        var PSData =L.geoJSON(PSdata, {
                 style: function (feature) {
                 return {
                     stroke: false,
@@ -526,22 +545,13 @@
                     fillOpacity: 0
                     };
                     },
-                onEachFeature: function (feature, layer) {
-                    popupOptions = {maxWidth: 200}; 
-                    if (feature.properties.URL == "NA"){ 
-                    layer.bindPopup("<b>Site name: </b>" + feature.properties.Name +  
-                                    "<br><b>Link:</b> No URL available",popupOptions);}
-                    else{layer.bindPopup("<b>Site name: </b>" + feature.properties.Name + 
-                                         "<br><b>Link: </b>" + '<a href="'+feature.properties.URL+'">'+feature.properties.URL+'</a>'                   
-                    ,popupOptions);   }
-                    }
+                onEachFeature: popupProvider,
                     })      
-                markers.addLayer(RData);
+                markers.addLayer(PSData);
                 map3.addLayer(markers);
-             
             
-       
-                
+          
+            
             var circle1 = {
                 radius: 4,
                 fillColor: "#FFA500",
@@ -560,32 +570,13 @@
                 fillOpacity: 0.8
                 };
     
-            
-             var RSRData =L.geoJSON(SRData, {
+              var PSRData =L.geoJSON(PSdata, {
                 onEachFeature: popupProvider,
-                filter: function(feature, layer) {
-                    if (feature.properties.IDPH_Feedb == 'IDPH_Poss_Recovery') {
-                    return true;
-                    }
-                    },
                 pointToLayer: function(feature, latlng) {
                     return L.circleMarker(latlng, circle1);
                     },
                     })
-                
-
-               var TXSRData =L.geoJSON(SRData, {
-               onEachFeature: popupProvider,
-                filter: function(feature, layer) {
-                    if (feature.properties.IDPH_Feedb == 'IDPH_Identified_TX') {
-                    return true;
-                    }
-                    },
-                pointToLayer: function(feature, latlng) {
-                    return L.circleMarker(latlng, circle2);
-                    },
-                    })  
-             
+              
              function getColor3(d) {
                  return d  > 1000  ? '#873600' :
                         d  > 500  ? '#A04000' :
@@ -686,24 +677,12 @@
 
             legend3d.onAdd = function(map3) {
                 var div = L.DomUtil.create('div', 'info legend'),
-                RSRData = [],
+                PSRData = [],
                 labels = [];
-                div.innerHTML += "<b>Iowa Substance Use Recovery Providers: <br>Orange Circles</b>";
+                div.innerHTML += "<b>Iowa Substance Use Peer Support Recovery Provider <br>Orange Circles</b>";
                 return div;
                 };
             
-                   
-             var legend3e = L.control({
-                position: 'bottomleft'
-                });
-
-            legend3e.onAdd = function(map3) {
-                var div = L.DomUtil.create('div', 'info legend'),
-                TXSRData = [],
-                labels = [];
-                div.innerHTML += "<b>Iowa Substance Use Treatment Providers: <br>Black Circles</b>";
-                return div;
-                };
             
             var legend3f = L.control({
                 position: 'bottomleft'
@@ -713,7 +692,7 @@
                 var div = L.DomUtil.create('div', 'info legend'),
                 markers = [],
                 labels = [];
-                div.innerHTML += "<b>Iowa Recovery Providers Cluster Layer</b><br>";
+                div.innerHTML += "<b>Iowa Substance Use Peer Support Recovery Cluster Layer</b><br>";
                 return div;
                 }
                 legend3f.addTo(map3);
@@ -725,9 +704,8 @@
                 };
        		
 		    var overlayMaps = {
-		      "Iowa Recovery Providers Cluster Layer": markers,
-              "Iowa Substance Use Recovery Providers": RSRData,
-              "Iowa Substance Use Treatment Providers": TXSRData,
+		      "Iowa Substance Use Peer Support Recovery Cluster Layer": markers,
+              "Iowa Substance Use Peer Support Recovery Providers": PSRData,
               "Substance Deaths": imort,
               "Percent Poverty": ipov,
               "COVID": COVID
@@ -744,13 +722,12 @@
                 this.removeControl(legend3c);
 	            }else if (eventLayer.name == "Substance Deaths"){
                 this.removeControl(legend3b);
-                }else if (eventLayer.name == "Iowa Recovery Providers Cluster Layer"){
+                }else if (eventLayer.name == "Iowa Substance Use Peer Support Recovery Cluster Layer"){
                 this.removeControl(legend3f);
-                }else if (eventLayer.name == "Iowa Substance Use Treatment Providers"){
-                this.removeControl(legend3e);
-                }else if (eventLayer.name == "Iowa Substance Use Recovery Providers"){
+                }else if (eventLayer.name == "Iowa Substance Use Peer Support Recovery Providers"){
                 this.removeControl(legend3d);
-                }});
+                }
+                });
 
             map3.on('overlayadd', function (eventLayer) {
 	          console.log(eventLayer.name + "on");
@@ -760,14 +737,13 @@
 		       legend3c.addTo(this);
                }else if (eventLayer.name == "Substance Deaths"){
 		       legend3b.addTo(this);
-               }else if (eventLayer.name == "Iowa Recovery Providers Cluster Layer"){
+               }else if (eventLayer.name == "Iowa Substance Use Peer Support Recovery Cluster Layer"){
                legend3f.addTo(this);
-               }else if (eventLayer.name == "Iowa Substance Use Treatment Providers"){
-               legend3e.addTo(this);
-               }else if (eventLayer.name == "Iowa Substance Use Recovery Providers"){
+               }else if (eventLayer.name == "Iowa Substance Use Peer Support Recovery Providers"){
                legend3d.addTo(this);
                }});
-              
+            
+            
             //map 4  
             var OSM4 = L.tileLayer('https://{s}.tile.osm.org/{z}/{x}/{y}.png', {
                 attribution: '&copy; <a href="https://osm.org/copyright">OpenStreetMap</a> contributors',
@@ -785,36 +761,21 @@
                 icon: 'phone',
                 prefix: 'fa',
                 markerColor: 'blue'
-                });      
-             
-            //map 4 data that starts on the data 
-            var all = L.geoJSON(FRData, {
-                pointToLayer: function(feature, latlng) {
-                return L.marker(latlng, {
-                icon: phoneMarker})
-                },
-                onEachFeature: function (feature, layer) {
-                    popupOptions = {maxWidth: 200}; 
-                    if (feature.properties.URL == "NA"){ 
-                    layer.bindPopup("<b>Site name: </b>" + feature.properties.Name +  
-                                    "<br><b>Phone Number: </b>" + feature.properties.Phone +                  
-                                    "<br><b>Link:</b> No URL available",popupOptions);}
-                    else{layer.bindPopup("<b>Site name: </b>" + feature.properties.Name + 
-                                         "<br><b>Phone Number: </b>" + feature.properties.Phone +                  
-                                         "<br><b>Link: </b>" + '<a href="'+feature.properties.URL+'">'+feature.properties.URL+'</a>'                   
-                    ,popupOptions);   }
-                    }}
-                    )
-                    .addTo(map4);
-            
-
-                
+                });                      
             
             //map 4 data for buttons 
-            var housing = L.geoJSON(FRData, {
+            var ALL = L.geoJSON(PSdata, {
+                onEachFeature: popupProvider,
+                pointToLayer: function(feature, latlng) {
+                    return L.marker(latlng, {icon: phoneMarker});
+                    },
+                    })
+                    .addTo(map4);
+            
+            var SW = L.geoJSON(PSdata, {
                 onEachFeature: popupProvider,
                 filter: function(feature, layer) {
-                    if (feature.properties.ServiceTyp == 'RecoveryHousing') {
+                    if (feature.properties.ProviderPa == 'Southwest Iowa MHDS Region') {
                     return true;
                     }
                     },
@@ -823,10 +784,10 @@
                     },
                     })
             
-             var twelve = L.geoJSON(FRData, {
+             var SH = L.geoJSON(PSdata, {
                 onEachFeature: popupProvider,
                 filter: function(feature, layer) {
-                    if (feature.properties.twelve_Step == 'Yes') {
+                    if (feature.properties.ProviderPa == 'Southern Hills Regional Mental Health') {
                     return true;
                     }
                     },
@@ -834,133 +795,23 @@
                     return L.marker(latlng, {icon: phoneMarker});
                     },
                     })
-
+      
+             var SE = L.geoJSON(PSdata, {
+                onEachFeature: popupProvider,
+                filter: function(feature, layer) {
+                    if (feature.properties.ProviderPa == 'Southeast Iowa Link') {
+                    return true;
+                    }
+                    },
+                pointToLayer: function(feature, latlng) {
+                    return L.marker(latlng, {icon: phoneMarker});
+                    },
+                    })
                
-               var IDPHFeedbackTX = L.geoJSON(FRData, {
+                var SC = L.geoJSON(PSdata, {
                 onEachFeature: popupProvider,
                 filter: function(feature, layer) {
-                    if (feature.properties.IDPH_Feedb == 'IDPH_Identified_TX') {
-                    return true;
-                    }
-                    },
-                pointToLayer: function(feature, latlng) {
-                    return L.marker(latlng, {icon: phoneMarker});
-                    },
-                    })
-               
-                var IDPHFeedbackRecovery = L.geoJSON(FRData, {
-                    onEachFeature: popupProvider,
-                filter: function(feature, layer) {
-                    if (feature.properties.IDPH_Feedb == 'IDPH_Poss_Recovery') {
-                    return true;
-                    }
-                    },
-                pointToLayer: function(feature, latlng) {
-                    return L.marker(latlng, {icon: phoneMarker});
-                    },
-                    })
-             
-                var IntOut = L.geoJSON(FRData, {
-                onEachFeature: popupProvider,
-                filter: function(feature, layer) {
-                    if (feature.properties.Intensive == 'Yes') {
-                    return true;
-                    }
-                    },
-                pointToLayer: function(feature, latlng) {
-                    return L.marker(latlng, {icon: phoneMarker});
-                    },
-                    })
-                
-                var Residential = L.geoJSON(FRData, {
-                onEachFeature: popupProvider,
-                filter: function(feature, layer) {
-                    if (feature.properties.Residentia == 'Yes') {
-                    return true;
-                    }
-                    },
-                pointToLayer: function(feature, latlng) {
-                    return L.marker(latlng, {icon: phoneMarker});
-                    },
-                    })
-                
-                var Inpatient = L.geoJSON(FRData, {
-                onEachFeature: popupProvider,
-                filter: function(feature, layer) {
-                    if (feature.properties.InpatientT == 'Yes') {
-                    return true;
-                    }
-                    },
-                pointToLayer: function(feature, latlng) {
-                    return L.marker(latlng, {icon: phoneMarker});
-                    },
-                    })
-                
-                var CBT = L.geoJSON(FRData, {
-                onEachFeature: popupProvider,
-                filter: function(feature, layer) {
-                    if (feature.properties.CBT == 'Yes') {
-                    return true;
-                    }
-                    },
-                pointToLayer: function(feature, latlng) {
-                    return L.marker(latlng, {icon: phoneMarker});
-                    },
-                    })
-                
-                var DBT = L.geoJSON(FRData, {
-                onEachFeature: popupProvider,
-                filter: function(feature, layer) {
-                    if (feature.properties.DBT == 'Yes') {
-                    return true;
-                    }
-                    },
-                pointToLayer: function(feature, latlng) {
-                    return L.marker(latlng, {icon: phoneMarker});
-                    },
-                    })
-                
-                var REBT = L.geoJSON(FRData, {
-                onEachFeature: popupProvider,
-                filter: function(feature, layer) {
-                    if (feature.properties.REBT == 'Yes') {
-                    return true;
-                    }
-                    },
-                pointToLayer: function(feature, latlng) {
-                    return L.marker(latlng, {icon: phoneMarker});
-                    },
-                    })
-                
-                var Med = L.geoJSON(FRData, {
-                onEachFeature: popupProvider,
-                filter: function(feature, layer) {
-                    if (feature.properties.Medication == 'Yes') {
-                    return true;
-                    }
-                    },
-                pointToLayer: function(feature, latlng) {
-                    return L.marker(latlng, {icon: phoneMarker});
-                    },
-                    })
-                
-                var Trauma = L.geoJSON(FRData, {
-                onEachFeature: popupProvider,
-                filter: function(feature, layer) {
-                    if (feature.properties.Trauma_PTS == 'Yes') {
-                    return true;
-                    }
-                    },
-                pointToLayer: function(feature, latlng) {
-                    return L.marker(latlng, {icon: phoneMarker});
-                    },
-                    })
-                
-               
-            var Out = L.geoJSON(FRData, {
-                onEachFeature: popupProvider,
-                filter: function(feature, layer) {
-                    if (feature.properties.Outpatient == 'Yes') {
+                    if (feature.properties.ProviderPa == 'South Central Behavioral Health Region') {
                     return true;
                     }
                     },
@@ -969,10 +820,10 @@
                     },
                     })
             
-            var Religion = L.geoJSON(FRData, {
+                var SR = L.geoJSON(PSdata, {
                 onEachFeature: popupProvider,
                 filter: function(feature, layer) {
-                    if (feature.properties.ReligiousB == 'Yes') {
+                    if (feature.properties.ProviderPa == 'Sioux Rivers Mental Health and Disabilities Services') {
                     return true;
                     }
                     },
@@ -980,11 +831,11 @@
                     return L.marker(latlng, {icon: phoneMarker});
                     },
                     })
-            
-            var women = L.geoJSON(FRData, {
+                          
+                var RH = L.geoJSON(PSdata, {
                 onEachFeature: popupProvider,
                 filter: function(feature, layer) {
-                    if (feature.properties.Gender == 'Women') {
+                    if (feature.properties.ProviderPa == 'Rolling Hills Community Services Region') {
                     return true;
                     }
                     },
@@ -992,11 +843,11 @@
                     return L.marker(latlng, {icon: phoneMarker});
                     },
                     })
-            
-            var men = L.geoJSON(FRData, {
+                            
+              var PC = L.geoJSON(PSdata, {
                 onEachFeature: popupProvider,
                 filter: function(feature, layer) {
-                    if (feature.properties.Gender == 'Men') {
+                    if (feature.properties.ProviderPa == 'Polk County Health Services') {
                     return true;
                     }
                     },
@@ -1004,121 +855,174 @@
                     return L.marker(latlng, {icon: phoneMarker});
                     },
                     })
+                                  
+              var NW = L.geoJSON(PSdata, {
+                onEachFeature: popupProvider,
+                filter: function(feature, layer) {
+                    if (feature.properties.ProviderPa == 'Northwest Iowa Care Connections') {
+                    return true;
+                    }
+                    },
+                pointToLayer: function(feature, latlng) {
+                    return L.marker(latlng, {icon: phoneMarker});
+                    },
+                    })
+                                    
+              var MH = L.geoJSON(PSdata, {
+                onEachFeature: popupProvider,
+                filter: function(feature, layer) {
+                    if (feature.properties.ProviderPa == 'Mental Health\/Disability Services of the East Central Region') {
+                    return true;
+                    }
+                    },
+                pointToLayer: function(feature, latlng) {
+                    return L.marker(latlng, {icon: phoneMarker});
+                    },
+                    })
+                                
+              var H = L.geoJSON(PSdata, {
+                onEachFeature: popupProvider,
+                filter: function(feature, layer) {
+                    if (feature.properties.ProviderPa == 'Heart of Iowa Community Services Region') {
+                    return true;
+                    }
+                    },
+                pointToLayer: function(feature, latlng) {
+                    return L.marker(latlng, {icon: phoneMarker});
+                    },
+                    })              
+                   
+              var EI = L.geoJSON(PSdata, {
+                onEachFeature: popupProvider,
+                filter: function(feature, layer) {
+                    if (feature.properties.ProviderPa == 'Eastern Iowa MHDS Region') {
+                    return true;
+                    }
+                    },
+                pointToLayer: function(feature, latlng) {
+                    return L.marker(latlng, {icon: phoneMarker});
+                    },
+                    })                         
+                  
+              var CSS = L.geoJSON(PSdata, {
+                onEachFeature: popupProvider,
+                filter: function(feature, layer) {
+                    if (feature.properties.ProviderPa == 'County Social Services') {
+                    return true;
+                    }
+                    },
+                pointToLayer: function(feature, latlng) {
+                    return L.marker(latlng, {icon: phoneMarker});
+                    },
+                    })           
                 
-            var family = L.geoJSON(FRData, {
+              var CR = L.geoJSON(PSdata, {
                 onEachFeature: popupProvider,
                 filter: function(feature, layer) {
-                    if (feature.properties.Family == 'Yes') {
+                    if (feature.properties.ProviderPa == 'County Rural Offices of Social Services') {
                     return true;
                     }
                     },
-                 pointToLayer: function(feature, latlng) {
+                pointToLayer: function(feature, latlng) {
                     return L.marker(latlng, {icon: phoneMarker});
                     },
                     })
-                
-            var veteran = L.geoJSON (FRData, {
+                              
+              var CI = L.geoJSON(PSdata, {
                 onEachFeature: popupProvider,
                 filter: function(feature, layer) {
-                    if (feature.properties.Veterans == 'Yes') {
+                    if (feature.properties.ProviderPa == 'Central Iowa Community Services') {
                     return true;
                     }
                     },
-                 pointToLayer: function(feature, latlng) {
+                pointToLayer: function(feature, latlng) {
                     return L.marker(latlng, {icon: phoneMarker});
                     },
-                    })
+                    })     
             
-            //Map4 legends
-        
-        
+            //Map4 legends    
             var legend4a = L.control({
                 position: 'bottomleft'
                 });
         
             legend4a.onAdd = function(map4) {
                 var div = L.DomUtil.create('div', 'info legend'),
-                all = [],
+                ALL = [],
                 labels = [];
-                div.innerHTML += "<b>All Substance Use Treatment & Recovery Providers from Recovery Scan</b><br>";
+                div.innerHTML += "<b>All Recovery Providers</b><br>"
                 return div;
                 };
                 legend4a.addTo(map4);
             
-               var legend4b = L.control({
+             var legend4b = L.control({
                 position: 'bottomleft'
                 });
 
             legend4b.onAdd = function(map4) {
                 var div = L.DomUtil.create('div', 'info legend'),
-                all = [],
+                ALL = [],
                 labels = [];
-                div.innerHTML += "<b>Providers From Recovery Scan Identified as Treatment by IDPH</b>";
+                div.innerHTML += "<b>Southwest Iowa MHDS Region</b>";
                 return div;
                 };
           
-            
              var legend4c = L.control({
                 position: 'bottomleft'
                 });
 
             legend4c.onAdd = function(map4) {
                 var div = L.DomUtil.create('div', 'info legend'),
-                all = [],
+                ALL = [],
                 labels = [];
-                div.innerHTML += "<b>Providers from Recovery Scan that are Possible Recovery Only Providers</b>";
+                div.innerHTML += "<b>Southern Hills Regional Mental Health</b>";
                 return div;
                 };
-       
-            
+              
              var legend4d = L.control({
                 position: 'bottomleft'
                 });
 
             legend4d.onAdd = function(map4) {
                 var div = L.DomUtil.create('div', 'info legend'),
-                all = [],
+                ALL = [],
                 labels = [];
-                div.innerHTML += "<b>Housing</b>";
+                div.innerHTML += "<b>South Central Behavioral Health Region</b>";
                 return div;
                 };
       
-            
              var legend4e = L.control({
                 position: 'bottomleft'
                 });
 
             legend4e.onAdd = function(map4) {
                 var div = L.DomUtil.create('div', 'info legend'),
-                all = [],
+                ALL = [],
                 labels = [];
-                div.innerHTML += "<b>Providers from Recovery Scan with Reported Residential Services</b>";
+                div.innerHTML += "<b>Sioux Rivers Mental Health and Disabilities Services</b>";
                 return div;
                 };
-    
-            
+               
              var legend4f = L.control({
                 position: 'bottomleft'
                 });
 
             legend4f.onAdd = function(map4) {
                 var div = L.DomUtil.create('div', 'info legend'),
-                all = [],
+                ALL = [],
                 labels = [];
-                div.innerHTML += "<b>Providers from Recovery Scan with Reported Inpatient Services</b>";
+                div.innerHTML += "<b>Rolling Hills Community Services Region</b>";
                 return div;
                 };
-
-            
+    
              var legend4g = L.control({
                 position: 'bottomleft'
                 });
 
             legend4g.onAdd = function(map4) {
                 var div = L.DomUtil.create('div', 'info legend'),
-                all = [],
+                ALL = [],
                 labels = [];
-                div.innerHTML += "<b>Providers from Recovery Scan with Reported Services for Women</b>";
+                div.innerHTML += "<b>Polk County Health Services</b>";
                 return div;
                 };
             
@@ -1128,9 +1032,9 @@
 
             legend4h.onAdd = function(map4) {
                 var div = L.DomUtil.create('div', 'info legend'),
-                all = [],
+                ALL = [],
                 labels = [];
-                div.innerHTML += "<b>Providers from Recovery Scan with Reported Services for Men</b>";
+                div.innerHTML += "<b>Northwest Iowa Care Connections</b>";
                 return div;
                 };
             
@@ -1140,9 +1044,9 @@
 
             legend4i.onAdd = function(map4) {
                 var div = L.DomUtil.create('div', 'info legend'),
-                all = [],
+                ALL = [],
                 labels = [];
-                div.innerHTML += "<b>Providers from Recovery Scan with Reported Services for Families</b>";
+                div.innerHTML += "<b>Mental Health/Disability Services of the East Central Region</b>";
                 return div;
                 };
             
@@ -1152,9 +1056,9 @@
 
             legend4j.onAdd = function(map4) {
                 var div = L.DomUtil.create('div', 'info legend'),
-                all = [],
+                ALL = [],
                 labels = [];
-                div.innerHTML += "<b>Providers from Recovery Scan with Reported 12-Step Services</b>";
+                div.innerHTML += "<b>Heart of Iowa Community Services Region</b>";
                 return div;
                 };
             
@@ -1164,9 +1068,9 @@
 
             legend4k.onAdd = function(map4) {
                 var div = L.DomUtil.create('div', 'info legend'),
-                all = [],
+                ALL = [],
                 labels = [];
-                div.innerHTML += "<b>Providers from Recovery Scan with Reported Intensive Outpatient Services</b>";
+                div.innerHTML += "<b>Eastern Iowa MHDS Region</b>";
                 return div;
                 };
             
@@ -1176,9 +1080,9 @@
 
             legend4l.onAdd = function(map4) {
                 var div = L.DomUtil.create('div', 'info legend'),
-                all = [],
+                ALL = [],
                 labels = [];
-                div.innerHTML += "<b>Providers from Recovery Scan with Reported Outpatient/Counseling Services</b>";
+                div.innerHTML += "<b>County Social Services</b>";
                 return div;
                 };
             
@@ -1188,9 +1092,9 @@
 
             legend4m.onAdd = function(map4) {
                 var div = L.DomUtil.create('div', 'info legend'),
-                all = [],
+                ALL = [],
                 labels = [];
-                div.innerHTML += "<b>Providers from Recovery Scan with Reported Cognitive Behavioral Therapy</b>";
+                div.innerHTML += "<b>County Rural Offices of Social Services</b>";
                 return div;
                 };
             
@@ -1200,81 +1104,29 @@
 
             legend4n.onAdd = function(map4) {
                 var div = L.DomUtil.create('div', 'info legend'),
-                all = [],
+                ALL = [],
                 labels = [];
-                div.innerHTML += "<b>Providers from Recovery Scan with Reported Dialectical Behavioral Therapy</b>";
+                div.innerHTML += "<b>Central Iowa Community Services</b>";
                 return div;
                 };
-            
-            var legend4o = L.control({
-                position: 'bottomleft'
-                });
-
-            legend4o.onAdd = function(map4) {
-                var div = L.DomUtil.create('div', 'info legend'),
-                all = [],
-                labels = [];
-                div.innerHTML += "<b>Providers from Recovery Scan with Reported Rational Emotive Behavior Therapy</b>";
-                return div;
-                };
-            
-           var legend4p = L.control({
-                position: 'bottomleft'
-                });
-
-            legend4p.onAdd = function(map4) {
-                var div = L.DomUtil.create('div', 'info legend'),
-                all = [],
-                labels = [];
-                div.innerHTML += "<b>Providers from Recovery Scan with Reported Treatment with Medications</b>";
-                return div;
-                };
-            
-            var legend4q = L.control({
-                position: 'bottomleft'
-                });
-
-            legend4q.onAdd = function(map4) {
-                var div = L.DomUtil.create('div', 'info legend'),
-                all = [],
-                labels = [];
-                div.innerHTML += "<b>Providers from Recovery Scan with Reported Trauma and PTSD Services</b>";
-                return div;
-                };
-            
-            var legend4r = L.control({
-                position: 'bottomleft'
-                });
-
-            legend4r.onAdd = function(map4) {
-                var div = L.DomUtil.create('div', 'info legend'),
-                all = [],
-                labels = [];
-                div.innerHTML += "<b>Providers from Recovery Scan with Reported Faith Based Services</b>";
-                return div;
-                };
-                 
+                       
             //map 4 filtering
-             $("#all").click(function() {
-                map4.addLayer(all);
+             $("#ALL").click(function() {
+                map4.addLayer(ALL);
                 map4.addControl(legend4a);
-                map4.removeLayer(IDPHFeedbackTX);
-                map4.removeLayer(IDPHFeedbackRecovery);
-                map4.removeLayer(housing);
-                map4.removeLayer(Residential);
-                map4.removeLayer(Inpatient);
-                map4.removeLayer(women);
-                map4.removeLayer(men);
-                map4.removeLayer(family);
-                map4.removeLayer(twelve);
-                map4.removeLayer(IntOut);
-                map4.removeLayer(Out);
-                map4.removeLayer(CBT);
-                map4.removeLayer(DBT);
-                map4.removeLayer(REBT);
-                map4.removeLayer(Med);
-                map4.removeLayer(Trauma);
-                map4.removeLayer(Religion);
+                map4.removeLayer(SW);
+                map4.removeLayer(SH);
+                map4.removeLayer(SC);
+                map4.removeLayer(SR);
+                map4.removeLayer(RH);
+                map4.removeLayer(PC);
+                map4.removeLayer(NW);
+                map4.removeLayer(MH);
+                map4.removeLayer(H);
+                map4.removeLayer(EI);
+                map4.removeLayer(CSS);
+                map4.removeLayer(CR);
+                map4.removeLayer(CI);
                 map4.removeControl(legend4b);
                 map4.removeControl(legend4c);
                 map4.removeControl(legend4d);
@@ -1288,32 +1140,24 @@
                 map4.removeControl(legend4l);
                 map4.removeControl(legend4m);
                 map4.removeControl(legend4n);
-                map4.removeControl(legend4o);
-                map4.removeControl(legend4p);
-                map4.removeControl(legend4q);
-                map4.removeControl(legend4r);
                 });
-            
-            $("#IDPHFeedbackTX").click(function() {
-                map4.addLayer(IDPHFeedbackTX);
+ 
+             $("#SW").click(function() {
+                map4.addLayer(SW);
                 map4.addControl(legend4b);
-                map4.removeLayer(all);
-                map4.removeLayer(IDPHFeedbackRecovery);
-                map4.removeLayer(housing);
-                map4.removeLayer(Residential);
-                map4.removeLayer(Inpatient);
-                map4.removeLayer(women);
-                map4.removeLayer(men);
-                map4.removeLayer(family);
-                map4.removeLayer(twelve);
-                map4.removeLayer(IntOut);
-                map4.removeLayer(Out);
-                map4.removeLayer(CBT);
-                map4.removeLayer(DBT);
-                map4.removeLayer(REBT);
-                map4.removeLayer(Med);
-                map4.removeLayer(Trauma);
-                map4.removeLayer(Religion);
+                map4.removeLayer(ALL);
+                map4.removeLayer(SH);
+                map4.removeLayer(SC);
+                map4.removeLayer(SR);
+                map4.removeLayer(RH);
+                map4.removeLayer(PC);
+                map4.removeLayer(NW);
+                map4.removeLayer(MH);
+                map4.removeLayer(H);
+                map4.removeLayer(EI);
+                map4.removeLayer(CSS);
+                map4.removeLayer(CR);
+                map4.removeLayer(CI);
                 map4.removeControl(legend4a);
                 map4.removeControl(legend4c);
                 map4.removeControl(legend4d);
@@ -1327,32 +1171,24 @@
                 map4.removeControl(legend4l);
                 map4.removeControl(legend4m);
                 map4.removeControl(legend4n);
-                map4.removeControl(legend4o);
-                map4.removeControl(legend4p);
-                map4.removeControl(legend4q);
-                map4.removeControl(legend4r);
                 });
-
-            $("#IDPHFeedbackRecovery").click(function() {
-                map4.addLayer(IDPHFeedbackRecovery);
+            
+             $("#SH").click(function() {
+                map4.addLayer(SH);
                 map4.addControl(legend4c);
-                map4.removeLayer(all);
-                map4.removeLayer(IDPHFeedbackTX);
-                map4.removeLayer(housing);
-                map4.removeLayer(Residential);
-                map4.removeLayer(Inpatient);
-                map4.removeLayer(women);
-                map4.removeLayer(men);
-                map4.removeLayer(family);
-                map4.removeLayer(twelve);
-                map4.removeLayer(IntOut);
-                map4.removeLayer(Out);
-                map4.removeLayer(CBT);
-                map4.removeLayer(DBT);
-                map4.removeLayer(REBT);
-                map4.removeLayer(Med);
-                map4.removeLayer(Trauma);
-                map4.removeLayer(Religion);
+                map4.removeLayer(ALL);
+                map4.removeLayer(SW);
+                map4.removeLayer(SC);
+                map4.removeLayer(SR);
+                map4.removeLayer(RH);
+                map4.removeLayer(PC);
+                map4.removeLayer(NW);
+                map4.removeLayer(MH);
+                map4.removeLayer(H);
+                map4.removeLayer(EI);
+                map4.removeLayer(CSS);
+                map4.removeLayer(CR);
+                map4.removeLayer(CI);
                 map4.removeControl(legend4a);
                 map4.removeControl(legend4b);
                 map4.removeControl(legend4d);
@@ -1366,32 +1202,24 @@
                 map4.removeControl(legend4l);
                 map4.removeControl(legend4m);
                 map4.removeControl(legend4n);
-                map4.removeControl(legend4o);
-                map4.removeControl(legend4p);
-                map4.removeControl(legend4q);
-                map4.removeControl(legend4r);
                 });
-
-          $("#housing").click(function() {
-                map4.addLayer(housing);
+           
+             $("#SC").click(function() {
+                map4.addLayer(SC);
                 map4.addControl(legend4d);
-                map4.removeLayer(all);
-                map4.removeLayer(IDPHFeedbackTX);
-                map4.removeLayer(IDPHFeedbackRecovery);
-                map4.removeLayer(Residential);
-                map4.removeLayer(Inpatient);
-                map4.removeLayer(women);
-                map4.removeLayer(men);
-                map4.removeLayer(family);
-                map4.removeLayer(twelve);
-                map4.removeLayer(IntOut);
-                map4.removeLayer(Out);
-                map4.removeLayer(CBT);
-                map4.removeLayer(DBT);
-                map4.removeLayer(REBT);
-                map4.removeLayer(Med);
-                map4.removeLayer(Trauma);
-                map4.removeLayer(Religion);
+                map4.removeLayer(ALL);
+                map4.removeLayer(SW);
+                map4.removeLayer(SH);
+                map4.removeLayer(SR);
+                map4.removeLayer(RH);
+                map4.removeLayer(PC);
+                map4.removeLayer(NW);
+                map4.removeLayer(MH);
+                map4.removeLayer(H);
+                map4.removeLayer(EI);
+                map4.removeLayer(CSS);
+                map4.removeLayer(CR);
+                map4.removeLayer(CI);
                 map4.removeControl(legend4a);
                 map4.removeControl(legend4b);
                 map4.removeControl(legend4c);
@@ -1405,32 +1233,24 @@
                 map4.removeControl(legend4l);
                 map4.removeControl(legend4m);
                 map4.removeControl(legend4n);
-                map4.removeControl(legend4o);
-                map4.removeControl(legend4p);
-                map4.removeControl(legend4q);
-                map4.removeControl(legend4r);
                 });
-                
-            $("#Residential").click(function() {
-                map4.addLayer(Residential);
+        
+            $("#SR").click(function() {
+                map4.addLayer(SR);
                 map4.addControl(legend4e);
-                map4.removeLayer(all);
-                map4.removeLayer(IDPHFeedbackTX);
-                map4.removeLayer(IDPHFeedbackRecovery);
-                map4.removeLayer(housing);
-                map4.removeLayer(Inpatient);
-                map4.removeLayer(women);
-                map4.removeLayer(men);
-                map4.removeLayer(family);
-                map4.removeLayer(twelve);
-                map4.removeLayer(IntOut);
-                map4.removeLayer(Out);
-                map4.removeLayer(CBT);
-                map4.removeLayer(DBT);
-                map4.removeLayer(REBT);
-                map4.removeLayer(Med);
-                map4.removeLayer(Trauma);
-                map4.removeLayer(Religion);
+                map4.removeLayer(ALL);
+                map4.removeLayer(SW);
+                map4.removeLayer(SH);
+                map4.removeLayer(SC);
+                map4.removeLayer(RH);
+                map4.removeLayer(PC);
+                map4.removeLayer(NW);
+                map4.removeLayer(MH);
+                map4.removeLayer(H);
+                map4.removeLayer(EI);
+                map4.removeLayer(CSS);
+                map4.removeLayer(CR);
+                map4.removeLayer(CI);
                 map4.removeControl(legend4a);
                 map4.removeControl(legend4b);
                 map4.removeControl(legend4c);
@@ -1444,33 +1264,24 @@
                 map4.removeControl(legend4l);
                 map4.removeControl(legend4m);
                 map4.removeControl(legend4n);
-                map4.removeControl(legend4o);
-                map4.removeControl(legend4p);
-                map4.removeControl(legend4q);
-                map4.removeControl(legend4r);
-                });
+                });            
             
-            
-          $("#Inpatient").click(function() {
-                map4.addLayer(Inpatient);
+         $("#RH").click(function() {
+                map4.addLayer(RH);
                 map4.addControl(legend4f);
-                map4.removeLayer(all);
-                map4.removeLayer(IDPHFeedbackTX);
-                map4.removeLayer(IDPHFeedbackRecovery);
-                map4.removeLayer(housing);
-                map4.removeLayer(Residential);
-                map4.removeLayer(women);
-                map4.removeLayer(men);
-                map4.removeLayer(family);
-                map4.removeLayer(twelve);
-                map4.removeLayer(IntOut);
-                map4.removeLayer(Out);
-                map4.removeLayer(CBT);
-                map4.removeLayer(DBT);
-                map4.removeLayer(REBT);
-                map4.removeLayer(Med);
-                map4.removeLayer(Trauma);
-                map4.removeLayer(Religion);
+                map4.removeLayer(ALL);
+                map4.removeLayer(SW);
+                map4.removeLayer(SH);
+                map4.removeLayer(SC);
+                map4.removeLayer(SR);
+                map4.removeLayer(PC);
+                map4.removeLayer(NW);
+                map4.removeLayer(MH);
+                map4.removeLayer(H);
+                map4.removeLayer(EI);
+                map4.removeLayer(CSS);
+                map4.removeLayer(CR);
+                map4.removeLayer(CI);
                 map4.removeControl(legend4a);
                 map4.removeControl(legend4b);
                 map4.removeControl(legend4c);
@@ -1484,225 +1295,180 @@
                 map4.removeControl(legend4l);
                 map4.removeControl(legend4m);
                 map4.removeControl(legend4n);
-                map4.removeControl(legend4o);
-                map4.removeControl(legend4p);
-                map4.removeControl(legend4q);
-                map4.removeControl(legend4r);
-                });            
-            
-          $("#women").click(function() {
-                map4.addLayer(women);
-                map4.addControl(legend4g);
-                map4.removeLayer(all);
-                map4.removeLayer(IDPHFeedbackTX);
-                map4.removeLayer(IDPHFeedbackRecovery);
-                map4.removeLayer(housing);
-                map4.removeLayer(Residential);
-                map4.removeLayer(Inpatient);
-                map4.removeLayer(men);
-                map4.removeLayer(family);
-                map4.removeLayer(twelve);
-                map4.removeLayer(IntOut);
-                map4.removeLayer(Out);
-                map4.removeLayer(CBT);
-                map4.removeLayer(DBT);
-                map4.removeLayer(REBT);
-                map4.removeLayer(Med);
-                map4.removeLayer(Trauma);
-                map4.removeLayer(Religion);
-                map4.removeControl(legend4a);
-                map4.removeControl(legend4b);
-                map4.removeControl(legend4c);
-                map4.removeControl(legend4d);
-                map4.removeControl(legend4e);
-                map4.removeControl(legend4f);
-                map4.removeControl(legend4h);
-                map4.removeControl(legend4i);
-                map4.removeControl(legend4j);
-                map4.removeControl(legend4k);
-                map4.removeControl(legend4l);
-                map4.removeControl(legend4m);
-                map4.removeControl(legend4n);
-                map4.removeControl(legend4o);
-                map4.removeControl(legend4p);
-                map4.removeControl(legend4q);
-                map4.removeControl(legend4r);
-                });
-            
-            $("#men").click(function() {
-                map4.addLayer(men);
-                map4.addControl(legend4h);
-                map4.removeLayer(all);
-                map4.removeLayer(IDPHFeedbackTX);
-                map4.removeLayer(IDPHFeedbackRecovery);
-                map4.removeLayer(housing);
-                map4.removeLayer(Residential);
-                map4.removeLayer(Inpatient);
-                map4.removeLayer(women);
-                map4.removeLayer(family);
-                map4.removeLayer(twelve);
-                map4.removeLayer(IntOut);
-                map4.removeLayer(Out);
-                map4.removeLayer(CBT);
-                map4.removeLayer(DBT);
-                map4.removeLayer(REBT);
-                map4.removeLayer(Med);
-                map4.removeLayer(Trauma);
-                map4.removeLayer(Religion);
-                map4.removeControl(legend4a);
-                map4.removeControl(legend4b);
-                map4.removeControl(legend4c);
-                map4.removeControl(legend4d);
-                map4.removeControl(legend4e);
-                map4.removeControl(legend4f);
-                map4.removeControl(legend4g);
-                map4.removeControl(legend4i);
-                map4.removeControl(legend4j);
-                map4.removeControl(legend4k);
-                map4.removeControl(legend4l);
-                map4.removeControl(legend4m);
-                map4.removeControl(legend4n);
-                map4.removeControl(legend4o);
-                map4.removeControl(legend4p);
-                map4.removeControl(legend4q);
-                map4.removeControl(legend4r);
-                });          
-            
-           $("#family").click(function() {
-                map4.addLayer(family);
-                map4.addControl(legend4i);
-                map4.removeLayer(all);
-                map4.removeLayer(IDPHFeedbackTX);
-                map4.removeLayer(IDPHFeedbackRecovery);
-                map4.removeLayer(housing);
-                map4.removeLayer(Residential);
-                map4.removeLayer(Inpatient);
-                map4.removeLayer(women);
-                map4.removeLayer(men);
-                map4.removeLayer(twelve);
-                map4.removeLayer(IntOut);
-                map4.removeLayer(Out);
-                map4.removeLayer(CBT);
-                map4.removeLayer(DBT);
-                map4.removeLayer(REBT);
-                map4.removeLayer(Med);
-                map4.removeLayer(Trauma);
-                map4.removeLayer(Religion);
-                map4.removeControl(legend4a);
-                map4.removeControl(legend4b);
-                map4.removeControl(legend4c);
-                map4.removeControl(legend4d);
-                map4.removeControl(legend4e);
-                map4.removeControl(legend4f);
-                map4.removeControl(legend4g);
-                map4.removeControl(legend4h);
-                map4.removeControl(legend4j);
-                map4.removeControl(legend4k);
-                map4.removeControl(legend4l);
-                map4.removeControl(legend4m);
-                map4.removeControl(legend4n);
-                map4.removeControl(legend4o);
-                map4.removeControl(legend4p);
-                map4.removeControl(legend4q);
-                map4.removeControl(legend4r);
-                });
-            
-             $("#twelve").click(function() {
-                map4.addLayer(twelve);
-                map4.addControl(legend4j);
-                map4.removeLayer(all);
-                map4.removeLayer(IDPHFeedbackTX);
-                map4.removeLayer(IDPHFeedbackRecovery);
-                map4.removeLayer(housing);
-                map4.removeLayer(Residential);
-                map4.removeLayer(Inpatient);
-                map4.removeLayer(women);
-                map4.removeLayer(men);
-                map4.removeLayer(IntOut);
-                map4.removeLayer(Out);
-                map4.removeLayer(CBT);
-                map4.removeLayer(DBT);
-                map4.removeLayer(REBT);
-                map4.removeLayer(Med);
-                map4.removeLayer(Trauma);
-                map4.removeLayer(Religion);
-                map4.removeControl(legend4a);
-                map4.removeControl(legend4b);
-                map4.removeControl(legend4c);
-                map4.removeControl(legend4d);
-                map4.removeControl(legend4e);
-                map4.removeControl(legend4f);
-                map4.removeControl(legend4g);
-                map4.removeControl(legend4h);
-                map4.removeControl(legend4i);
-                map4.removeControl(legend4k);
-                map4.removeControl(legend4l);
-                map4.removeControl(legend4m);
-                map4.removeControl(legend4n);
-                map4.removeControl(legend4o);
-                map4.removeControl(legend4p);
-                map4.removeControl(legend4q);
-                map4.removeControl(legend4r);
-                });
-                     
-            
-              $("#IntOut").click(function() {
-                map4.addLayer(IntOut);
-                map4.addControl(legend4k);
-                map4.removeLayer(all);
-                map4.removeLayer(IDPHFeedbackTX);
-                map4.removeLayer(IDPHFeedbackRecovery);
-                map4.removeLayer(housing);
-                map4.removeLayer(Residential);
-                map4.removeLayer(Inpatient);
-                map4.removeLayer(women);
-                map4.removeLayer(men);
-                map4.removeLayer(family);
-                map4.removeLayer(Out);
-                map4.removeLayer(CBT);
-                map4.removeLayer(DBT);
-                map4.removeLayer(REBT);
-                map4.removeLayer(Med);
-                map4.removeLayer(Trauma);
-                map4.removeLayer(Religion);
-                map4.removeControl(legend4a);
-                map4.removeControl(legend4b);
-                map4.removeControl(legend4c);
-                map4.removeControl(legend4d);
-                map4.removeControl(legend4e);
-                map4.removeControl(legend4f);
-                map4.removeControl(legend4g);
-                map4.removeControl(legend4h);
-                map4.removeControl(legend4i);
-                map4.removeControl(legend4j);
-                map4.removeControl(legend4l);
-                map4.removeControl(legend4m);
-                map4.removeControl(legend4n);
-                map4.removeControl(legend4o);
-                map4.removeControl(legend4p);
-                map4.removeControl(legend4q);
-                map4.removeControl(legend4r);
-                });
+                });  
                 
-            $("#Out").click(function() {
-                map4.addLayer(Out);
+         $("#PC").click(function() {
+                map4.addLayer(PC);
+                map4.addControl(legend4g);
+                map4.removeLayer(ALL);
+                map4.removeLayer(SW);
+                map4.removeLayer(SH);
+                map4.removeLayer(SC);
+                map4.removeLayer(SR);
+                map4.removeLayer(RH);
+                map4.removeLayer(NW);
+                map4.removeLayer(MH);
+                map4.removeLayer(H);
+                map4.removeLayer(EI);
+                map4.removeLayer(CSS);
+                map4.removeLayer(CR);
+                map4.removeLayer(CI);
+                map4.removeControl(legend4a);
+                map4.removeControl(legend4b);
+                map4.removeControl(legend4c);
+                map4.removeControl(legend4d);
+                map4.removeControl(legend4e);
+                map4.removeControl(legend4f);
+                map4.removeControl(legend4h);
+                map4.removeControl(legend4i);
+                map4.removeControl(legend4j);
+                map4.removeControl(legend4k);
+                map4.removeControl(legend4l);
+                map4.removeControl(legend4m);
+                map4.removeControl(legend4n);
+                });
+            
+                           
+         $("#NW").click(function() {
+                map4.addLayer(NW);
+                map4.addControl(legend4h);
+                map4.removeLayer(ALL);
+                map4.removeLayer(SW);
+                map4.removeLayer(SH);
+                map4.removeLayer(SC);
+                map4.removeLayer(SR);
+                map4.removeLayer(RH);
+                map4.removeLayer(PC);
+                map4.removeLayer(MH);
+                map4.removeLayer(H);
+                map4.removeLayer(EI);
+                map4.removeLayer(CSS);
+                map4.removeLayer(CR);
+                map4.removeLayer(CI);
+                map4.removeControl(legend4a);
+                map4.removeControl(legend4b);
+                map4.removeControl(legend4c);
+                map4.removeControl(legend4d);
+                map4.removeControl(legend4e);
+                map4.removeControl(legend4f);
+                map4.removeControl(legend4g);
+                map4.removeControl(legend4i);
+                map4.removeControl(legend4j);
+                map4.removeControl(legend4k);
+                map4.removeControl(legend4l);
+                map4.removeControl(legend4m);
+                map4.removeControl(legend4n);
+                });
+            
+            $("#MH").click(function() {
+                map4.addLayer(MH);
+                map4.addControl(legend4i);
+                map4.removeLayer(ALL);
+                map4.removeLayer(SW);
+                map4.removeLayer(SH);
+                map4.removeLayer(SC);
+                map4.removeLayer(SR);
+                map4.removeLayer(RH);
+                map4.removeLayer(PC);
+                map4.removeLayer(NW);
+                map4.removeLayer(H);
+                map4.removeLayer(EI);
+                map4.removeLayer(CSS);
+                map4.removeLayer(CR);
+                map4.removeLayer(CI);
+                map4.removeControl(legend4a);
+                map4.removeControl(legend4b);
+                map4.removeControl(legend4c);
+                map4.removeControl(legend4d);
+                map4.removeControl(legend4e);
+                map4.removeControl(legend4f);
+                map4.removeControl(legend4g);
+                map4.removeControl(legend4h);
+                map4.removeControl(legend4j);
+                map4.removeControl(legend4k);
+                map4.removeControl(legend4l);
+                map4.removeControl(legend4m);
+                map4.removeControl(legend4n);
+                });  
+                
+            $("#H").click(function() {
+                map4.addLayer(H);
+                map4.addControl(legend4j);
+                map4.removeLayer(ALL);
+                map4.removeLayer(SW);
+                map4.removeLayer(SH);
+                map4.removeLayer(SC);
+                map4.removeLayer(SR);
+                map4.removeLayer(RH);
+                map4.removeLayer(PC);
+                map4.removeLayer(NW);
+                map4.removeLayer(MH);
+                map4.removeLayer(EI);
+                map4.removeLayer(CSS);
+                map4.removeLayer(CR);
+                map4.removeLayer(CI);
+                map4.removeControl(legend4a);
+                map4.removeControl(legend4b);
+                map4.removeControl(legend4c);
+                map4.removeControl(legend4d);
+                map4.removeControl(legend4e);
+                map4.removeControl(legend4f);
+                map4.removeControl(legend4g);
+                map4.removeControl(legend4h);
+                map4.removeControl(legend4i);
+                map4.removeControl(legend4k);
+                map4.removeControl(legend4l);
+                map4.removeControl(legend4m);
+                map4.removeControl(legend4n);
+                });  
+                  
+            $("#EI").click(function() {
+                map4.addLayer(EI);
+                map4.addControl(legend4k);
+                map4.removeLayer(ALL);
+                map4.removeLayer(SW);
+                map4.removeLayer(SH);
+                map4.removeLayer(SC);
+                map4.removeLayer(SR);
+                map4.removeLayer(RH);
+                map4.removeLayer(PC);
+                map4.removeLayer(NW);
+                map4.removeLayer(MH);
+                map4.removeLayer(H);
+                map4.removeLayer(CSS);
+                map4.removeLayer(CR);
+                map4.removeLayer(CI);
+                map4.removeControl(legend4a);
+                map4.removeControl(legend4b);
+                map4.removeControl(legend4c);
+                map4.removeControl(legend4d);
+                map4.removeControl(legend4e);
+                map4.removeControl(legend4f);
+                map4.removeControl(legend4g);
+                map4.removeControl(legend4h);
+                map4.removeControl(legend4i);
+                map4.removeControl(legend4j);
+                map4.removeControl(legend4l);
+                map4.removeControl(legend4m);
+                map4.removeControl(legend4n);
+                });  
+                             
+            $("#CSS").click(function() {
+                map4.addLayer(CSS);
                 map4.addControl(legend4l);
-                map4.removeLayer(all);
-                map4.removeLayer(IDPHFeedbackTX);
-                map4.removeLayer(IDPHFeedbackRecovery);
-                map4.removeLayer(housing);
-                map4.removeLayer(Residential);
-                map4.removeLayer(Inpatient);
-                map4.removeLayer(women);
-                map4.removeLayer(men);
-                map4.removeLayer(family);
-                map4.removeLayer(IntOut);
-                map4.removeLayer(CBT);
-                map4.removeLayer(DBT);
-                map4.removeLayer(REBT);
-                map4.removeLayer(Med);
-                map4.removeLayer(Trauma);
-                map4.removeLayer(Religion);
+                map4.removeLayer(ALL);
+                map4.removeLayer(SW);
+                map4.removeLayer(SH);
+                map4.removeLayer(SC);
+                map4.removeLayer(SR);
+                map4.removeLayer(RH);
+                map4.removeLayer(PC);
+                map4.removeLayer(NW);
+                map4.removeLayer(MH);
+                map4.removeLayer(H);
+                map4.removeLayer(EI);
+                map4.removeLayer(CR);
+                map4.removeLayer(CI);
                 map4.removeControl(legend4a);
                 map4.removeControl(legend4b);
                 map4.removeControl(legend4c);
@@ -1713,35 +1479,28 @@
                 map4.removeControl(legend4h);
                 map4.removeControl(legend4i);
                 map4.removeControl(legend4j);
-                map4.removeControl(legend4k);
+                map4.removeControl(legend4l);
                 map4.removeControl(legend4m);
                 map4.removeControl(legend4n);
-                map4.removeControl(legend4o);
-                map4.removeControl(legend4p);
-                map4.removeControl(legend4q);
-                map4.removeControl(legend4r);
-                });
+                });  
             
-            
-          $("#CBT").click(function() {
-                map4.addLayer(CBT);
+                                
+            $("#CR").click(function() {
+                map4.addLayer(CR);
                 map4.addControl(legend4m);
-                map4.removeLayer(all);
-                map4.removeLayer(IDPHFeedbackTX);
-                map4.removeLayer(IDPHFeedbackRecovery);
-                map4.removeLayer(housing);
-                map4.removeLayer(Residential);
-                map4.removeLayer(Inpatient);
-                map4.removeLayer(women);
-                map4.removeLayer(men);
-                map4.removeLayer(family);
-                map4.removeLayer(IntOut);
-                map4.removeLayer(Out);
-                map4.removeLayer(DBT);
-                map4.removeLayer(REBT);
-                map4.removeLayer(Med);
-                map4.removeLayer(Trauma);
-                map4.removeLayer(Religion);
+                map4.removeLayer(ALL);
+                map4.removeLayer(SW);
+                map4.removeLayer(SH);
+                map4.removeLayer(SC);
+                map4.removeLayer(SR);
+                map4.removeLayer(RH);
+                map4.removeLayer(PC);
+                map4.removeLayer(NW);
+                map4.removeLayer(MH);
+                map4.removeLayer(H);
+                map4.removeLayer(EI);
+                map4.removeLayer(CSS);
+                map4.removeLayer(CI);
                 map4.removeControl(legend4a);
                 map4.removeControl(legend4b);
                 map4.removeControl(legend4c);
@@ -1752,34 +1511,27 @@
                 map4.removeControl(legend4h);
                 map4.removeControl(legend4i);
                 map4.removeControl(legend4j);
-                map4.removeControl(legend4k);
                 map4.removeControl(legend4l);
+                map4.removeControl(legend4k);
                 map4.removeControl(legend4n);
-                map4.removeControl(legend4o);
-                map4.removeControl(legend4p);
-                map4.removeControl(legend4q);
-                map4.removeControl(legend4r);
-                });            
+                });  
             
-          $("#DBT").click(function() {
-                map4.addLayer(DBT);
+            $("#CI").click(function() {
+                map4.addLayer(CI);
                 map4.addControl(legend4n);
-                map4.removeLayer(all);
-                map4.removeLayer(IDPHFeedbackTX);
-                map4.removeLayer(IDPHFeedbackRecovery);
-                map4.removeLayer(housing);
-                map4.removeLayer(Residential);
-                map4.removeLayer(Inpatient);
-                map4.removeLayer(women);
-                map4.removeLayer(men);
-                map4.removeLayer(family);
-                map4.removeLayer(IntOut);
-                map4.removeLayer(Out);
-                map4.removeLayer(CBT);
-                map4.removeLayer(REBT);
-                map4.removeLayer(Med);
-                map4.removeLayer(Trauma);
-                map4.removeLayer(Religion);
+                map4.removeLayer(ALL);
+                map4.removeLayer(SW);
+                map4.removeLayer(SH);
+                map4.removeLayer(SC);
+                map4.removeLayer(SR);
+                map4.removeLayer(RH);
+                map4.removeLayer(PC);
+                map4.removeLayer(NW);
+                map4.removeLayer(MH);
+                map4.removeLayer(H);
+                map4.removeLayer(EI);
+                map4.removeLayer(CSS);
+                map4.removeLayer(CR);
                 map4.removeControl(legend4a);
                 map4.removeControl(legend4b);
                 map4.removeControl(legend4c);
@@ -1790,167 +1542,11 @@
                 map4.removeControl(legend4h);
                 map4.removeControl(legend4i);
                 map4.removeControl(legend4j);
-                map4.removeControl(legend4k);
                 map4.removeControl(legend4l);
-                map4.removeControl(legend4m);
-                map4.removeControl(legend4o);
-                map4.removeControl(legend4p);
-                map4.removeControl(legend4q);
-                map4.removeControl(legend4r);
-                });
-            
-            $("#REBT").click(function() {
-                map4.addLayer(REBT);
-                map4.addControl(legend4o);
-                map4.removeLayer(all);
-                map4.removeLayer(IDPHFeedbackTX);
-                map4.removeLayer(IDPHFeedbackRecovery);
-                map4.removeLayer(housing);
-                map4.removeLayer(Residential);
-                map4.removeLayer(Inpatient);
-                map4.removeLayer(women);
-                map4.removeLayer(men);
-                map4.removeLayer(family);
-                map4.removeLayer(IntOut);
-                map4.removeLayer(Out);
-                map4.removeLayer(CBT);
-                map4.removeLayer(DBT);
-                map4.removeLayer(Med);
-                map4.removeLayer(Trauma);
-                map4.removeLayer(Religion);
-                map4.removeControl(legend4a);
-                map4.removeControl(legend4b);
-                map4.removeControl(legend4c);
-                map4.removeControl(legend4d);
-                map4.removeControl(legend4e);
-                map4.removeControl(legend4f);
-                map4.removeControl(legend4g);
-                map4.removeControl(legend4h);
-                map4.removeControl(legend4i);
-                map4.removeControl(legend4j);
                 map4.removeControl(legend4k);
-                map4.removeControl(legend4l);
                 map4.removeControl(legend4m);
-                map4.removeControl(legend4n);
-                map4.removeControl(legend4p);
-                map4.removeControl(legend4q);
-                map4.removeControl(legend4r);
-                });          
-            
-           $("#Med").click(function() {
-                map4.addLayer(Med);
-                map4.addControl(legend4p);
-                map4.removeLayer(all);
-                map4.removeLayer(IDPHFeedbackTX);
-                map4.removeLayer(IDPHFeedbackRecovery);
-                map4.removeLayer(housing);
-                map4.removeLayer(Residential);
-                map4.removeLayer(Inpatient);
-                map4.removeLayer(women);
-                map4.removeLayer(men);
-                map4.removeLayer(family);
-                map4.removeLayer(IntOut);
-                map4.removeLayer(Out);
-                map4.removeLayer(CBT);
-                map4.removeLayer(DBT);
-                map4.removeLayer(REBT);
-                map4.removeLayer(Trauma);
-                map4.removeLayer(Religion);
-                map4.removeControl(legend4a);
-                map4.removeControl(legend4b);
-                map4.removeControl(legend4c);
-                map4.removeControl(legend4d);
-                map4.removeControl(legend4e);
-                map4.removeControl(legend4f);
-                map4.removeControl(legend4g);
-                map4.removeControl(legend4h);
-                map4.removeControl(legend4i);
-                map4.removeControl(legend4j);
-                map4.removeControl(legend4k);
-                map4.removeControl(legend4l);
-                map4.removeControl(legend4m);
-                map4.removeControl(legend4n);
-                map4.removeControl(legend4o);
-                map4.removeControl(legend4q);
-                map4.removeControl(legend4r);
-                });
-            
-            $("#Trauma").click(function() {
-                map4.addLayer(Trauma);
-                map4.addControl(legend4q);
-                map4.removeLayer(all);
-                map4.removeLayer(IDPHFeedbackTX);
-                map4.removeLayer(IDPHFeedbackRecovery);
-                map4.removeLayer(housing);
-                map4.removeLayer(Residential);
-                map4.removeLayer(Inpatient);
-                map4.removeLayer(women);
-                map4.removeLayer(men);
-                map4.removeLayer(family);
-                map4.removeLayer(IntOut);
-                map4.removeLayer(Out);
-                map4.removeLayer(CBT);
-                map4.removeLayer(DBT);
-                map4.removeLayer(REBT);
-                map4.removeLayer(Med);
-                map4.removeLayer(Religion);
-                map4.removeControl(legend4a);
-                map4.removeControl(legend4b);
-                map4.removeControl(legend4c);
-                map4.removeControl(legend4d);
-                map4.removeControl(legend4e);
-                map4.removeControl(legend4f);
-                map4.removeControl(legend4g);
-                map4.removeControl(legend4h);
-                map4.removeControl(legend4i);
-                map4.removeControl(legend4j);
-                map4.removeControl(legend4k);
-                map4.removeControl(legend4l);
-                map4.removeControl(legend4m);
-                map4.removeControl(legend4n);
-                map4.removeControl(legend4o);
-                map4.removeControl(legend4p);
-                map4.removeControl(legend4r);
                 });  
-            
-          $("#Religion").click(function() {
-                map4.addLayer(Religion);
-                map4.addControl(legend4r);
-                map4.removeLayer(all);
-                map4.removeLayer(IDPHFeedbackTX);
-                map4.removeLayer(IDPHFeedbackRecovery);
-                map4.removeLayer(housing);
-                map4.removeLayer(Residential);
-                map4.removeLayer(Inpatient);
-                map4.removeLayer(women);
-                map4.removeLayer(men);
-                map4.removeLayer(family);
-                map4.removeLayer(IntOut);
-                map4.removeLayer(Out);
-                map4.removeLayer(CBT);
-                map4.removeLayer(DBT);
-                map4.removeLayer(REBT);
-                map4.removeLayer(Med);
-                map4.removeLayer(Trauma);
-                map4.removeControl(legend4a);
-                map4.removeControl(legend4b);
-                map4.removeControl(legend4c);
-                map4.removeControl(legend4d);
-                map4.removeControl(legend4e);
-                map4.removeControl(legend4f);
-                map4.removeControl(legend4g);
-                map4.removeControl(legend4h);
-                map4.removeControl(legend4i);
-                map4.removeControl(legend4j);
-                map4.removeControl(legend4k);
-                map4.removeControl(legend4l);
-                map4.removeControl(legend4m);
-                map4.removeControl(legend4n);
-                map4.removeControl(legend4o);
-                map4.removeControl(legend4p);
-                map4.removeControl(legend4q);
-                });  
-                 
+        
            </script>
       </body>
 </html>
